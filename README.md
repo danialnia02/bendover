@@ -3,7 +3,7 @@
 ## Names:
 
 1. Mohamed Danial Irfan Bin Salimi (1838750)
-2. 
+2. Ong Jingjie Cleavon (1935868)
 
 ## Setup
 
