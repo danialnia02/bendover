@@ -2,8 +2,8 @@
 
 ## Names:
 
-1. `[NAME HERE]`
-2. `[NAME HERE]`
+1. Mohamed Danial Irfan Bin Salimi (1838750)
+2. 
 
 ## Setup
 
