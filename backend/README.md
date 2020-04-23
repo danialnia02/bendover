@@ -10,3 +10,5 @@
 -   Refer to individual problem statements for the API schema.
 -   You are allowed to create other APIs to support the operations of other components.
 -   You are to connect to PostgreSql
+
+## Weekly Report

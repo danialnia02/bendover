@@ -1,7 +1,62 @@
 POST http://localhost:3000/basic/insert HTTP/1.1
 Content-Type: application/json
+
 {
-    "data":{
-        
-    }
+    "data":[
+         {
+             "coinId":1000000001,
+             "countryId":1100000001,
+             "value":10
+         },
+         {
+             "coinId":1000000002,
+             "countryId":1100000001,
+             "value":20
+         },
+         {
+             "coinId":1000000003,
+             "countryId":1100000001,
+             "value":50
+         },
+         {
+             "coinId":1000000004,
+             "countryId":1100000001,
+             "value":100
+         }
+    ]
 }
+
+###
+
+POST http://localhost:3000/basic/insert HTTP/1.1
+Content-Type: application/json
+
+{
+    "data":[
+         {
+             "coinId":1000000011,
+             "countryId":1100000002,
+             "value":1
+         },
+         {
+             "coinId":1000000012,
+             "countryId":1100000002,
+             "value":5
+         },
+         {
+             "coinId":1000000013,
+             "countryId":1100000002,
+             "value":50
+         },
+         {
+             "coinId":1000000014,
+             "countryId":1100000002,
+             "value":100
+         }
+    ]
+}
+
+###
+
+GET http://localhost:3000/basic/data?countryId=1100000001&value_gt=20&page=2&pageSize=1 HTTP/1.1
+Content-Type: application/json
