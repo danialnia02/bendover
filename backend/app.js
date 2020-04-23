@@ -12,6 +12,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.post('/basic/insert',function (req,res,next){
+  const {data} =req.body;
+  res.json(data);
+})
+
 app.get('/',(req,res,next)=>{
   res.json({hello: 'world'});
 });
