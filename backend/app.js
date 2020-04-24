@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const database = require('./database');
+const backend = require('./backend');
 
 var app = express();
 
@@ -32,6 +33,16 @@ app.get('/basic/data', function (req, res, next) {
       return next(error)
     }
     res.json(result);
+  })
+})
+
+app.get('/basic/result', function (req, res, next) {
+  const { countryId, amount } = req.query;
+  database.getCoinsForComputation(countryId, (error, result) => {
+    if (error) return next(error);
+    const { error: computationError, result: computationResult } = backend.compute(result, amount)
+    if (computationError) return next(computationError);
+    return res.join(computationResult)
   })
 })
 

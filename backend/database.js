@@ -63,15 +63,29 @@ function getCoins(countryId, value_gt, page = 0, pageSize = 10, callback) {
     // console.log(query, values);
     // callback(null, { ok: 'ok' })
     const client = connect();
-    client.query(query, values, function (err, {rows}) {
+    client.query(query, values, function (err, result) {
         client.end();
+        if (err) return callback(err, result);
+        const { rows } = result;
         callback(err, rows);
 
+    })
+}
+
+function getCoinsForComputation(countryId, callback) {
+    const client = connect();
+    client.query(`SELECT * FROM coin WHERE country_id = $1`, [countryId], (err, result) => {
+
+        client.end();
+        if (err) return callback(err, result);
+        const { rows } = result;
+        callback(err, rows);
     })
 }
 
 module.exports = {
     resetTable,
     insertCoins,
-    getCoins
+    getCoins,
+    getCoinsForComputation
 }
