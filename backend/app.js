@@ -21,23 +21,17 @@ app.post('/basic/insert', function (req, res, next) {
       return next(error);
     }
     console.log(result);
-    res.json(data);
+    res.json(result);
   });
 })
 
 app.get('/basic/data', function (req, res, next) {
   const { countryId, value_gt, page, pageSize } = req.query;
-  database.getCoins(countryId,value_gt,page,pageSize,(error,result)=>{
-    if(error){
+  database.getCoins(countryId, value_gt, page, pageSize, (error, result) => {
+    if (error) {
       return next(error)
     }
-    res.json(data);
-  })
-  res.json({
-    countryId,
-    value_gt,
-    page,
-    pageSize,
+    res.json(result);
   })
 })
 

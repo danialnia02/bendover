@@ -40,26 +40,34 @@ function insertCoins(coins, callback) {
 
 function getCoins(countryId, value_gt, page = 0, pageSize = 10, callback) {
     let whereClause;
-    let i = 1;
+    let i = 1
+    const values = [];
     if (!countryId && !value_gt) whereClause = '';
     else {
-        whereClause = 'WHERE';
+        whereClause = 'WHERE ';
         if (countryId) {
-            whereClause += `country_id=$${i++}`;
-            values.push(countryId);
+            whereClause += ` country_id= $${i++}`;
+            values.push(parseInt(countryId));
         }
         if (value_gt) {
-            whereClause += countryId ? `AND value > $${i++}` : `value> $${i++}`;
-            values.push(value_gt);
+            whereClause += countryId ? ` AND value > $${i++}` : `value > $${i++}`;
         }
+        values.push(parseInt(value_gt));
     }
 
-    let limitOffsetClause = `LIMIT $${i++} OFFSET $${i++}`;
-    values.push(page); // limit = page size
-    values.push(page * pageSize); // offset =page * pageSize
+    let limitOffsetClause = `LIMIT $${i++} OFFSET $${i++}`
+    values.push(parseInt(pageSize)); // limit = page size
+    values.push(parseInt(page) * parseInt(pageSize)); //offset =page * pageSize
     const query = `SELECT * FROM coin ${whereClause} ${limitOffsetClause}`
 
-    console.log(query, value);
+    // console.log(query, values);
+    // callback(null, { ok: 'ok' })
+    const client = connect();
+    client.query(query, values, function (err, {rows}) {
+        client.end();
+        callback(err, rows);
+
+    })
 }
 
 module.exports = {
