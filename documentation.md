@@ -5,3 +5,8 @@ main page will have a huge image, show the poll, navigation on the top wiht icon
 twitter, youtube and spotify, tickets page
 
 poll:tour,news,media,about,log in
+
+
+
+
+Week 1: We have been comming up with the wireframe.
