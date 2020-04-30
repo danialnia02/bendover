@@ -1,10 +1,7 @@
 # JiBaBoom
 Music Festival
 # Database
-AzureDB
-# Frontend
-React
-ionic
+Azure Mysql
 # Backend
 Node.js
 ## Names:
