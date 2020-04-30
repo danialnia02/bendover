@@ -3,13 +3,7 @@ Music Festival
 # Database
 Azure Mysql
 # Backend
-<<<<<<< HEAD
 Node.js
-=======
-Node,js
-# Frontend
-React and Ionic
->>>>>>> a2bb33e65b02cea4fdc6e1aee6785d15079fc7ce
 ## Names:
 
 1. Mohamed Danial Irfan Bin Salimi (1838750)
