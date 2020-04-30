@@ -1,9 +1,11 @@
 # JiBaBoom
 Music Festival
 # Database
-Mysql
+Azure Mysql
 # Backend
 Node,js
+# Frontend
+React and Ionic
 ## Names:
 
 1. Mohamed Danial Irfan Bin Salimi (1838750)
