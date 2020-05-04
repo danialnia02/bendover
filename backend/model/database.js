@@ -1,9 +1,20 @@
-var db = require('./databaseConfig.js');
+var mssql = require('mssql');
 
+
+var dbConfig = {
+    server: "bendover.database.windows.net",
+    database: "MusicDb",
+    user: "bendoveradmin",
+    password: "/Damenthrall/",    
+    dialect: "mssql",
+    dialectOptions: {
+        instanceName: "SQLEXPRESS"
+    },
+};
 
 var database = {
-    test: function (callback) {
-        var conn = db.getConnection();
+    test: function (callback) {        
+        var conn = new mssql.ConnectionPool(dbConfig);
         conn.connect(function (err) {
             if (err) {
                 console.log(err);
@@ -11,9 +22,11 @@ var database = {
             }
             else {
                 console.log("Connected!");
-                var sql = 'SELECT * FROM users ';
-                conn.query(sql, function (err, result) {
-                    conn.end();
+                var req = new mssql.Request(conn);
+
+                //database code
+                var sql = 'SELECT * FROM dbo.pollUser ';
+                req.query(sql, function (err, result) {                    
                     if (err) {
                         console.log(err);
                         return callback(err, null);

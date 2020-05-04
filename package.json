@@ -2,17 +2,19 @@
   "name": "jibaboom-2b22-bendover",
   "version": "1.0.0",
   "description": "Music Festival\r # Database\r Mysql\r # Backend\r Node,js\r ## Names:",
-  "main": "index.js",
+  "main": "server.js",
   "directories": {
     "doc": "docs"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "mssql": "^6.2.0",
     "pg": "^8.0.3"
   },
   "devDependencies": {},
   "scripts": {
+    "start-dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

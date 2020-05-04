@@ -1,14 +1,19 @@
-var mysql = require('mysql');
+// var mysql = require('mssql');
 
-var dbconnect = {
-    getConnection: function () {
-        var conn = mysql.createConnection({
-            host: "localhost",
-            user: "root",
-            password: "password",
-            database: "snapsell"
-        });
-        return conn;
-    }
-};
-module.exports = dbconnect
+// var dbconnect = {
+//     getConnection: function () {
+//         var conn =new mysql.ConnectionPool({
+//             server: "bendover.database.windows.net",
+//             database: "MusicDb",
+//             user: "bendoveradmin",
+//             password: "/Damenthrall/",
+//             port: 1433,
+//             dialect: "mssql",
+//             dialectOptions: {
+//                 instanceName: "SQLEXPRESS"
+//             },
+//         });
+//         return conn;
+//     }
+// };
+// module.exports = dbconnect
