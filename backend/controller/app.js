@@ -12,9 +12,10 @@ app.use(urlencodedParser);
 var multer = require('multer');
 var multParse = multer();
 
-app.get('/test/', function (req, res) {
+//Select * from music Info  
+app.get('/advance/results', function (req, res) {
 
-    musicDb.test(function (err, result) {
+    musicDb.getAllfestivalInfo(function (err, result) {
         if (!err) {
             res.send(result);
         } else {
@@ -23,4 +24,32 @@ app.get('/test/', function (req, res) {
     })
 })
 
-module.exports= app
+app.get('/advance/result/', function (req, res) {
+    var Info;    
+    if (req.body.userInput == "" || req.body.userInput == null) {
+        Info={
+            attribute:req.body.attribute,
+            operation:req.body.operation,
+            userInput:null            
+        }
+    } else {
+        Info = {
+            attribute: req.body.attribute,
+            operation: req.body.operation,
+            userInput: req.body.userInput,
+        }
+    }
+    console.log(Info)
+    res.send(Info)
+
+
+    musicDb.getfestivalInfoUser(Info, function (err, result) {
+        if (!err) {
+            res.send(result);
+        } else {
+            res.status(500).send('Unknown error\nCode:500 Internal Server Error');
+        }
+    });
+});
+
+module.exports = app
