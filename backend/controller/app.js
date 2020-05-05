@@ -30,8 +30,8 @@ app.get('/advance/result/', function (req, res) {
         Info={
             attribute:req.body.attribute,
             operation:req.body.operation,
-            // order:req.body.order,
-            // orderFrom:req.body.orderFrom,
+            order:req.body.order,
+            orderFrom:req.body.orderFrom,
             userInput:null
             
         }
@@ -39,8 +39,8 @@ app.get('/advance/result/', function (req, res) {
         Info = {
             attribute: req.body.attribute,
             operation: req.body.operation,
-            // order:req.body.order,
-            // orderFrom:req.body.orderFrom,
+            order:req.body.order,
+            orderFrom:req.body.orderFrom,
             userInput: req.body.userInput,
         }
     }        

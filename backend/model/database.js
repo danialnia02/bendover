@@ -51,9 +51,9 @@ var database = {
                 if (Info.userInput != null) {
                     query = 'where ' + Info.attribute + " "+Info.operation+" " + Info.userInput
                 }
-                // if(Info.order !=null){
-                //     query+=
-                // }
+                if(Info.order !=null){
+                    query+=" order by "+Info.orderFrom +" "+Info.order
+                }
 
                 //database code            
 
