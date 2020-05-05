@@ -6,8 +6,13 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true });
 var formidableMiddleware = require('express-formidable')
 var path = require('path');
 
+
+
 app.use(bodyParser.json());
 app.use(urlencodedParser);
+// app.use(express.static("frontend"));
+app.use('/', express.static('../frontend'))
+// app.use(cors());
 
 var multer = require('multer');
 var multParse = multer();
@@ -45,7 +50,7 @@ app.get('/advance/result/', function (req, res) {
         }
     }        
 
-    musicDb.getfestivalInfoUser(Info, function (err, result) {
+    musicDb.getFestivalInfos( function (err, result) {
         if (!err) {
             res.send(result);
         } else {

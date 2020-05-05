@@ -1,0 +1,288 @@
+<!-- <META HTTP-EQUIV="refresh" CONTENT="2"> -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+<html>
+<style>
+    #container {
+        margin: auto;
+        width: 80%;
+        height: 80%;
+        background-color: #e6e6e6;
+        border-radius: 10px;
+    }
+
+    #header {
+        margin: auto;
+        padding-top: 10px;
+        width: 95%;
+        /* background-color: red; */
+    }
+
+    .bg {
+        background-image: url("./images/grey.png");
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #navBarAttribute {
+        width: 150px !important;
+    }
+
+    #navBarOperation {
+        width: 75px !important;
+    }
+
+    #navBaruserInput {
+        width: 150px !important;
+    }
+
+    /* Search button for navbar */
+    #searchButton {
+        padding: 15px 15px !important;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 20px 30px;
+        cursor: pointer;
+    }
+
+    #size {
+        padding: 15px 10px 0px
+    }
+    #resultrow{
+        background-color:red;
+    }
+</style>
+<box>
+    Data Result
+
+    <body>
+        <div class="container" id=container>
+            <div class="row">
+                <!--Header -->
+                <div class="row" id=header>
+                    <div class="col-sm-2">
+                        <th>MusicDb</th>
+                    </div>
+                    <div class="entries_length" id="entries_length"><label>Show <select name="entries_length"
+                                aria-controls="example" class="custom-select custom-select-sm form-control-sm">
+                                <option value="10">5</option>
+                                <option value="25">15</option>
+                                <option value="50">25</option>
+                                <option value="100">30</option>
+                            </select> entries</label></div>
+
+                    <div class="col-sm-1" id="size">Search</div>
+
+                    <div class="entries_length" id="size"><select name="entries_length" aria-controls="example"
+                            class="form-control" id="navBarAttribute">
+                            <option value="10">performanceId</option>
+                            <option value="25">festivalId</option>
+                            <option value="50">startTime</option>
+                            <option value="100">endTime</option>
+                            <option value="100">popularity</option>
+                            <option value="100">dataInserted</option>
+                        </select></div>
+
+                    <div class="entries_length" id="size"><select name="navBarOperation" aria-controls="example"
+                            class="form-control" id="navBarOperation">
+                            <option value="10">==</option>
+                            <option value="25">&gt;=</option>
+                            <option value="50">&gt;</option>
+                            <option value="100">&lt;</option>
+                            <option value="100">&lt;=</option>
+                        </select></div>
+
+                    <div id="size"><input class="form-control" type="text" placeholder="Search" id="navBaruserInput"
+                            aria-label="Search">
+                    </div>
+                    <button type="button" id="SearchButton">Filter</button>
+                </div>
+
+
+                <div id="results" id="resultrow"></div>
+            </div>
+        </div>
+    </body>
+
+
+    <!--<div class="card-body">
+        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="dataTables_length" id="example_length"><label>Show <select name="example_length"
+                                aria-controls="example"
+                                class="custom-select custom-select-sm form-control form-control-sm">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select> entries</label></div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div id="example_filter" class="dataTables_filter"><label>Search:<input type="search"
+                                class="form-control form-control-sm" placeholder="" aria-controls="example"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table style="width: 100%;" id="example"
+                        class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid"
+                        aria-describedby="example_info">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                    style="width: 585.2px;" aria-sort="ascending"
+                                    aria-label="Name: activate to sort column descending">Name</th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                    style="width: 867.2px;" aria-label="Position: activate to sort column ascending">
+                                    Position</th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                    style="width: 444.2px;" aria-label="Office: activate to sort column ascending">
+                                    Office
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                    style="width: 275.2px;" aria-label="Age: activate to sort column ascending">Age</th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                    style="width: 458.2px;" aria-label="Start date: activate to sort column ascending">
+                                    Start
+                                    date</th>
+                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                    style="width: 362.2px;" aria-label="Salary: activate to sort column ascending">
+                                    Salary
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row" class="odd">
+                                <td tabindex="0" class="sorting_1">Airi Satou</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                                <td>33</td>
+                                <td>2008/11/28</td>
+                                <td>$162,700</td>
+                            </tr>
+
+                            <tr role="row" class="even">
+                                <td class="sorting_1" tabindex="0">Bradley Greer</td>
+                                <td>Software Engineer</td>
+                                <td>London</td>
+                                <td>41</td>
+                                <td>2012/10/13</td>
+                                <td>$132,000</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th rowspan="1" colspan="1">Name</th>
+                                <th rowspan="1" colspan="1">Position</th>
+                                <th rowspan="1" colspan="1">Office</th>
+                                <th rowspan="1" colspan="1">Age</th>
+                                <th rowspan="1" colspan="1">Start date</th>
+                                <th rowspan="1" colspan="1">Salary</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-5">
+                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 10 of
+                        57
+                        entries</div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                    <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                        <ul class="pagination">
+                            <li class="paginate_button page-item previous disabled" id="example_previous"><a href="#"
+                                    aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                            </li>
+                            <li class="paginate_button page-item active"><a href="#" aria-controls="example"
+                                    data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="2"
+                                    tabindex="0" class="page-link">2</a></li>
+                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="3"
+                                    tabindex="0" class="page-link">3</a></li>
+                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="4"
+                                    tabindex="0" class="page-link">4</a></li>
+                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="5"
+                                    tabindex="0" class="page-link">5</a></li>
+                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="6"
+                                    tabindex="0" class="page-link">6</a></li>
+                            <li class="paginate_button page-item next" id="example_next"><a href="#"
+                                    aria-controls="example" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</box>
+<script>
+    const baseUrl = "http://localhost:8011";
+
+    var Info = {
+        attribute: "popularity",
+        operation: "<",
+        userInput: null,
+        order: "desc",
+        orderFrom: "popularity"
+    }
+    axios.get(`${baseUrl}/advance/result`, Info)
+        .then((response) => {
+            const listings = response.data;
+            // console.log(listings)
+            listings.forEach((listings) => {
+                const postHtml =`
+                ${listings.performanceId}
+                `
+                // const postHtml = `
+
+                // <div class="col-4 ">
+                //     <div class="card" style="margin-top: 2rem; overflow:auto">
+                //         <img class="center" src="${listings.image_pic}" alt="${listings.image_pic}" height="180" width="180">
+                //         <div class="card-body">
+                //         <a style=font-weight:bold>${listings.title}</a>
+                //         </br><a>$${listings.price}</a>
+                //         </div>
+                //         <div class="card-footer text-muted">
+                //             ${listings.description}
+                //         </div>
+                //         <div class="mx-auto  text-muted">
+                //             <button type="submit" class="btn text-center btn-outline-dark my-2 my-sm-0" onclick="ListingInfo(${listings.id})" id="OfferButton">Offer Price</button>
+
+                //         </div>
+                //     </div>
+                // </div>
+
+                // `;
+
+                $("#results").append(postHtml);
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+</script>
+
+</html>
