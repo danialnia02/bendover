@@ -47,13 +47,17 @@ var database = {
             else {
                 console.log("Connected!");
                 var req = new mssql.Request(conn);
-                if(Info.userInput==null){
-                    
+                var query;
+                if (Info.userInput != null) {
+                    query = 'where ' + Info.attribute + " "+Info.operation+" " + Info.userInput
                 }
+                // if(Info.order !=null){
+                //     query+=
+                // }
 
                 //database code            
 
-                var sql = 'SELECT * FROM dbo.festivalInfo where ?= ?';
+                var sql = 'SELECT * FROM dbo.festivalInfo ' + query;
                 req.query(sql, function (err, result) {
                     if (err) {
                         console.log(err);

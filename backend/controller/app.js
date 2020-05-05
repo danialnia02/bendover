@@ -30,18 +30,20 @@ app.get('/advance/result/', function (req, res) {
         Info={
             attribute:req.body.attribute,
             operation:req.body.operation,
-            userInput:null            
+            // order:req.body.order,
+            // orderFrom:req.body.orderFrom,
+            userInput:null
+            
         }
     } else {
         Info = {
             attribute: req.body.attribute,
             operation: req.body.operation,
+            // order:req.body.order,
+            // orderFrom:req.body.orderFrom,
             userInput: req.body.userInput,
         }
-    }
-    console.log(Info)
-    res.send(Info)
-
+    }        
 
     musicDb.getfestivalInfoUser(Info, function (err, result) {
         if (!err) {
