@@ -45,22 +45,21 @@ var database = {
                 return callback(err, null);
             }
             else {
-                console.log("Connected!");
+                console.log("Connected!");                
                 var req = new mssql.Request(conn);
-                var query="";
+                var query = "";
                 if (Info.userInput != null) {
-                    query = 'where ' + Info.attribute + " "+Info.operation+" " + Info.userInput
+                    query = 'where ' + Info.attribute + " " + Info.operation + " " + Info.userInput
                 }
-                if(Info.order !=null){
-                    query+=" order by "+Info.orderFrom +" "+Info.order
+                if (Info.order != null) {
+                    query += " order by " + Info.orderFrom + " " + Info.order
                 }
-                if(query==undefined){
-                    query="";
+                if (query == undefined) {
+                    query = "";
                 }
                 //database code            
 
                 var sql = 'SELECT * FROM dbo.festivalInfo ' + query;                
-                console.log(sql)
                 req.query(sql, function (err, result) {
                     if (err) {
                         console.log(err);
@@ -71,8 +70,40 @@ var database = {
                 });
             }
         })
-    }
+    },
+    getAllfestivalInfoHeader: function (callback) {
+        var conn = new mssql.ConnectionPool(dbConfig);
+        conn.connect(function (err) {
+            if (err) {
+                console.log(err);
+                return callback(err, null);
+            }
+            else {
+                console.log("Connected!");
+                var req = new mssql.Request(conn);
+
+                //database code
+                var sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'festivalInfo' ORDER BY ORDINAL_POSITION";                
+                req.query(sql, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        return callback(err, null);
+                    } else {
+                        return callback(null, result.recordset);
+                    }
+                });
+            }
+        })
+    },
 }
 
 
 module.exports = database
+
+// SELECT COLUMN_NAME
+
+// FROM INFORMATION_SCHEMA.COLUMNS
+
+// WHERE TABLE_NAME = 'festivalInfo'
+
+// ORDER BY ORDINAL_POSITION

@@ -68,8 +68,9 @@
     #size {
         padding: 15px 10px 0px
     }
-    #resultrow{
-        background-color:red;
+
+    #resultrow {
+        background-color: red;
     }
 </style>
 <box>
@@ -118,38 +119,44 @@
                     <button type="button" id="SearchButton">Filter</button>
                 </div>
 
+                <!-- <div class="col-sm-1">
+                    </div> -->
 
-                <div id="results" id="resultrow"></div>
+                <table style="width: 100%;" id="example"
+                    class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid"
+                    aria-describedby="example_info">
+
+
+                    <!-- your gonna try to use the example row cos you dk why the fuck your row not working-->
+                    <thead>
+                        <tr role="row">
+                            <div class="col-sm-10" id="header" id="resultrow">
+                            </div>
+                        </tr>
+                    </thead>
+
+                </table>
+                <!-- <div class="col-sm-10" id="results" id="resultrow">
+                    </div> -->
+
+                <!-- <div class="col-sm-1">
+                    </div> -->
+
+
             </div>
         </div>
     </body>
 
 
-    <!--<div class="card-body">
+    <div class="card-body">
         <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <div class="dataTables_length" id="example_length"><label>Show <select name="example_length"
-                                aria-controls="example"
-                                class="custom-select custom-select-sm form-control form-control-sm">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select> entries</label></div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <div id="example_filter" class="dataTables_filter"><label>Search:<input type="search"
-                                class="form-control form-control-sm" placeholder="" aria-controls="example"></label>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-sm-12">
                     <table style="width: 100%;" id="example"
                         class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid"
                         aria-describedby="example_info">
-                        <thead>
+
+                        <!-- <thead>
                             <tr role="row">
                                 <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
                                     style="width: 585.2px;" aria-sort="ascending"
@@ -172,8 +179,9 @@
                                     Salary
                                 </th>
                             </tr>
-                        </thead>
-                        <tbody>
+                        </thead> -->
+
+                        <!-- <tbody>
                             <tr role="row" class="odd">
                                 <td tabindex="0" class="sorting_1">Airi Satou</td>
                                 <td>Accountant</td>
@@ -191,7 +199,7 @@
                                 <td>2012/10/13</td>
                                 <td>$132,000</td>
                             </tr>
-                        </tbody>
+                        </tbody> -->
                         <tfoot>
                             <tr>
                                 <th rowspan="1" colspan="1">Name</th>
@@ -236,7 +244,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 </box>
 <script>
     const baseUrl = "http://localhost:8011";
@@ -248,36 +256,35 @@
         order: "desc",
         orderFrom: "popularity"
     }
+
     axios.get(`${baseUrl}/advance/result`, Info)
         .then((response) => {
             const listings = response.data;
             // console.log(listings)
             listings.forEach((listings) => {
-                const postHtml =`
+                const postHtml = `
                 ${listings.performanceId}
                 `
-                // const postHtml = `
-
-                // <div class="col-4 ">
-                //     <div class="card" style="margin-top: 2rem; overflow:auto">
-                //         <img class="center" src="${listings.image_pic}" alt="${listings.image_pic}" height="180" width="180">
-                //         <div class="card-body">
-                //         <a style=font-weight:bold>${listings.title}</a>
-                //         </br><a>$${listings.price}</a>
-                //         </div>
-                //         <div class="card-footer text-muted">
-                //             ${listings.description}
-                //         </div>
-                //         <div class="mx-auto  text-muted">
-                //             <button type="submit" class="btn text-center btn-outline-dark my-2 my-sm-0" onclick="ListingInfo(${listings.id})" id="OfferButton">Offer Price</button>
-
-                //         </div>
-                //     </div>
-                // </div>
-
-                // `;
-
                 $("#results").append(postHtml);
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+    axios.get(`${baseUrl}/advance/header`)
+        .then((response) => {
+            const header = response.data;
+            // console.log(listings)
+            header.forEach((header) => {
+                console.log(header + "test")
+                const postHtml = `
+                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                style="width: 585.2px;" aria-sort="ascending"
+                aria-label="Name: activate to sort column descending">${header.COLUMN_NAME}</th>
+                
+                `
+                $("#header").append(postHtml);
             });
         })
         .catch((error) => {
