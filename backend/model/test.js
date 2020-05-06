@@ -21,7 +21,7 @@ function getList() {
         var req = new sql.Request(conn);
 
         //databasecode
-        req.query("select * from pollUser", function (err, result) {
+        req.query("select * from dbo.festivalInfo", function (err, result) {
             if (err) throw err;
             else
                 console.log(result);
