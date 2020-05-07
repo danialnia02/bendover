@@ -84,33 +84,36 @@
                     <div class="col-sm-2">
                         <th>MusicDb</th>
                     </div>
-                    <div class="entries_length" id="entries_length"><label>Show <select name="entries_length"
-                                aria-controls="example" class="custom-select custom-select-sm form-control-sm">
-                                <option value="10">5</option>
-                                <option value="25">15</option>
-                                <option value="50">25</option>
-                                <option value="100">30</option>
-                            </select> entries</label></div>
+                    <div class="entries_length"><label>Show
+                            <select id="entry_length" aria-controls="example"
+                                class="custom-select custom-select-sm form-control-sm">
+                                <option value="5">5</option>
+                                <option value="15">15</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                            </select> entries
+                        </label></div>
 
                     <div class="col-sm-1" id="size">Search</div>
 
-                    <div class="entries_length" id="size"><select name="entries_length" aria-controls="example"
-                            class="form-control" id="navBarAttribute">
-                            <option value="10">performanceId</option>
-                            <option value="25">festivalId</option>
-                            <option value="50">startTime</option>
-                            <option value="100">endTime</option>
-                            <option value="100">popularity</option>
-                            <option value="100">dataInserted</option>
+                    <div class="entries_length" id="size">
+                        <select name="attribute" aria-controls="example" class="form-control" id="attribute">
+                            <option value="performanceId">performanceId</option>
+                            <option value="festivalId">festivalId</option>
+                            <option value="startTime">startTime</option>
+                            <option value="endTime">endTime</option>
+                            <option value="popularity">popularity</option>
+                            <option value="dataInserted">dataInserted</option>
                         </select></div>
 
-                    <div class="entries_length" id="size"><select name="navBarOperation" aria-controls="example"
-                            class="form-control" id="navBarOperation">
-                            <option value="10">==</option>
-                            <option value="25">&gt;=</option>
-                            <option value="50">&gt;</option>
-                            <option value="100">&lt;</option>
-                            <option value="100">&lt;=</option>
+                    <div class="entries_length" id="size">
+                        <select name="operation" aria-controls="example" class="form-control" id="operation">
+                            <option value=null>all</option>
+                            <option value="=">==</option>
+                            <option value="=">&gt;=</option>
+                            <option value=">">&gt;</option>
+                            <option value="<">&lt;</option>
+                            <option value="<=">&lt;=</option>
                         </select></div>
 
                     <div id="size"><input class="form-control" type="text" placeholder="Search" id="navBaruserInput"
@@ -146,7 +149,9 @@
                     </tbody>
                 </table>
 
-
+                <div class="col-sm-12 col-md-5">
+                    <div class="dataTables_info" id="recordCount" role="status" aria-live="polite"></div>
+                </div>
             </div>
 
             <!-- <div class="col-sm-10" id="results" id="resultrow">
@@ -155,16 +160,16 @@
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-5">
-                <div class="dataTables_info" id="recordCount" role="status" aria-live="polite"></div>
             </div>
-            <div class="col-sm-12 col-md-7">
+            <div class="col-sm-12 col-md-7" styles="width:50%;margin:0 auto">
+
                 <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
                     <ul class="pagination">
                         <li class="paginate_button page-item previous disabled" id="example_previous"><a href="#"
                                 aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
                         </li>
-                        <li class="paginate_button page-item active"><a href="#" aria-controls="example"
-                                data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                        <li class="paginate_button page-item active"><a href="#" aria-controls="example" data-dt-idx="1"
+                                tabindex="0" class="page-link">1</a></li>
                         <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="2"
                                 tabindex="0" class="page-link">2</a></li>
                         <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="3"
@@ -175,10 +180,11 @@
                                 tabindex="0" class="page-link">5</a></li>
                         <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="6"
                                 tabindex="0" class="page-link">6</a></li>
-                        <li class="paginate_button page-item next" id="example_next"><a href="#"
-                                aria-controls="example" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+                        <li class="paginate_button page-item next" id="example_next"><a href="#" aria-controls="example"
+                                data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
                     </ul>
                 </div>
+
             </div>
         </div>
     </body>
@@ -186,27 +192,53 @@
 <script>
     const baseUrl = "http://localhost:8011";
 
-    var Info = {
-        attribute: "popularity",
-        // operation: "<",
-        userInput: null,
-        // order: "desc",
-        orderFrom: "popularity"
-    }
+
+
+    var entry_length = 5
+    count = 0
+
+    //get the row length
+    $("#SearchButton").click(function () {
+        //get input from user        
+        var userInput = $('#navBaruserInput').val()
+        if (userInput == "" || userInput == null) {
+            userInput = null
+        }        
+
+        var Info = {
+            attribute: $('#attribute').val(),
+            operation: $('#operation').val(),
+            userInput: userInput,
+            // order: "desc",
+            orderFrom: "popularity"
+        }
+        console.log(Info)
+        count++
+        entry_length = $('#entry_length').val();
+        getData(entry_length,Info)
+        console.log(recordCount())
+        localStorage.setItem('recordCount', entry_length)
+        // console.log(totalInsert)
+        // console.log(entry_length)
+        // bottomTag = (totalInsert % entry_length) + 1
+        // console.log(bottomTag)
+        if (count > 1) window.location.reload();
+
+    })
 
     // post to get the data information
-    Infos = JSON.stringify(Info)
-    console.log(Infos)
-    $.ajax({
-        url: 'http://localhost:8011/advance/result',
-        type: 'post',
-        data: Infos,
-        contentType: "application/json; charset=utf-8",
-        dataType: 'json',
-        success: function (data, textStatus, xhr) {
-            for (i = 0; i < data.length; i++) {
-                const postHtml =
-                    `
+    function getData(length,Info) {
+        Infos = JSON.stringify(Info)
+        $.ajax({
+            url: 'http://localhost:8011/advance/result',
+            type: 'post',
+            data: Infos,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function (data, textStatus, xhr) {
+                for (i = 0; i < length; i++) {
+                    const postHtml =
+                        `
                 <tr>
                 <td class="sorting_asc  table table-hover table-striped table-bordered dataTable dtr-inline" tabindex="0" aria-controls="example" rowspan="1"
                 style="width: 585.2px;text-align:center" 
@@ -224,17 +256,43 @@
                 style="width: 585.2px;text-align:center" 
                 aria-label="Name: activate to sort column descending">${data[i].popularity}</td>
                 </tr>
-                `
-                    ;
-                $("#results").append(postHtml);
+                `    ;
+                    $("#results").append(postHtml);
+                }
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Operation');
             }
+        });
+    }
 
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            console.log('Error in Operation');
-        }
-    });
-
+    //Axios code to get the number of record counts
+    function recordCount() {
+        var recordCountt
+        axios.get(`${baseUrl}/advance/recordCount`)
+            .then((response) => {
+                const recordcount = response.data;
+                // console.log(listings)
+                recordcount.forEach((recordcount) => {
+                    const postHtml = `                            
+                <div class="dataTables_info" role="status" aria-live="polite">     Showing 1 to ${entry_length} of
+                    ${recordcount.recordCount}
+                    entries</div>
+                `
+                    $("#recordCount").append(postHtml);
+                    recordCountt = recordcount.recordCount
+                    console.log(recordCountt)
+                    return "her4"
+                });
+                return "her3"
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        console.log(recordCountt)
+        // return "here"
+    }
 
 
 
@@ -257,23 +315,10 @@
             console.log(error);
         });
 
-    //Axios code to get the number of record counts
-    axios.get(`${baseUrl}/advance/recordCount`)
-        .then((response) => {
-            const recordcount = response.data;
-            // console.log(listings)
-            recordcount.forEach((recordcount) => {
-                const postHtml = `                            
-                <div class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of
-                    ${recordcount.recordCount}
-                    entries</div>
-                `
-                $("#recordCount").append(postHtml);
-            });
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+
+
+
+
 </script>
 
 </html>

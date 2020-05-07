@@ -60,6 +60,7 @@ var database = {
                 //database code            
 
                 var sql = 'SELECT * FROM dbo.festivalInfo ' + query;
+                console.log(sql)
                 req.query(sql, function (err, result) {
                     if (err) {
                         console.log(err);
