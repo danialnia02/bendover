@@ -45,7 +45,7 @@ var database = {
                 return callback(err, null);
             }
             else {
-                console.log("Connected!");                
+                console.log("Connected!");
                 var req = new mssql.Request(conn);
                 var query = "";
                 if (Info.userInput != null) {
@@ -59,7 +59,7 @@ var database = {
                 }
                 //database code            
 
-                var sql = 'SELECT * FROM dbo.festivalInfo ' + query;                
+                var sql = 'SELECT * FROM dbo.festivalInfo ' + query;
                 req.query(sql, function (err, result) {
                     if (err) {
                         console.log(err);
@@ -83,7 +83,31 @@ var database = {
                 var req = new mssql.Request(conn);
 
                 //database code
-                var sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'festivalInfo' ORDER BY ORDINAL_POSITION";                
+                var sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'festivalInfo' ORDER BY ORDINAL_POSITION";
+                req.query(sql, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        return callback(err, null);
+                    } else {
+                        return callback(null, result.recordset);
+                    }
+                });
+            }
+        })
+    },
+    recordCounter: function (callback) {
+        var conn = new mssql.ConnectionPool(dbConfig);
+        conn.connect(function (err) {
+            if (err) {
+                console.log(err);
+                return callback(err, null);
+            }
+            else {
+                console.log("Connected!");
+                var req = new mssql.Request(conn);
+
+                //database code
+                var sql = "select count(*) as recordCount from dbo.festivalInfo";
                 req.query(sql, function (err, result) {
                     if (err) {
                         console.log(err);

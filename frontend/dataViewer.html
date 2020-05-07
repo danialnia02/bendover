@@ -25,7 +25,7 @@
         margin: auto;
         width: 80%;
         height: 80%;
-        background-color: #e6e6e6;
+        background-color: white;
         border-radius: 10px;
     }
 
@@ -76,7 +76,7 @@
 <box>
     Data Result
 
-    <body>
+    <body style="background-color:  #e6e6e6;">
         <div class="container" id=container>
             <div class="row">
                 <!--Header -->
@@ -119,172 +119,156 @@
                     <button type="button" id="SearchButton">Filter</button>
                 </div>
 
-                <!-- <div class="col-sm-1">
-                    </div> -->
+
 
                 <table style="width: 100%;" id="example"
                     class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid"
                     aria-describedby="example_info">
 
-
-                    <!-- your gonna try to use the example row cos you dk why the fuck your row not working-->
                     <thead>
-                        <tr role="row">
-                            <div class="col-sm-10" id="header" id="resultrow">
+                        <tr>
+                            <div class="col-sm-1"></div>
+
+                            <div class="col-sm-10" id="columnHeader">
                             </div>
+                            <div class="col-sm-1"></div>
                         </tr>
                     </thead>
+                    <tbody>
+                        <tr>
+                            <div class="col-sm-1"></div>
 
+                            <div class="col-sm-10" id="results">
+                            </div>
+
+                            <div class="col-sm-1"></div>
+                        </tr>
+                    </tbody>
                 </table>
-                <!-- <div class="col-sm-10" id="results" id="resultrow">
+
+
+            </div>
+
+            <!-- <div class="col-sm-10" id="results" id="resultrow">
                     </div> -->
 
-                <!-- <div class="col-sm-1">
-                    </div> -->
-
-
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-5">
+                <div class="dataTables_info" id="recordCount" role="status" aria-live="polite"></div>
+            </div>
+            <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                    <ul class="pagination">
+                        <li class="paginate_button page-item previous disabled" id="example_previous"><a href="#"
+                                aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                        </li>
+                        <li class="paginate_button page-item active"><a href="#" aria-controls="example"
+                                data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                        <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="2"
+                                tabindex="0" class="page-link">2</a></li>
+                        <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="3"
+                                tabindex="0" class="page-link">3</a></li>
+                        <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="4"
+                                tabindex="0" class="page-link">4</a></li>
+                        <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="5"
+                                tabindex="0" class="page-link">5</a></li>
+                        <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="6"
+                                tabindex="0" class="page-link">6</a></li>
+                        <li class="paginate_button page-item next" id="example_next"><a href="#"
+                                aria-controls="example" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </body>
-
-
-    <div class="card-body">
-        <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
-            <div class="row">
-                <div class="col-sm-12">
-                    <table style="width: 100%;" id="example"
-                        class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid"
-                        aria-describedby="example_info">
-
-                        <!-- <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
-                                    style="width: 585.2px;" aria-sort="ascending"
-                                    aria-label="Name: activate to sort column descending">Name</th>
-                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
-                                    style="width: 867.2px;" aria-label="Position: activate to sort column ascending">
-                                    Position</th>
-                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
-                                    style="width: 444.2px;" aria-label="Office: activate to sort column ascending">
-                                    Office
-                                </th>
-                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
-                                    style="width: 275.2px;" aria-label="Age: activate to sort column ascending">Age</th>
-                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
-                                    style="width: 458.2px;" aria-label="Start date: activate to sort column ascending">
-                                    Start
-                                    date</th>
-                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
-                                    style="width: 362.2px;" aria-label="Salary: activate to sort column ascending">
-                                    Salary
-                                </th>
-                            </tr>
-                        </thead> -->
-
-                        <!-- <tbody>
-                            <tr role="row" class="odd">
-                                <td tabindex="0" class="sorting_1">Airi Satou</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>33</td>
-                                <td>2008/11/28</td>
-                                <td>$162,700</td>
-                            </tr>
-
-                            <tr role="row" class="even">
-                                <td class="sorting_1" tabindex="0">Bradley Greer</td>
-                                <td>Software Engineer</td>
-                                <td>London</td>
-                                <td>41</td>
-                                <td>2012/10/13</td>
-                                <td>$132,000</td>
-                            </tr>
-                        </tbody> -->
-                        <tfoot>
-                            <tr>
-                                <th rowspan="1" colspan="1">Name</th>
-                                <th rowspan="1" colspan="1">Position</th>
-                                <th rowspan="1" colspan="1">Office</th>
-                                <th rowspan="1" colspan="1">Age</th>
-                                <th rowspan="1" colspan="1">Start date</th>
-                                <th rowspan="1" colspan="1">Salary</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-5">
-                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 10 of
-                        57
-                        entries</div>
-                </div>
-                <div class="col-sm-12 col-md-7">
-                    <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-                        <ul class="pagination">
-                            <li class="paginate_button page-item previous disabled" id="example_previous"><a href="#"
-                                    aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-                            </li>
-                            <li class="paginate_button page-item active"><a href="#" aria-controls="example"
-                                    data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="2"
-                                    tabindex="0" class="page-link">2</a></li>
-                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="3"
-                                    tabindex="0" class="page-link">3</a></li>
-                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="4"
-                                    tabindex="0" class="page-link">4</a></li>
-                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="5"
-                                    tabindex="0" class="page-link">5</a></li>
-                            <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="6"
-                                    tabindex="0" class="page-link">6</a></li>
-                            <li class="paginate_button page-item next" id="example_next"><a href="#"
-                                    aria-controls="example" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </box>
 <script>
     const baseUrl = "http://localhost:8011";
 
     var Info = {
         attribute: "popularity",
-        operation: "<",
+        // operation: "<",
         userInput: null,
-        order: "desc",
+        // order: "desc",
         orderFrom: "popularity"
     }
 
-    axios.get(`${baseUrl}/advance/result`, Info)
-        .then((response) => {
-            const listings = response.data;
-            // console.log(listings)
-            listings.forEach((listings) => {
-                const postHtml = `
-                ${listings.performanceId}
+    // post to get the data information
+    Infos = JSON.stringify(Info)
+    console.log(Infos)
+    $.ajax({
+        url: 'http://localhost:8011/advance/result',
+        type: 'post',
+        data: Infos,
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        success: function (data, textStatus, xhr) {
+            for (i = 0; i < data.length; i++) {
+                const postHtml =
+                    `
+                <tr>
+                <td class="sorting_asc  table table-hover table-striped table-bordered dataTable dtr-inline" tabindex="0" aria-controls="example" rowspan="1"
+                style="width: 585.2px;text-align:center" 
+                aria-label="Name: activate to sort column descending">${data[i].performanceId}</td>
+                <td class="sorting_asc  table table-hover table-striped table-bordered dataTable dtr-inline" tabindex="0" aria-controls="example" rowspan="1"
+                style="width: 585.2px;text-align:center" 
+                aria-label="Name: activate to sort column descending">${data[i].festivalId}</td>
+                <td class="sorting_asc  table table-hover table-striped table-bordered dataTable dtr-inline" tabindex="0" aria-controls="example" rowspan="1"
+                style="width: 585.2px;text-align:center" 
+                aria-label="Name: activate to sort column descending">${data[i].startTime}</td>
+                <td class="sorting_asc  table table-hover table-striped table-bordered dataTable dtr-inline" tabindex="0" aria-controls="example" rowspan="1"
+                style="width: 585.2px;text-align:center" 
+                aria-label="Name: activate to sort column descending">${data[i].endTime}</td>
+                <td class="sorting_asc  table table-hover table-striped table-bordered dataTable dtr-inline" tabindex="0" aria-controls="example" rowspan="1"
+                style="width: 585.2px;text-align:center" 
+                aria-label="Name: activate to sort column descending">${data[i].popularity}</td>
+                </tr>
                 `
+                    ;
                 $("#results").append(postHtml);
+            }
+
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log('Error in Operation');
+        }
+    });
+
+
+
+
+    //Axios code to get the header
+    axios.get(`${baseUrl}/advance/header`)
+        .then((response) => {
+            const header = response.data;
+            // console.log(listings)
+            header.forEach((header) => {
+                const postHtml = `
+                <th class="sorting_asc  table table-hover table-striped table-bordered dataTable dtr-inline" tabindex="0" aria-controls="example" rowspan="1"
+                style="width: 585.2px;text-align:center" 
+                aria-label="Name: activate to sort column descending">${header.COLUMN_NAME}</th>
+                
+                `
+                $("#columnHeader").append(postHtml);
             });
         })
         .catch((error) => {
             console.log(error);
         });
 
-    axios.get(`${baseUrl}/advance/header`)
+    //Axios code to get the number of record counts
+    axios.get(`${baseUrl}/advance/recordCount`)
         .then((response) => {
-            const header = response.data;
+            const recordcount = response.data;
             // console.log(listings)
-            header.forEach((header) => {
-                console.log(header + "test")
-                const postHtml = `
-                <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
-                style="width: 585.2px;" aria-sort="ascending"
-                aria-label="Name: activate to sort column descending">${header.COLUMN_NAME}</th>
-                
+            recordcount.forEach((recordcount) => {
+                const postHtml = `                            
+                <div class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of
+                    ${recordcount.recordCount}
+                    entries</div>
                 `
-                $("#header").append(postHtml);
+                $("#recordCount").append(postHtml);
             });
         })
         .catch((error) => {
