@@ -106,12 +106,18 @@ app.get('/advance/header', function (req, res) {
 app.get('/advance/recordCount', function (req, res) {
 
     musicDb.recordCounter(function (err, result) {
-        if (!err) {            
+        if (!err) {
+            console.log(result)
             res.send(result);
         } else {
             res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
         }
     })
+})
+
+app.get('/advance/random', function (req, res) {
+
+    res.send("{1,1,1}")
 })
 
 module.exports = app

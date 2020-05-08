@@ -168,7 +168,8 @@
                         <li class="paginate_button page-item previous disabled" id="example_previous"><a href="#"
                                 aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
                         </li>
-                        <li class="paginate_button page-item active"><a href="#" aria-controls="example" data-dt-idx="1"
+                        <div id="testing"></div>
+                        <!-- <li class="paginate_button page-item active"><a href="#" aria-controls="example" data-dt-idx="1"
                                 tabindex="0" class="page-link">1</a></li>
                         <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="2"
                                 tabindex="0" class="page-link">2</a></li>
@@ -179,7 +180,7 @@
                         <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="5"
                                 tabindex="0" class="page-link">5</a></li>
                         <li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="6"
-                                tabindex="0" class="page-link">6</a></li>
+                                tabindex="0" class="page-link">6</a></li> -->
                         <li class="paginate_button page-item next" id="example_next"><a href="#" aria-controls="example"
                                 data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
                     </ul>
@@ -191,7 +192,7 @@
 </box>
 <script>
     const baseUrl = "http://localhost:8011";
-
+    var recordCountt;
 
 
     var entry_length = 5
@@ -203,7 +204,7 @@
         var userInput = $('#navBaruserInput').val()
         if (userInput == "" || userInput == null) {
             userInput = null
-        }        
+        }
 
         var Info = {
             attribute: $('#attribute').val(),
@@ -212,14 +213,11 @@
             // order: "desc",
             orderFrom: "popularity"
         }
-        console.log(Info)
         count++
         entry_length = $('#entry_length').val();
-        getData(entry_length,Info)
-        console.log(recordCount())
+        getData(entry_length, Info)
+        recordCount()
         localStorage.setItem('recordCount', entry_length)
-        // console.log(totalInsert)
-        // console.log(entry_length)
         // bottomTag = (totalInsert % entry_length) + 1
         // console.log(bottomTag)
         if (count > 1) window.location.reload();
@@ -227,7 +225,7 @@
     })
 
     // post to get the data information
-    function getData(length,Info) {
+    function getData(length, Info) {
         Infos = JSON.stringify(Info)
         $.ajax({
             url: 'http://localhost:8011/advance/result',
@@ -269,29 +267,45 @@
 
     //Axios code to get the number of record counts
     function recordCount() {
-        var recordCountt
         axios.get(`${baseUrl}/advance/recordCount`)
             .then((response) => {
                 const recordcount = response.data;
-                // console.log(listings)
-                recordcount.forEach((recordcount) => {
+                {
                     const postHtml = `                            
                 <div class="dataTables_info" role="status" aria-live="polite">     Showing 1 to ${entry_length} of
-                    ${recordcount.recordCount}
+                    ${recordcount[0].recordCount}
                     entries</div>
                 `
                     $("#recordCount").append(postHtml);
-                    recordCountt = recordcount.recordCount
-                    console.log(recordCountt)
-                    return "her4"
-                });
-                return "her3"
+                    recordCountt = recordcount[0].recordCount
+
+                    bottomTag = Math.ceil(recordCountt / entry_length)
+                    console.log(bottomTag) //extra tabs 2
+
+                    const header = response.data;
+                    console.log(response.data)
+
+                    var tfsadfsfsad=""
+                    for (i = 1; i <= bottomTag; i++) {
+                        tfsadfsfsad+= `
+                            <li class="paginate_button page-item active"><a href="#" aria-controls="example" data-dt-idx="1"
+                            tabindex="0" class="page-link">${i}</a></li>                
+                                        `
+                    }
+                    $("#testing").append(tfsadfsfsad);
+
+
+
+                    // return recordCountt
+                };
+                // return "her3"
             })
             .catch((error) => {
                 console.log(error);
             });
-        console.log(recordCountt)
-        // return "here"
+        setTimeout(function () { console.log(recordCountt); return recordCountt }, 1000);
+
+
     }
 
 
