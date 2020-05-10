@@ -4,18 +4,14 @@ This report is for you to document the progres of your project. You should also 
 
 ## What have I done last week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   We worked on the wireframe for web
+-   We worked on the wireframe for the mobile
 
 ## What do I plan to do next week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   We intend to work on completing all the wireframe.
+-   We intend to start working on the backend of the wireframe.
 
 ## Additional Thoughts
 
--   VSCode is sick.
--   This addon is fabulous.
--   Lecturer is awesome.
+-   not really much info given to us on how to create the wireframe.

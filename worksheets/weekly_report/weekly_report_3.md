@@ -4,18 +4,14 @@ This report is for you to document the progres of your project. You should also 
 
 ## What have I done last week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Realised not to use html and instead use react.js
+-   Start coding the backend to the mobile app so my app can receive the data
 
 ## What do I plan to do next week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Complete the code for backend to the mobile app.
+-   Start the react.js code for front-end.
 
 ## Additional Thoughts
 
--   VSCode is sick.
--   This addon is fabulous.
--   Lecturer is awesome.
+-   This project is so fun to do.
