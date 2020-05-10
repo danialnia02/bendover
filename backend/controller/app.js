@@ -10,7 +10,6 @@ var path = require('path');
 
 app.use(bodyParser.json());
 app.use(urlencodedParser);
-// app.use(express.static("frontend"));
 app.use('/', express.static('../frontend'))
 // app.use(cors());
 
