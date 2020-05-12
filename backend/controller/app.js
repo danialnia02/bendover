@@ -11,7 +11,8 @@ var path = require('path');
 app.use(bodyParser.json());
 app.use(urlencodedParser);
 app.use('/', express.static('../frontend'))
-// app.use(cors());
+var cors = require('cors')
+app.use(cors());
 
 var multer = require('multer');
 var multParse = multer();
@@ -22,6 +23,17 @@ app.get('/advance/results', function (req, res) {
     musicDb.getAllfestivalInfo(function (err, result) {
         if (!err) {
             res.send(result);
+        } else {
+            res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
+        }
+    })
+})
+
+app.get('/advance/results2', function (req, res) {
+
+    musicDb.getAllfestivalInfo(function (err, result) {
+        if (!err) {
+            res.send({recordset:result});
         } else {
             res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
         }
