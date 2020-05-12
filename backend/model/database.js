@@ -120,6 +120,38 @@ var database = {
             }
         })
     },
+    InsertIntoFestival: function (Info, callback) {
+        var conn = new mssql.ConnectionPool(dbConfig);
+        conn.connect(function (err) {
+            if (err) {
+                console.log(err);
+                return callback(err, null);
+            }
+            else {
+                console.log("Conencted!");
+                var req = new mssql.Request(conn);
+
+                //database code
+                var sql = "insert into dbo.festivalInfo (performanceId,festivalId,startTime,endTime,popularity) values("
+                    + Info.performanceId + ","
+                    + Info.festivalId + ","
+                    + Info.startTime + ","
+                    + Info.endTime + ","
+                    + Info.popularity
+                    + ")";
+                // var sql = "insert into dbo.festivalInfo (performanceId,festivalId,startTime,endTime,popularity) values(?,?,?,?,?)";
+                console.log("\n" + sql + "\n")
+                req.query(sql, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        return callback(err, null);
+                    } else {
+                        return callback(null, result.recordset);
+                    }
+                });
+            }
+        })
+    }
 }
 
 
