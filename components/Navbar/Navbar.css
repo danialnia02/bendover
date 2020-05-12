@@ -26,8 +26,11 @@
     padding: 0 1rem;
 }
 
-.navbar_logo a,
-.navbar_logo2 a {
+.navbar_logo {
+    margin-left: 1rem;
+}
+
+.navbar_logo a {
     color: white;
     text-decoration: none;
     font-size:1.5rem;
@@ -60,7 +63,7 @@
 .navbar_navigation-items2 a {
     color: white;
     text-decoration: none;
-    font-size: 5rem;
+    font-size: 1.5rem;
 }
 
 .navbar_navigation-items a:hover,
@@ -68,4 +71,23 @@
 .navbar_navigation-items2 a:hover,
 .navbar_navigation-items2 a:active {
     color: #fa923f;
+}
+
+@media (max-width: 768px) {
+    .navbar_navigation-items,
+    .navbar_navigation-items2 {
+        display:none;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar_logo {
+        margin-left: 1rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .navbar_toggle-button {
+        display:none;
+    }
 }
