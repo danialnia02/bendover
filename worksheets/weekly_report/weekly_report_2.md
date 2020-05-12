@@ -4,18 +4,16 @@ This report is for you to document the progres of your project. You should also 
 
 ## What have I done last week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Completed the api for backend
+-   Completed the wireframe for mobile
+-   Completed the wireframe for web
 
 ## What do I plan to do next week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Start on the html for web
+-   Start on the mobile
 
 ## Additional Thoughts
 
--   VSCode is sick.
--   This addon is fabulous.
--   Lecturer is awesome.
+-   Finding a suitable online database was a pain in the ass
+-   Ending up choosing microsoft azure since can use ssms
