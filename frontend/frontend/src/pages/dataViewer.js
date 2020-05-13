@@ -9,7 +9,10 @@ class DataViewer extends React.Component {
   // Select * from database put into code
   //-------------------------------------
   state = {
-    products: []
+    products: [],
+    entries: "",
+    handleChange = this.handleChange.bind(this)
+
   }
 
   componentDidMount() {
