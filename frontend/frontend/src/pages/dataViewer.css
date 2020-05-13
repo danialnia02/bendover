@@ -32,17 +32,26 @@
     font-size: calc(10px + 2vmin);
     color: white;
   }
+  #Search{
+    padding: 20px 10px 0px;
+    font-size:1.2em;
+  }
+  #operation{
+    /* padding: 20px 10px 0px; */
+    width:90px;
+  }
   
   .App-link {
     color: #61dafb;
   }
 
   #size {
-    padding: 15px 10px 0px
+    padding: 20px 10px 0px
 }
 
   #searchButton {
     padding: 15px 15px !important;
+    width:100px !important;
     text-align: center;
     text-decoration: none;
     margin: 5px 20px 30px;

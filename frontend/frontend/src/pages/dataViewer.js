@@ -65,9 +65,9 @@ class DataViewer extends React.Component {
               </label></div>
               </Col>
               <Col sm={1}>
-                <div id="size">Search</div>
+                <div id="Search">Search</div>
               </Col>
-              <Col sm={2}>
+              <Col sm={3}>
                 <div className="entries_length" id="size">
                   <select name="attribute" aria-controls="example" className="form-control" id="attribute">
                     <option value="performanceId">performanceId</option>
@@ -78,7 +78,7 @@ class DataViewer extends React.Component {
                     <option value="dataInserted">dataInserted</option>
                   </select></div>
               </Col>
-              <Col sm={2}>
+              <Col sm={1}>
 
                 <div className="entries_length" id="size">
                   <select name="operation" aria-controls="example" className="form-control" id="operation">
@@ -91,12 +91,17 @@ class DataViewer extends React.Component {
                   </select></div>
 
               </Col>
-              <Col>
+              <Col sm={3}>
+                <div className="entries_length" id="size">
+                  <input type="text" placeholder="Search" id="navBaruserInput"></input>
+                </div>
 
-                {/* cannot put in  input box*/}
+
               </Col>
-              <Col sm={2}>
-                <button type="button" id="searchButton">Filter</button>
+              <Col sm={1}>
+                <div id="size">
+                  <button type="button" id="searchButton">Filter</button>
+                </div>
               </Col>
             </Row>
             {/* ------------------------------------------ */}
