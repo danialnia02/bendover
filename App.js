@@ -32,10 +32,10 @@ class App extends Component {
         <SideDrawer show={this.state.sideDrawerOpen}/>
         {backdrop}
         {/* <main style={{marginTop: '120px',}}> */}
-        <main>
+        <div className = "main">
+          <p>About</p>
           <Background />
-            <p>This is the page content!</p>
-        </main>
+        </div>
       </div>
     );
   }
