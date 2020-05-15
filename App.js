@@ -33,7 +33,6 @@ class App extends Component {
         {backdrop}
         {/* <main style={{marginTop: '120px',}}> */}
         <div className = "main">
-          <p>About</p>
           <Background />
         </div>
       </div>
