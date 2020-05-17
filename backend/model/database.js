@@ -37,6 +37,88 @@ var database = {
             }
         })
     },
+
+    getList2: function (Info, callback) {
+        var conn = new mssql.ConnectionPool(dbConfig);
+        conn.connect(function (err) {
+            if (err) {
+                console.log(err);
+                return callback(err, null);
+            }
+            else {
+                console.log("Connected!");
+                var req = new mssql.Request(conn);
+
+                //database codeionic
+                var sql = 'SELECT * FROM dbo.festivalInfo where ' + Info.attribute + " " + Info.operation + " " + "" + Info.userInput + "";
+                console.log(sql)
+                req.query(sql, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        return callback(err, null);
+                    } else {
+                        console.log(result.recordset)
+                        return callback(null, result.recordset);
+                    }
+                });
+            }
+        })
+    },
+
+    getid: function (Info, callback) {
+        var conn = new mssql.ConnectionPool(dbConfig);
+        conn.connect(function (err) {
+            if (err) {
+                console.log(err);
+                return callback(err, null);
+            }
+            else {
+                console.log("Connected!");
+                var req = new mssql.Request(conn);
+
+                //database codeionic
+                var sql = 'SELECT * FROM dbo.festivalInfo where performanceId ='+ Info.userInput + "";
+                console.log(sql)
+                req.query(sql, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        return callback(err, null);
+                    } else {
+                        console.log(result.recordset)
+                        return callback(null, result.recordset);
+                    }
+                });
+            }
+        })
+    },
+
+
+    testing: function (id, callback) {
+        var conn = new mssql.ConnectionPool(dbConfig);
+        conn.connect(function (err) {
+            if (err) {
+                console.log(err);
+                return callback(err, null);
+            }
+            else {
+                console.log("Connected!");
+                var req = new mssql.Request(conn);
+
+                //database code
+                var sql = 'SELECT * FROM dbo.festivalInfo where performanceId = ' + id;
+                console.log(sql)
+                req.query(sql, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        return callback(err, null);
+                    } else {
+                        return callback(null, result.recordset);
+                    }
+                });
+            }
+        })
+    },
+
     getfestivalInfoUser: function (Info, callback) {
         var conn = new mssql.ConnectionPool(dbConfig);
         conn.connect(function (err) {

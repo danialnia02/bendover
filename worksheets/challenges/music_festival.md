@@ -49,7 +49,7 @@ Name of problem: **Activity Selection**
 | Performance # | Performance Id |
 | ------------- | -------------- |
 | 1             | 1000000001     |
-| 2             | 100000000?     |
+| 2             | 1000000003     |
 
 ## Basic Query 2
 
@@ -61,7 +61,7 @@ Name of problem: **Activity Selection**
 
 | Performance # | Performance Id |
 | ------------- | -------------- |
-| 1             | ?              |
+| 1             | 1000000007     |
 
 ## Basic Query 3
 
@@ -73,7 +73,7 @@ Name of problem: **Activity Selection**
 
 | Performance # | Performance Id |
 | ------------- | -------------- |
-| 1             | ?              |
+| 1             | 1000000010     |
 
 ## Basic Query 4
 
@@ -85,7 +85,7 @@ Name of problem: **Activity Selection**
 
 | Performance # | Performance Id |
 | ------------- | -------------- |
-| 1             | ?              |
+| 1             | 1000000018     |
 
 # Advance
 
@@ -129,7 +129,7 @@ Name of problem: **Weighted Activity Selection**
 | Performance # | Performance Id |
 | ------------- | -------------- |
 | 1             | 1000000001     |
-| 2             | 100000000?     |
+| 2             | 1000000003     |
 
 ## Advance Query 2
 
@@ -141,7 +141,9 @@ Name of problem: **Weighted Activity Selection**
 
 | Performance # | Performance Id |
 | ------------- | -------------- |
-| 1             | ?              |
+| 1             | 1000000004     |
+| 2             | 1000000005     |
+| 3             | 1000000006     |
 
 ## Advance Query 3
 
@@ -153,7 +155,9 @@ Name of problem: **Weighted Activity Selection**
 
 | Performance # | Performance Id |
 | ------------- | -------------- |
-| 1             | ?              |
+| 1             | 1000000008     |
+| 1             | 1000000009     |
+| 1             | 1000000010     |
 
 ## Advance Query 4
 
@@ -165,4 +169,6 @@ Name of problem: **Weighted Activity Selection**
 
 | Performance # | Performance Id |
 | ------------- | -------------- |
-| 1             | ?              |
+| 1             | 1000000013     |
+| 1             | 1000000014     |
+| 1             | 1000000015     |

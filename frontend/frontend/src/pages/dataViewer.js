@@ -6,14 +6,34 @@ import { Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class DataViewer extends React.Component {
+  constructor(props) {
+    super(props);
+    // this.state={ value:"coconut"};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
+  }
   // Select * from database put into code
   //-------------------------------------
   state = {
     products: [],
-    entries: "",
-    handleChange = this.handleChange.bind(this)
+    value: "5"
+    // handleChange: this.handleChange.bind(this)
+  }
+  //------------------------------------- don code
+
+  handleChange(event) {
+    this.setState({
+      value: event.target.value
+    })
+  }
+
+  handleSubmit(event) {
+    alert(this.state.value);
 
   }
+  //------------------------------------- don code
 
   componentDidMount() {
     this.getProducts()
@@ -58,7 +78,8 @@ class DataViewer extends React.Component {
 
               <Col xs={2}>
                 <div className="entries_length"><label>Show
-                <select id="entry_length" aria-controls="example"
+                <select value={this.state.value} onChange={this.handleChange}
+                    id="entry_length" aria-controls="example"
                     className="custom-select custom-select-sm form-control-sm">
                     <option value="5">5</option>
                     <option value="15">15</option>
@@ -103,7 +124,8 @@ class DataViewer extends React.Component {
               </Col>
               <Col sm={1}>
                 <div id="size">
-                  <button type="button" id="searchButton">Filter</button>
+                  <button onClick={this.handleSubmit}
+                    type="button" id="searchButton">Filter</button>
                 </div>
               </Col>
             </Row>

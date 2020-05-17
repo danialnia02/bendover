@@ -18,9 +18,72 @@ var multer = require('multer');
 var multParse = multer();
 
 //Select * from music Info  
-app.get('/advance/results', function (req, res) {
+app.get('/advance/result', function (req, res) {
 
     musicDb.getAllfestivalInfo(function (err, result) {
+        if (!err) {
+            res.send(result);
+        } else {
+            res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
+        }
+    })
+})
+
+app.post('/advance/result/individual', function (req, res) {
+    var Info = {
+        userInput: req.body.input,
+        operation: req.body.operation,
+        pagination: req.body.pagination,
+        attribute: req.body.attribute
+    }
+
+    console.log("here2")
+    console.log(Info);
+
+    musicDb.getList2(Info, function (err, result) {
+        if (!err) {
+            res.send(result)
+        } else {
+            res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
+        }
+    })
+})
+
+app.get('/basic/result', function (req, res) {
+    
+        
+
+    musicDb.getAllfestivalInfo( function (err, result) {
+        if (!err) {
+            res.send(result)
+        } else {
+            res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
+        }
+    })
+})
+
+app.get('/basic/result', function (req, res) {
+    var Info = {
+        userInput: req.params.id
+    }
+
+    console.log("here2")
+    console.log(Info);
+
+    musicDb.getid(Info, function (err, result) {
+        if (!err) {
+            res.send(result)
+        } else {
+            res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
+        }
+    })
+})
+
+app.get('/advance/results/:id', function (req, res) {
+
+    id = req.params.id
+
+    musicDb.testing(id, function (err, result) {
         if (!err) {
             res.send(result);
         } else {
@@ -33,7 +96,7 @@ app.get('/advance/results2', function (req, res) {
 
     musicDb.getAllfestivalInfo(function (err, result) {
         if (!err) {
-            res.send({recordset:result});
+            res.send({ recordset: result });
         } else {
             res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
         }
@@ -115,17 +178,17 @@ app.get('/advance/header', function (req, res) {
 
 app.post('/advance/insert', function (req, res) {
     var Info = {
-        performanceId:req.body.performanceId,
-        festivalId:req.body.festivalId,
-        startTime:req.body.startTime,
-        endTime:req.body.endTime,
-        popularity:req.body.popularity,
+        performanceId: req.body.performanceId,
+        festivalId: req.body.festivalId,
+        startTime: req.body.startTime,
+        endTime: req.body.endTime,
+        popularity: req.body.popularity,
     }
     // res.send(Info)
 
-    musicDb.InsertIntoFestival(Info,function (err, result) {
+    musicDb.InsertIntoFestival(Info, function (err, result) {
         if (!err) {
-            res.send(result);
+            res.send("Your data has been inserted!");
         } else {
             res.status(500).send('Unknown error\nCode:500 Interval Server Error.')
         }
