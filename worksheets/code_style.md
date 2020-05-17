@@ -19,10 +19,30 @@ Based on your chosen rules, give an example of a code that follows the code styl
 
 ### Good Example
 
-```js
-```
+  .App {
+    text-align: center;
+  }
+
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 40vmin;
+    pointer-events: none;
+  }
+
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+
 
 ### Bad Example
 
-```js
-```
+div > nav > ul > li > a {
+    color: #1200FF;
+}
