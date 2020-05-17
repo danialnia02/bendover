@@ -78,18 +78,22 @@ const App = () => {
 
   return (
     <div class='container'>
-      <h1 class='text-primary table-title mb-3'>Data Viewer</h1>
+      <h1>Data Viewer</h1>
+      {/* <h1 class='text-primary table-title mb-3'>Data Viewer</h1> */}
 
-      <Nav
-        activeKey="/home"
-        onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-      >
+      <Nav activeKey="/home">
         <Nav.Item>
           <Nav.Link href="/home">Data</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey="link-1">Result</Nav.Link>
         </Nav.Item>
+        <Form.Control as="select" name="pagination" value={state.pagination} onChange={handleChange} >
+          <option value="">Click here to change the number of posts per page</option>
+          <option value="5">5</option>
+          <option value="15">15</option>
+          <option value="25">25</option>
+        </Form.Control>
       </Nav>
       {/* Navbar header Code */}
       <Navbar bg="light" expand="lg">
@@ -99,18 +103,19 @@ const App = () => {
           <Nav className="mr-auto">
           </Nav>
 
-          <Form.Label>Search</Form.Label>
-
-          <Form inline>
-            <form onSubmit={handleSubmit}>
-              <Form.Control as="select" value="Choose..." name="pagination" value={state.pagination} onChange={handleChange} >
+          {/* <Form.Control as="select" value="Choose..." name="pagination" value={state.pagination} onChange={handleChange} >
                 <option></option>
                 <option value="5">5</option>
                 <option value="15">15</option>
                 <option value="25">25</option>
                 <option value="30">30</option>
-              </Form.Control>
+          </Form.Control> */}
+            
+          <Form.Label>Search</Form.Label>
 
+          <Form inline>
+            <form onSubmit={handleSubmit}>
+              
               <Form.Control as="select" value="Choose..." name="attribute" value={state.attribute} onChange={handleChange}>
                 <option></option>
                 <option value="performanceId">performanceId</option>
@@ -130,7 +135,7 @@ const App = () => {
                 <option value="<=">&lt;=</option>
               </Form.Control>
 
-              <input type="number" placeholder="Search" className="mr-sm-2" name="input" value={state.input} onChange={handleChange} />
+              <input type="number" placeholder="Search" name="input" value={state.input} onChange={handleChange} />
               <Button variant="outline-success" type="submit">Search</Button>
             </form>
           </Form>
@@ -143,12 +148,14 @@ const App = () => {
       {/* output Code */}
       <div id="smallcontainer">
         <Posts posts={currentPosts} loading={loading} id="three" />
+        <div className ="yes">
         <Pagination
           currentPage={currentPage}
           postsPerPage={state.pagination}
           totalPosts={posts.length}
           paginate={paginate}
         />
+        </div>
       </div>
     </div>
   );
