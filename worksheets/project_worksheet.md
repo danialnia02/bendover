@@ -36,8 +36,8 @@ Link: [Use Case Diagram](https://www.plantuml.com/plantuml/svg/0/RP5D4e8m38NtFKM
 
 The above listed are functional requirements, that is, **WHAT** the system should allow users to do. There are also non-functional requirements that state **HOW** a system should perform.
 
--   Q1. Consider the use case of `Compute basic/advance result`, **HOW** is this functionality made available to both JiBaBoom and Adminstrator _(Hint: They are different)_? `(Answer Here)`
--   Q2. Consider the use case of `Insert basic/advance data`. **HOW** is the data stored? `(Answer Here)`
+-   Q1. Consider the use case of `Compute basic/advance result`, **HOW** is this functionality made available to both JiBaBoom and Adminstrator _(Hint: They are different)_? `(JIBABOOM will use the API while the Administrator will use the frontend) `
+-   Q2. Consider the use case of `Insert basic/advance data`. **HOW** is the data stored? `(It is stored in microsoft azure database in a string/integer format)`
 
 ---
 
@@ -76,10 +76,10 @@ Link: [Component Diagram](https://www.plantuml.com/plantuml/svg/0/JK-x3i8m3Dpz5L
 
 ### Questions:
 
-1. Does the frontend communicate with the mobile? `(Yes/No)`
-2. Does the frontend communicate directly with the database? `(Yes/No)`
-3. How should the frontend display data from the database? `(Answer here)`
-4. How does the frontend communicate with backend? `(Answer here)`
+1. Does the frontend communicate with the mobile? `(Yes/No) Yes` 
+2. Does the frontend communicate directly with the database? `(Yes/No) No`
+3. How should the frontend display data from the database? `(Answer here) The frontend appends data from node.js which is received from the backend in json format`
+4. How does the frontend communicate with backend? `(Answer here) It communicates with the backend using a middleware called node.js`
 
 ---
 
@@ -166,7 +166,7 @@ how can frontend/mobile\nget data from backend?
 Think about how you can do it and type your answer below:
 
 ```
-[Answer Here]
+[the frontend sends a GET request to the backend. the backend process authenticates the request and then retrieves whatever it requested and sends a response]
 ```
 
 ---
