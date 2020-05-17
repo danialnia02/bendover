@@ -77,7 +77,7 @@ var database = {
                 var req = new mssql.Request(conn);
 
                 //database codeionic
-                var sql = 'SELECT * FROM dbo.festivalInfo where performanceId ='+ Info.userInput + "";
+                var sql = 'select * from dbo.festivalInfo where festivalId ='+ Info.userInput
                 console.log(sql)
                 req.query(sql, function (err, result) {
                     if (err) {

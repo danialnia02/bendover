@@ -36,13 +36,26 @@ This document helps you identify the smaller tasks and helps you create a rough 
 
 ## Estimate Schedule
 
-### Member 1 - <ENTER NAME>
+### Member 1 - <Mohamed Danial Irfan Bin Salimi>
 
-| Week | Level | Component | Feature       | Task           |
-| ---- | ----- | --------- | ------------- | -------------- |
-| 1    | Basic | Frontend  | Data Viewer   | Wireframe      |
-| 1    | Basic | Frontend  | Result Viewer | Wireframe      |
-| 2-3  | Basic | Frontend  | Data Viewer   | Implementation |
+| Week | Level    | Component | Feature                    | Task                           |
+| ---- | -----    | --------- | -------------              | --------------                 |
+| 1    | Basic    | Frontend  | Data Viewer                | Wireframe                      |
+| 1    | Advanced | Frontend  | Result Viewer + Popularity | Wireframe                      |
+| 1    | Advanced | Frontend  | Result Viewer + Popularity | Wireframe                      |
+| 1    | Advanced | Mobile    | Result Viewer + Popularity | Wireframe                      |
+| 2    | Basic    | Backend   | Online Database            | Research                       |
+| 2    | Basic    | Backend   | Online Database            | Database Setup                 |
+| 2    | Advanced | Backend   | Online Database            | Database Impletentation        |
+| 2    | Advanced | Backend   | Online Database            | Creating Tables                |
+| 2    | Basic    | Backend   | Insert API                 | Database Setup                 |
+| 2    | Basic    | Backend   | Insert API                 | Implementation                 |
+| 2    | Basic    | Backend   | Result API                 | Database Setup                 |
+| 2    | Basic    | Backend   | Result API                 | Implementation                 |
+| 3    | Advanced | Backend   | Middleware(node.js)        | Connecting middleware Database |
+| 3    | Basic    | Backend   | Ionic(React)               | Learn Ionic(React)             |
+| 3    | Basic    | Backend   | Ionic(React)               | Connect Middlware to Frontend  |
+| 4    | Advanced | Backend   | Ionic(React)               | Integration                    |
 
 > This is just a template, you just need to state **WHO** will do **WHAT** and **WHEN**.
 ### Member 1 - <Cleavon>
@@ -51,4 +64,6 @@ This document helps you identify the smaller tasks and helps you create a rough 
 | ---- | ----- | --------- | ------------- | -------------- |
 | 1    | Basic | Frontend  | Frontend page | Wireframe      |
 | 1    | Basic | Frontend  | Frontend page | Wireframe      |
+| 2    | Basic | Mobile    | Frontend page | Wireframe      |
+| 2    | Basic | Mobile    | Frontend page | Wireframe      |
 | 2-3  | Basic | Frontend  | Frontend page | Implementation |

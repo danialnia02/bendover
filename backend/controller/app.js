@@ -17,6 +17,38 @@ app.use(cors());
 var multer = require('multer');
 var multParse = multer();
 
+//get all info
+app.get('/basic/results', function (req, res) {
+
+console.log("here")
+
+    musicDb.getAllfestivalInfo(function (err, result) {
+        if (!err) {
+            res.send(result)
+        } else {
+            res.status(500).send({ error: 'String', code: 500 })
+        }
+    })
+})
+
+//get individual info
+app.get('/basic/result/:festivalid', function (req, res) {
+    var Info = {
+        userInput: req.params.festivalid
+    }
+
+    console.log("here2")
+    console.log(Info);
+
+    musicDb.getid(Info, function (err, result) {
+        if (!err) {
+            res.send(result)
+        } else {
+            res.status(500).send({ error: 'String', code: 500 })
+        }
+    })
+})
+
 //Select * from music Info  
 app.get('/advance/result', function (req, res) {
 
@@ -24,7 +56,7 @@ app.get('/advance/result', function (req, res) {
         if (!err) {
             res.send(result);
         } else {
-            res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
+            res.status(500).send({ error: 'String', code: 500 })
         }
     })
 })
@@ -49,35 +81,7 @@ app.post('/advance/result/individual', function (req, res) {
     })
 })
 
-app.get('/basic/result', function (req, res) {
-    
-        
 
-    musicDb.getAllfestivalInfo( function (err, result) {
-        if (!err) {
-            res.send(result)
-        } else {
-            res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
-        }
-    })
-})
-
-app.get('/basic/result', function (req, res) {
-    var Info = {
-        userInput: req.params.id
-    }
-
-    console.log("here2")
-    console.log(Info);
-
-    musicDb.getid(Info, function (err, result) {
-        if (!err) {
-            res.send(result)
-        } else {
-            res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
-        }
-    })
-})
 
 app.get('/advance/results/:id', function (req, res) {
 
