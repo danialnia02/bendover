@@ -180,6 +180,25 @@ app.get('/advance/header', function (req, res) {
     })
 })
 
+app.post('/basic/insert', function (req, res) {
+    var Info = {
+        performanceId: req.body.performanceId,
+        festivalId: req.body.festivalId,
+        startTime: req.body.startTime,
+        endTime: req.body.endTime,
+        popularity: req.body.popularity,
+    }
+    // res.send(Info)
+
+    musicDb.InsertIntoFestival(Info, function (err, result) {
+        if (!err) {
+            res.send("Your data has been inserted!");
+        } else {
+            res.status(500).send('Unknown error\nCode:500 Interval Server Error.')
+        }
+    })
+})
+
 app.post('/advance/insert', function (req, res) {
     var Info = {
         performanceId: req.body.performanceId,
