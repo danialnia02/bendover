@@ -45,3 +45,10 @@ This document helps you identify the smaller tasks and helps you create a rough 
 | 2-3  | Basic | Frontend  | Data Viewer   | Implementation |
 
 > This is just a template, you just need to state **WHO** will do **WHAT** and **WHEN**.
+### Member 1 - <Cleavon>
+
+| Week | Level | Component | Feature       | Task           |
+| ---- | ----- | --------- | ------------- | -------------- |
+| 1    | Basic | Frontend  | Frontend page | Wireframe      |
+| 1    | Basic | Frontend  | Frontend page | Wireframe      |
+| 2-3  | Basic | Frontend  | Frontend page | Implementation |
