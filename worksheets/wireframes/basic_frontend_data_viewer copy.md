@@ -14,7 +14,7 @@
 
 > This is just an example, please find your own justifications.
 
-![Justificaiton1](DataViewer/DataViewerBasic.png)
+![Justificaiton1](DataViewer/DataViewerbasic.png)
 
 #### Good Points
 
