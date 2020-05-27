@@ -31,7 +31,7 @@ We decided to take reference from this dataViewer since it was presentable and e
 
 ### Justification 2
 
-![Example2](DataViewer/dataviewr-example2.png)
+![Example2](DataViewer/dataviewer-example2.png)
 This dataviewer looks like a dataviewer for an important company with the way that is designed and has pros and cons to it.
 
 #### Good Points
@@ -49,7 +49,7 @@ This dataviewer looks like a dataviewer for an important company with the way th
 
 ### Justification 3
 
-![Example2](DataViewer/dataviewr-example3.png)
+![Example2](DataViewer/dataviewer-example3.png)
 This dataviewer looks very plain but it shows how to show the data if there are many columns.
 
 #### Good Points
