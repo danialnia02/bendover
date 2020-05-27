@@ -16,7 +16,7 @@
 
 ### Justification 1
 
-![Example1](DataViewer/dataviewr-example1.png)
+![Example1](DataViewer/dataviewer-example1.png)
 We decided to take reference from this dataViewer since it was presentable and easy to understand.
 
 #### Good Points
