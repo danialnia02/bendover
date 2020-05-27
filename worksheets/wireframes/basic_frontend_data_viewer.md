@@ -1,36 +1,65 @@
 # Wireframe & Justification
 
-This document should help you explain how your user interfaces are designed. You should have a wireframe to give a good overview and some screenshot with simple writeups to justify your designs.
+
 
 ## Wireframe
 
-> This is just an example, please find your own wireframe.
+![Justificaiton1](DataViewer/DataViewerbasic.png)
 
-![Wireframe](assets/sample-wireframe-result-viewer-frontend.png)
+1. Attributes shown at top and bottom can be useful for big table.
+2. Showing total number of entries can be useful for some instance.
+3. Pagination tool meets requirement
+4. Able to search by 2 different categories or one at a the same time.
+5. Page scalable to the number possible posts per page.
 
 ## Justifications
 
 ### Justification 1
 
-> This is just an example, please find your own justifications.
-
-![Justificaiton1](https://www.jquery-az.com/wp-content/uploads/2016/05/39.0_1-Bootstrap-data-table.png)
+![Example1](DataViewer/dataviewr-example1.png)
+We decided to take reference from this dataViewer since it was presentable and easy to understand.
 
 #### Good Points
 
-1. Attributes shown at top and bottom can be useful for big table.
-2. Showing total number of entries can be useful for some instance.
-3. Pagination tool meets requirement
+1. Nice looking UI.
+2. Shows the total number of entries in that database.
+3. Pagination tool meets requirement.
 
 #### Bad Points
 
-1. May need more than 1 search bar as we need to search by multiple attributes
-2. Data with many column may be bad.
+1. May need more search bars to meet requirements.
 
 ### Justification 2
 
-> Find more existing work for reference.
+![Example2](DataViewer/dataviewr-example2.png)
+This dataviewer looks like a dataviewer for an important company with the way that is designed and has pros and cons to it.
+
+#### Good Points
+
+1. Has many search bars which meets requirement.
+2. Has pagination.
+3. Has a search bar in the pagination
+4. Very easily understood.
+
+#### Bad Points
+
+1. Bad looking UI.
+2. Information looks very cramped on the screen.
+3. Might be problematic for many columns
 
 ### Justification 3
 
-> Find more existing work for reference.
+![Example2](DataViewer/dataviewr-example3.png)
+This dataviewer looks very plain but it shows how to show the data if there are many columns.
+
+#### Good Points
+
+1. Shows on how to alter to many tables.
+4. Very easily understood.
+
+#### Bad Points
+
+1. Bad looking UI.
+2. Information looks very cramped on the screen.
+3. Might be problematic for many columns
+4. Does not have pagination
