@@ -31,7 +31,7 @@ We decided to take reference from this image which shows a bar graph.
 1. May need more search bars to meet requirements.
 2. No Input box.
 
-![Example1](ResultViewer/resultViewer2.jpg)
+![Example1](ResultViewer/resultViewer2.JPG)
 
 We decided to take reference from this image which shows a bar graph.
 
