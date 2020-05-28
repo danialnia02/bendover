@@ -15,7 +15,7 @@
 
 ### Justification 1
 
-![Example1](ResultViewer/resultViewerPhone1.png)
+![Example1](ResultViewer/resultviewerPhone1.png)
 
 We decided to take reference from this image which shows a bar graph.
 
@@ -32,7 +32,7 @@ We decided to take reference from this image which shows a bar graph.
 
 ### Justification 2
 
-![Example2](ResultViewer/resultViewerPhone2.png)
+![Example2](ResultViewer/resultViewerPhone2.jpg)
 
 This resultViewer shows a table with all of the column headers being rows. It is one way to be a data viewer.
 
