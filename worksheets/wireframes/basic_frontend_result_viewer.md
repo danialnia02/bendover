@@ -1,35 +1,63 @@
 # Wireframe & Justification
 
-This document should help you explain how your user interfaces are designed. You should have a wireframe to give a good overview and some screenshot with simple writeups to justify your designs.
+
 
 ## Wireframe
 
-> This is just an example, please find your own wireframe.
+![Wireframe1](ResultViewer/resultViewer.png)
 
-![Wireframe](assets/sample-wireframe-result-viewer-frontend.png)
+1. Able to fit all the information in the same page.
+2. Able to display all the performances correctly.
+3. Very easily understood.
+4. Easy to insert data from the input boxes at the top.
+
 
 ## Justifications
 
 ### Justification 1
 
-> This is just an example, please find your own justifications.
+![Example1](ResultViewer/resultViewer1.png)
 
-![Justificaiton1](https://blog.nusmods.com/img/nusmods-r/timetable-desktop-dark.png)
+We decided to take reference from this image which shows a bar graph.
 
 #### Good Points
 
 1. Nice looking UI.
-2. Show data with start/end time appropriately.
+2. Shows all the information in the same page.
+3. Very easily understood.
 
 #### Bad Points
 
-1. Controls may not be relevent, need to redesign the controls.
-2. May be hard to implement.
+1. May need more search bars to meet requirements.
+2. No Input box.
 
-### Justification 2
+![Example1](ResultViewer/resultViewer2.jpg)
 
-> Find more existing work for reference.
+We decided to take reference from this image which shows a bar graph.
 
-### Justification 3
+#### Good Points
 
-> Find more existing work for reference.
+1. Nice looking UI.
+2. Shows all the information in the same page.
+3. Very easily understood.
+4. Has input boxes at the top.
+
+#### Bad Points
+
+1. Information looks very cramped.
+
+![Example1](ResultViewer/resultViewer3.jpg)
+
+We decided to take reference from this image which shows a bar graph.
+
+#### Good Points
+
+1. Nice looking UI.
+2. Shows all the information in the same page.
+3. Very easily understood.
+4. Has filtering at the top.
+
+#### Bad Points
+
+1. Bad UI design.
+
