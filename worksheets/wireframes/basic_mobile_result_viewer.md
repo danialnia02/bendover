@@ -34,11 +34,13 @@ We decided to take reference from this dataViewer since it was presentable and e
 
 ### Justification 2
 
-![Example21](DataViewer/dataviewerphone-example1.png)
+![Example1](DataViewer/dataviewerphone-example1.png)
 
 ### Justification 3
 
-![Example2](DataViewer/dataviewerphone-example21.png)
+![Example2.1](DataViewer/dataviewerphone-example21.png)
+![Example2.2](DataViewer/dataviewerphone-example22.png)
+
 This dataviewer looks very plain but it shows how to show the data if there are many columns.
 
 #### Good Points
