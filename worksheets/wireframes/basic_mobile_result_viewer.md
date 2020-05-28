@@ -4,70 +4,63 @@
 
 ## Wireframe
 
-![Wireframe1](DataViewer/DataViewerPhone1.png)
-![Wireframe2](DataViewer/DataViewerPhone2.png)
+![Wireframe1](ResultViewer/resultViewerPhone.png)
 
-1. Attributes shown at top and bottom can be useful for big table.
-2. Showing total number of entries can be useful for some instance.
-3. Pagination tool meets requirement.
-4. Able to search by 2 different categories or one at a the same time.
-5. Page scalable to the number possible posts per page.
-6. Page scrollable since its a phone.
+1. Able to fit all the information in the same page.
+2. Able to display all the performances correctly.
+3. Able to see the time just by scrolling to the right.
 
 
 ## Justifications
 
 ### Justification 1
 
-![Example1](DataViewer/dataviewer-example1.png)
-We decided to take reference from this dataViewer since it was presentable and easy to understand.
+![Example1](ResultViewer/resultViewerPhone1.png)
+
+We decided to take reference from this image which shows a bar graph.
 
 #### Good Points
 
 1. Nice looking UI.
-2. Shows the total number of entries in that database.
-3. Pagination tool meets requirement.
+2. Shows all the information in the same page.
 
 #### Bad Points
 
 1. May need more search bars to meet requirements.
+2. No Input box.
+3. Information looks very cramped.
 
 ### Justification 2
 
-![Example1](DataViewer/dataviewerphone-example1.png)
+![Example2](ResultViewer/resultViewerPhone2.png)
 
-This dataviewer shows a table with all of the column headers being rows. It is one way to be a data viewer.
+This resultViewer shows a table with all of the column headers being rows. It is one way to be a data viewer.
 
 #### Good Points
 
-1. Shows on how to alter a table with 2 rows.
-2. All of the information can be seen with just a scroll.
-3. Very easily understood.
+1. Able to show all the bar chart easily on the screen without need to scroll.
+2. Easy to understand.
 
 #### Bad Points
 
-1. Information looks very cramped on the screen.
-2. Might be problematic for many columns.
-3. Does not have pagination.
-4. Does not have any search bar.
+1. Requires the user to tilt the phone.
+2. No Input box.
+3. No Compute boxes
+4. Columns is for information not header.
 
 ### Justification 3
 
-![Example2.1](DataViewer/dataviewerphone-example21.png)
-![Example2.2](DataViewer/dataviewerphone-example22.png)
+![Example2.1](ResultViewer/resultViewerPhone3.png)
 
-This dataviewer one way to view data by having the column name in the first page and when you click on it, it brings you to another page.
+This resultViewer is able to show the information clearly and can be readjusted by tilting the phone.
 
 #### Good Points
 
-1. Shows on how to alter to many tables.
-2. Very easily understood.
-3. Good looking UI.
+1. Good UI design.
+2. Information is presented clearly.
+3. Able to adjust to phone size or tilting the phone.
 
 #### Bad Points
 
-1. Hard to show all the information in one page.
-2. Information looks very cramped on the screen.
-3. Might be problematic for many columns
-4. Does not have pagination.
-5. Information can only be seen by clicking on theri individual icon.
+1. No Input boxes.
+2. No compute boxes.
