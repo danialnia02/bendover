@@ -34,25 +34,11 @@ We decided to take reference from this dataViewer since it was presentable and e
 
 ### Justification 2
 
-![Example2](DataViewer/dataviewer-example2.png)
-This dataviewer looks like a dataviewer for an important company with the way that is designed and has pros and cons to it.
-
-#### Good Points
-
-1. Has many search bars which meets requirement.
-2. Has pagination.
-3. Has a search bar in the pagination
-4. Very easily understood.
-
-#### Bad Points
-
-1. Bad looking UI.
-2. Information looks very cramped on the screen.
-3. Might be problematic for many columns
+![Example21](DataViewer/dataviewerphone-example1.png)
 
 ### Justification 3
 
-![Example2](DataViewer/dataviewer-example3.png)
+![Example2](DataViewer/dataviewerphone-example21.png)
 This dataviewer looks very plain but it shows how to show the data if there are many columns.
 
 #### Good Points
