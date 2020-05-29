@@ -6,6 +6,8 @@ import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 import './App.css'
 import { Navbar, Nav, Form, Button, Table } from "react-bootstrap"
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -111,14 +113,14 @@ const App = () => {
                 <option value="30">30</option>
           </Form.Control> */}
 
-          <Form.Label>Search</Form.Label>
+          {/* <Form.Label>Search</Form.Label> */}
 
-          <Form inline>
+          <Form>
+            <Form.Row>
             <form onSubmit={handleSubmit}>
-
-              <Table>
-                <tr>
-                  <Form.Control as="select" value="Choose..." name="attribute" value={state.attribute} onChange={handleChange}>
+              <Form.Row> {/*row for categories*/}
+                <Form.Group as={Col} controlId="category1">
+                  <Form.Control as="select" value="Choose..." name="attribute" size ="5" value={state.attribute} onChange={handleChange}>
                     <option></option>
                     <option value="performanceId">performanceId</option>
                     <option value="festivalId">festivalId</option>
@@ -127,8 +129,9 @@ const App = () => {
                     <option value="popularity">popularity</option>
                     <option value="dataInserted">dataInserted</option>
                   </Form.Control>
-
-                  <Form.Control as="select" value="Choose..." name="attribute" value={state.attribute} onChange={handleChange}>
+                </Form.Group>
+                <Form.Group as={Col} controlId="category2">
+                  <Form.Control as="select" value="Choose..." name="attribute" size ="5" value={state.attribute} onChange={handleChange}>
                     <option></option>
                     <option value="performanceId">performanceId</option>
                     <option value="festivalId">festivalId</option>
@@ -137,14 +140,18 @@ const App = () => {
                     <option value="popularity">popularity</option>
                     <option value="dataInserted">dataInserted</option>
                   </Form.Control>
-                </tr>
+                </Form.Group>
+              </Form.Row> {/*end row for categories*/}
+              <Form.Row> {/*row for searchid*/}
+                <Form.Group as={Col} controlId="searchid1">
+                  <input type="number" placeholder="Search" name="input" size ="5" value={state.input} onChange={handleChange} />
+                </Form.Group>
+                <Form.Group as={Col} controlId="searchid2">
+                  <input type="number" placeholder="Search" name="input" size ="5" value={state.input} onChange={handleChange} />
+                </Form.Group>
+              </Form.Row> {/*end row for searchid*/}
 
-                <tr>
-                  <input type="number" placeholder="Search" name="input" value={state.input} onChange={handleChange} />
-                  <input type="number" placeholder="Search" name="input" value={state.input} onChange={handleChange} />
-                </tr>
-
-              </Table>
+              <Button variant="outline-success" type="submit">Search</Button>
               {/* <Form.Control as="select" value="Choose..." name="operation" value={state.operation} onChange={handleChange}>
                 <option></option>
                 <option value="=">==</option>
@@ -153,9 +160,8 @@ const App = () => {
                 <option value="<">&lt;</option>
                 <option value="<=">&lt;=</option>
               </Form.Control> */}
-
-              <Button variant="outline-success" type="submit">Search</Button>
             </form>
+            </Form.Row>
           </Form>
         </Navbar.Collapse>
       </Navbar>
@@ -166,7 +172,7 @@ const App = () => {
       {/* output Code */}
       <div id="smallcontainer">
         <Posts posts={currentPosts} loading={loading} id="three" />
-        <div className="yes">
+        <div className="pgnt">
           <Pagination
             currentPage={currentPage}
             postsPerPage={state.pagination}

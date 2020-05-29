@@ -140,9 +140,14 @@
     box-sizing: border-box;
   }
   
-  .yes {
+  .pgnt {
     margin: auto;
     width: 16%;
     display: flex;
     align-content: center;
   }
+
+  /* .form-group {
+    width: 90%;
+    background: blue;
+  } */
