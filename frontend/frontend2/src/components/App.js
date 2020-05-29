@@ -88,8 +88,8 @@ const App = () => {
         <Nav.Item>
           <Nav.Link eventKey="link-1">Result</Nav.Link>
         </Nav.Item>
-        <Form.Control as="select" name="pagination" value={state.pagination} onChange={handleChange} >
-          <option value="">Click here to change the number of posts per page</option>
+        <Form.Control as="select" name="pagination" value={state.pagination} placeholder="test" onChange={handleChange} >
+          <option value="10">Click here to change the number of posts per page</option>
           <option value="5">5</option>
           <option value="15">15</option>
           <option value="25">25</option>
