@@ -5,7 +5,7 @@ import ReactPaginate from 'react-paginate';
 // import Header from './Header2';
 import axios from 'axios';
 import './App.css'
-import { Navbar, Nav, Form, Button } from "react-bootstrap"
+import { Navbar, Nav, Form, Button, Table } from "react-bootstrap"
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -110,32 +110,50 @@ const App = () => {
                 <option value="25">25</option>
                 <option value="30">30</option>
           </Form.Control> */}
-            
+
           <Form.Label>Search</Form.Label>
 
           <Form inline>
             <form onSubmit={handleSubmit}>
-              
-              <Form.Control as="select" value="Choose..." name="attribute" value={state.attribute} onChange={handleChange}>
-                <option></option>
-                <option value="performanceId">performanceId</option>
-                <option value="festivalId">festivalId</option>
-                <option value="startTime">startTime</option>
-                <option value="endTime">endTime</option>
-                <option value="popularity">popularity</option>
-                <option value="dataInserted">dataInserted</option>
-              </Form.Control>
 
-              <Form.Control as="select" value="Choose..." name="operation" value={state.operation} onChange={handleChange}>
+              <Table>
+                <tr>
+                  <Form.Control as="select" value="Choose..." name="attribute" value={state.attribute} onChange={handleChange}>
+                    <option></option>
+                    <option value="performanceId">performanceId</option>
+                    <option value="festivalId">festivalId</option>
+                    <option value="startTime">startTime</option>
+                    <option value="endTime">endTime</option>
+                    <option value="popularity">popularity</option>
+                    <option value="dataInserted">dataInserted</option>
+                  </Form.Control>
+
+                  <Form.Control as="select" value="Choose..." name="attribute" value={state.attribute} onChange={handleChange}>
+                    <option></option>
+                    <option value="performanceId">performanceId</option>
+                    <option value="festivalId">festivalId</option>
+                    <option value="startTime">startTime</option>
+                    <option value="endTime">endTime</option>
+                    <option value="popularity">popularity</option>
+                    <option value="dataInserted">dataInserted</option>
+                  </Form.Control>
+                </tr>
+
+                <tr>
+                  <input type="number" placeholder="Search" name="input" value={state.input} onChange={handleChange} />
+                  <input type="number" placeholder="Search" name="input" value={state.input} onChange={handleChange} />
+                </tr>
+
+              </Table>
+              {/* <Form.Control as="select" value="Choose..." name="operation" value={state.operation} onChange={handleChange}>
                 <option></option>
                 <option value="=">==</option>
                 <option value="=">&gt;=</option>
                 <option value=">">&gt;</option>
                 <option value="<">&lt;</option>
                 <option value="<=">&lt;=</option>
-              </Form.Control>
+              </Form.Control> */}
 
-              <input type="number" placeholder="Search" name="input" value={state.input} onChange={handleChange} />
               <Button variant="outline-success" type="submit">Search</Button>
             </form>
           </Form>
@@ -148,13 +166,13 @@ const App = () => {
       {/* output Code */}
       <div id="smallcontainer">
         <Posts posts={currentPosts} loading={loading} id="three" />
-        <div className ="yes">
-        <Pagination
-          currentPage={currentPage}
-          postsPerPage={state.pagination}
-          totalPosts={posts.length}
-          paginate={paginate}
-        />
+        <div className="yes">
+          <Pagination
+            currentPage={currentPage}
+            postsPerPage={state.pagination}
+            totalPosts={posts.length}
+            paginate={paginate}
+          />
         </div>
       </div>
     </div>
