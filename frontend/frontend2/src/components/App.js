@@ -98,12 +98,11 @@ const App = () => {
         </Form.Control>
       </Nav>
       {/* Navbar header Code */}
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="lg "> 
         <Navbar.Brand href="#home">Music-Db</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-          </Nav>
+        <Navbar.Collapse id="basic-navbar-nav" className="d-flex justify-content-center">
+
 
           {/* <Form.Control as="select" value="Choose..." name="pagination" value={state.pagination} onChange={handleChange} >
                 <option></option>
@@ -115,44 +114,46 @@ const App = () => {
 
           {/* <Form.Label>Search</Form.Label> */}
 
-          <Form>
+          <Form className="row">
             <Form.Row>
-            <form onSubmit={handleSubmit}>
-              <Form.Row> {/*row for categories*/}
-                <Form.Group as={Col} controlId="category1">
-                  <Form.Control as="select" value="Choose..." name="attribute" size ="5" value={state.attribute} onChange={handleChange}>
-                    <option></option>
-                    <option value="performanceId">performanceId</option>
-                    <option value="festivalId">festivalId</option>
-                    <option value="startTime">startTime</option>
-                    <option value="endTime">endTime</option>
-                    <option value="popularity">popularity</option>
-                    <option value="dataInserted">dataInserted</option>
-                  </Form.Control>
-                </Form.Group>
-                <Form.Group as={Col} controlId="category2">
-                  <Form.Control as="select" value="Choose..." name="attribute" size ="5" value={state.attribute} onChange={handleChange}>
-                    <option></option>
-                    <option value="performanceId">performanceId</option>
-                    <option value="festivalId">festivalId</option>
-                    <option value="startTime">startTime</option>
-                    <option value="endTime">endTime</option>
-                    <option value="popularity">popularity</option>
-                    <option value="dataInserted">dataInserted</option>
-                  </Form.Control>
-                </Form.Group>
-              </Form.Row> {/*end row for categories*/}
-              <Form.Row> {/*row for searchid*/}
-                <Form.Group as={Col} controlId="searchid1">
-                  <input type="number" placeholder="Search" name="input" size ="5" value={state.input} onChange={handleChange} />
-                </Form.Group>
-                <Form.Group as={Col} controlId="searchid2">
-                  <input type="number" placeholder="Search" name="input" size ="5" value={state.input} onChange={handleChange} />
-                </Form.Group>
-              </Form.Row> {/*end row for searchid*/}
+              <form onSubmit={handleSubmit}>
+                <Form.Row> {/*row for categories*/}
+                  <Form.Group as={Col} controlId="category1">
+                    <Form.Control as="select" value="Choose..." name="attribute" size="5" value={state.attribute} onChange={handleChange}>
+                      <option></option>
+                      <option value="performanceId">performanceId</option>
+                      <option value="festivalId">festivalId</option>
+                      <option value="startTime">startTime</option>
+                      <option value="endTime">endTime</option>
+                      <option value="popularity">popularity</option>
+                      <option value="dataInserted">dataInserted</option>
+                    </Form.Control>
+                  </Form.Group>
+                  <Form.Group as={Col} controlId="category2">
+                    <Form.Control as="select" value="Choose..." name="attribute" size="5" value={state.attribute} onChange={handleChange}>
+                      <option></option>
+                      <option value="performanceId">performanceId</option>
+                      <option value="festivalId">festivalId</option>
+                      <option value="startTime">startTime</option>
+                      <option value="endTime">endTime</option>
+                      <option value="popularity">popularity</option>
+                      <option value="dataInserted">dataInserted</option>
+                    </Form.Control>
+                  </Form.Group>
+                </Form.Row> {/*end row for categories*/}
+                <Form.Row> {/*row for searchid*/}
 
-              <Button variant="outline-success" type="submit">Search</Button>
-              {/* <Form.Control as="select" value="Choose..." name="operation" value={state.operation} onChange={handleChange}>
+                  {/*searchbox*/}
+                  <Form.Group as={Col} controlId="searchid1">
+                    <input type="number" placeholder="Search" name="input" size="5" value={state.input} onChange={handleChange} />
+                  </Form.Group>
+                  {/*searchbox*/}
+                  <Form.Group as={Col} controlId="searchid2">
+                    <input type="number" placeholder="Search" name="input" size="5" value={state.input} onChange={handleChange} />
+                  </Form.Group>
+                </Form.Row> {/*end row for searchid*/}
+                
+                {/* <Form.Control as="select" value="Choose..." name="operation" value={state.operation} onChange={handleChange}>
                 <option></option>
                 <option value="=">==</option>
                 <option value="=">&gt;=</option>
@@ -160,8 +161,11 @@ const App = () => {
                 <option value="<">&lt;</option>
                 <option value="<=">&lt;=</option>
               </Form.Control> */}
-            </form>
+              </form>
             </Form.Row>
+            <div className="d-block ml-5 mt-4 justify-content-center">
+                  <Button variant="outline-success" type="submit">Search</Button>
+                </div>
           </Form>
         </Navbar.Collapse>
       </Navbar>
