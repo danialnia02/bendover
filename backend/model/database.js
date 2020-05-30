@@ -202,7 +202,8 @@ var database = {
             }
         })
     },
-    InsertIntoFestival: function (Info, callback) {
+    InsertIntoFestival: function ({data}, callback) {
+        console.log({data})
         var conn = new mssql.ConnectionPool(dbConfig);
         conn.connect(function (err) {
             if (err) {
@@ -218,8 +219,7 @@ var database = {
                     + Info.performanceId + ","
                     + Info.festivalId + ","
                     + Info.startTime + ","
-                    + Info.endTime + ","
-                    + Info.popularity
+                    + Info.endTime                     
                     + ")";
                 // var sql = "insert into dbo.festivalInfo (performanceId,festivalId,startTime,endTime,popularity) values(?,?,?,?,?)";
                 console.log("\n" + sql + "\n")

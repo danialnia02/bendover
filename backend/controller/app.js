@@ -180,17 +180,11 @@ app.get('/advance/header', function (req, res) {
     })
 })
 
-app.post('/basic/insert', function (req, res) {
-    var Info = {
-        performanceId: req.body.performanceId,
-        festivalId: req.body.festivalId,
-        startTime: req.body.startTime,
-        endTime: req.body.endTime,
-        popularity: req.body.popularity,
-    }
-    // res.send(Info)
+app.post('/basic/insert', function (req, res) {    
+    var {data}= req.body
+    console.log({data})            
 
-    musicDb.InsertIntoFestival(Info, function (err, result) {
+    musicDb.InsertIntoFestival({data}, function (err, result) {
         if (!err) {
             res.send("Your data has been inserted!");
         } else {
