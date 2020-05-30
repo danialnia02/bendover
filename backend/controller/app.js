@@ -184,7 +184,7 @@ app.post('/basic/insert', function (req, res) {
     var {data}= req.body
     console.log({data})            
 
-    musicDb.InsertIntoFestival({data}, function (err, result) {
+    musicDb.InsertIntoFestivalBulk({data}, function (err, result) {
         if (!err) {
             res.send("Your data has been inserted!");
         } else {

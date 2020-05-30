@@ -202,7 +202,7 @@ var database = {
             }
         })
     },
-    InsertIntoFestival: function ({data}, callback) {
+    InsertIntoFestivalBulk: function ({data}, callback) {
         console.log({data})
         var conn = new mssql.ConnectionPool(dbConfig);
         conn.connect(function (err) {
