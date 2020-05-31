@@ -12,6 +12,7 @@ var dbConfig = {
     },
 };
 
+
 var database = {
     getAllfestivalInfo: function (callback) {
         var conn = new mssql.ConnectionPool(dbConfig);
@@ -77,7 +78,7 @@ var database = {
                 var req = new mssql.Request(conn);
 
                 //database codeionic
-                var sql = 'select * from dbo.festivalInfo where festivalId ='+ Info.userInput
+                var sql = 'select * from dbo.festivalInfo where festivalId =' + Info.userInput
                 console.log(sql)
                 req.query(sql, function (err, result) {
                     if (err) {
@@ -202,8 +203,8 @@ var database = {
             }
         })
     },
-    InsertIntoFestivalBulk: function ({data}, callback) {
-        console.log({data})
+    InsertIntoFestivalBulk: function ({ data }, callback) {
+        console.log({ data })
         var conn = new mssql.ConnectionPool(dbConfig);
         conn.connect(function (err) {
             if (err) {
@@ -219,9 +220,100 @@ var database = {
                     + Info.performanceId + ","
                     + Info.festivalId + ","
                     + Info.startTime + ","
-                    + Info.endTime                     
+                    + Info.endTime
                     + ")";
                 // var sql = "insert into dbo.festivalInfo (performanceId,festivalId,startTime,endTime,popularity) values(?,?,?,?,?)";
+                console.log("\n" + sql + "\n")
+                req.query(sql, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        return callback(err, null);
+                    } else {
+                        return callback(null, result.recordset);
+                    }
+                });
+            }
+        })
+    },
+    InsertIntoFestivalBulk: function ({ data }, callback) {
+        var data2 = { data }.data
+        console.log(data2)
+        var conn = new mssql.ConnectionPool(dbConfig);
+        conn.connect(function (err) {
+            if (err) {
+                console.log(err);
+                return callback(err, null);
+            }
+            else {
+                console.log("Conencted!");
+                var req = new mssql.Request(conn);
+                var columnNames;
+                //check the column table names
+                var columnSql = "SELECT name FROM sys.columns WHERE object_id = OBJECT_ID('festivalInfo') "
+                req.query(columnSql, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    } else {                        
+                        columnNames = result.recordset;
+
+                        // console.log(columnNames[0].name);
+                        var penis=0;
+                        //database code                
+                        for (let i = 0; i < data2.length; i++) {
+                            console.log(Object.keys(data2[i]).length)
+                            for (let y = 0; y < Object.keys(data2[i]).length; y++) {                                
+                                // console.log(Object.values(data2[i])[y]);
+                                
+                                if(columnNames[y].name!=(Object.keys(data2[i])[y])){
+                                    console.log(Object.keys(data2[i])[y]);                                                 
+                                    return callback( "undefined",null)
+                                }                                
+                            }
+                        }                    
+
+                        var sql = "insert into festivalInfo (performanceId,festivalId,startTime,endTime) values";
+                        for (var i = 0; i < data2.length; i++) {
+                            var sqlString = "(" + data2[i].performanceId + "," + data2[i].festivalId + ",'" + data2[i].startTime + "','" + data2[i].endTime + "')"
+                            sql += sqlString;
+                            if (i < (data2.length - 1)) {
+                                sql += ","
+                            }
+                        }                        
+                        // console.log("\n" + sql + "\n")
+                        req.query(sql, function (err, result) {
+                            if (err) {
+                                console.log(err);
+                                return callback(err, null);
+                            } else {
+                                return callback(null, result.rowsAffected);
+                            }
+                        });
+                    }
+                })
+
+            }
+        })
+    },
+    InsertIndividual: function (data, callback) {
+        console.log(data[0])
+        var conn = new mssql.ConnectionPool(dbConfig);
+        conn.connect(function (err) {
+            if (err) {
+                console.log(err);
+                return callback(err, null);
+            }
+            else {
+                console.log("Conencted!");
+                var req = new mssql.Request(conn);
+
+
+                //database code
+                var sql = "insert into dbo.festivalInfo (performanceId,festivalId,startTime,endTime) values("
+                    + data.data[0].performanceId + ","
+                    + data.data[0].festivalId + ","
+                    + data.data[0].startTime + ","
+                    + data.data[0].endTime
+                    + ")";
                 console.log("\n" + sql + "\n")
                 req.query(sql, function (err, result) {
                     if (err) {

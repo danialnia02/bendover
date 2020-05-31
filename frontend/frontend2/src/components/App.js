@@ -152,15 +152,6 @@ const App = () => {
                     <input type="number" placeholder="Search" name="input" size="5" value={state.input} onChange={handleChange} />
                   </Form.Group>
                 </Form.Row> {/*end row for searchid*/}
-                
-                {/* <Form.Control as="select" value="Choose..." name="operation" value={state.operation} onChange={handleChange}>
-                <option></option>
-                <option value="=">==</option>
-                <option value="=">&gt;=</option>
-                <option value=">">&gt;</option>
-                <option value="<">&lt;</option>
-                <option value="<=">&lt;=</option>
-              </Form.Control> */}
               </form>
             </Form.Row>
             <div className="d-block ml-5 mt-4 justify-content-center">

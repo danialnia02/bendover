@@ -180,11 +180,33 @@ app.get('/advance/header', function (req, res) {
     })
 })
 
+//////////////////
 app.post('/basic/insert', function (req, res) {    
-    var {data}= req.body
-    console.log({data})            
+    var {data}= req.body       
+    // console.log({data})
 
     musicDb.InsertIntoFestivalBulk({data}, function (err, result) {
+        if (!err) {               
+            
+            res.send("Your data has been inserted!");
+        } else {
+            var result=err;
+            if (result=="undefined"){
+                result="Something is undefined."
+            }
+            res.send(result)
+            // res.status(500).send('Unknown error\nCode:500 Interval Server Error.')
+        }
+    })
+})
+
+//////////////////
+app.post('/basic/insert/individual', function (req, res) {    
+    var {data}= req.body
+    var data1={data}
+    console.log(data1.data[0])
+
+    musicDb.InsertIntoFestivalBulk2(data1, function (err, result) {
         if (!err) {
             res.send("Your data has been inserted!");
         } else {
