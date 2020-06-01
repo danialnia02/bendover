@@ -30,6 +30,7 @@ IBM
 DMIT
 
 ## Indentation Style (1TBS)
+```javascript
 void checknegative(x) {
     if (x < 0) {
         puts("Negative");
@@ -37,8 +38,9 @@ void checknegative(x) {
         nonnegative(x);
     }
 }
-
+```
 ## Indentation
+```javascript
 void checknegative(x) {
     if (x < 0) {
         puts("Negative");
@@ -46,8 +48,10 @@ void checknegative(x) {
         nonnegative(x);
     }
 }
+```
 
 ## Indentaion Space
+```javascript
 void checknegative(x) {
     if (x < 0) {
         puts("Negative");
@@ -55,6 +59,7 @@ void checknegative(x) {
         nonnegative(x);
     }
 }
+```
 
 ## Semicolon
 var test="test";
@@ -73,6 +78,7 @@ Ibm
 dMIT
 
 ## Indentation Style (1TBS)
+```javascript
 void checknegative(x) 
 {
     if (x < 0) 
@@ -84,8 +90,10 @@ void checknegative(x)
         nonnegative(x);
     }
 }
+```
 
 ## Indentation
+```javascript
 void checknegative(x) {
   if (x < 0) {
   puts("Negative");
@@ -93,8 +101,10 @@ void checknegative(x) {
   nonnegative(x);
   }
 }
+```
 
 ## Indentaion Space
+```javascript
 void checknegative(x){
     if(x < 0){
         puts("Negative");
@@ -102,7 +112,10 @@ void checknegative(x){
         nonnegative(x);
     }
 }
+```
 
 ## Semicolon
+```javascript
 var test="test"
 var info =1;
+```
