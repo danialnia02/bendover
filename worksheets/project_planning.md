@@ -56,6 +56,10 @@ This document helps you identify the smaller tasks and helps you create a rough 
 | 3    | Basic    | Backend   | Ionic(React)               | Learn Ionic(React)             |
 | 3    | Basic    | Backend   | Ionic(React)               | Connect Middlware to Frontend  |
 | 4    | Advanced | Backend   | Ionic(React)               | Integration                    |
+| 6 | Basic | Frontend | Integration | Add features|
+| 6 | Basic | Backend  | Insert API | Implementation|
+| 6 | Basic | Frontend + Mobile | Result Viewer | Implementation|
+| 6 | Basic | Frontend + Mobile | Result Viewer | Integration|
 
 > This is just a template, you just need to state **WHO** will do **WHAT** and **WHEN**.
 ### Member 1 - Cleavon Ong
