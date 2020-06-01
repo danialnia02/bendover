@@ -83,7 +83,7 @@ GET /basic/data?id=1234567890
 ```
 ----------------------------------------------------------------
 
-## Get Data
+## Get All Data
 
 | attribute   | value       |
 | ----------- | ----------- |
@@ -92,9 +92,7 @@ GET /basic/data?id=1234567890
 
 ### Parameters
 
-| parameter | datatype        | example   |
-| --------- | --------------- | --------- |
-| id        | 10 digit number | 123456789 |
+No parameters
 
 ### Response Body
 
@@ -102,10 +100,11 @@ GET /basic/data?id=1234567890
 {
     "result": [
         {
-            "id": number,
-            "property1": number,
-            "property2": string,
-            ...
+            "performanceId": number,
+            "festivalId": number,
+            "startTime": string,
+            "endTime": string,
+            "popularity":number            
         }
     ]
 }
@@ -123,7 +122,7 @@ GET /basic/data?id=1234567890
 ### Sample Request
 
 ```http
-GET /basic/data?id=1234567890
+GET /basic/results
 ```
 
 ### Sample Response
@@ -132,10 +131,11 @@ GET /basic/data?id=1234567890
 {
     "result": [
         {
-            "id": 1234567890,
-            "property1": 1234567890,
-            "property2": "haha",
-            ...
+            "performanceId": 123457,
+            "festivalId": 123456,
+            "startTime": "2100",
+            "endTime": "2230",
+            "popularity":0            
         }
     ]
 }
@@ -149,3 +149,402 @@ GET /basic/data?id=1234567890
 	"code": 500
 }
 ```
+
+----------------------------------------------------------------    
+## Get Data based on festivalId
+
+| attribute   | value       |
+| ----------- | ----------- |
+| HTTP Method | GET         |
+| Endpoint    | /basic/result/:festivalid |
+
+### Parameters
+
+| parameter | datatype        | example   |
+| --------- | --------------- | --------- |
+| festivalid        | 10 digit number | 123456789 |
+
+### Response Body
+
+```json
+{
+    "result": [
+        {
+            "performanceId": number,
+            "festivalId": number,
+            "startTime": string,
+            "endTime": string,
+            "popularity":number            
+        }
+    ]
+}
+```
+
+### Error
+
+```json
+{
+	"error": string,
+	"code": number
+}
+```
+
+### Sample Request
+
+```http
+GET /basic/result/:festivalid=123456
+```
+
+### Sample Response
+
+```json
+{
+    "result": [
+        {
+            "performanceId": 123457,
+            "festivalId": 123456,
+            "startTime": "2100",
+            "endTime": "2230",
+            "popularity":0            
+        },
+        
+    ]
+}
+```
+
+### Sample Error
+
+```json
+{
+	"error": "Server Error",
+	"code": 500
+}
+```
+----------------------------------------------------------------
+## Get Data based on performanceId
+
+| attribute   | value       |
+| ----------- | ----------- |
+| HTTP Method | GET         |
+| Endpoint    | /basic/result/:performanceId |
+
+### Parameters
+
+| parameter | datatype        | example   |
+| --------- | --------------- | --------- |
+| performanceId        | 10 digit number | 123456789 |
+
+### Response Body
+
+```json
+{
+    "result": [
+        {
+            "performanceId": number,
+            "festivalId": number,
+            "startTime": string,
+            "endTime": string,
+            "popularity":number            
+        }
+    ]
+}
+```
+
+### Error
+
+```json
+{
+	"error": string,
+	"code": number
+}
+```
+
+### Sample Request
+
+```http
+GET /basic/result/:festivalid=123456
+```
+
+### Sample Response
+
+```json
+{
+    "result": [
+        {
+            "performanceId": 123457,
+            "festivalId": 123456,
+            "startTime": "2100",
+            "endTime": "2230",
+            "popularity":0            
+        },
+        
+    ]
+}
+```
+
+### Sample Error
+
+```json
+{
+	"error": "Server Error",
+	"code": 500
+}
+```
+----------------------------------------------------------------
+
+## Get Data based on search bar in Data Viewer
+
+| attribute   | value       |
+| ----------- | ----------- |
+| HTTP Method | POST     |
+| Endpoint    | /search |
+
+### Parameters
+
+| parameter | datatype        | example   |
+| --------- | --------------- | --------- |
+| operation| String | +,=,<,> |
+| attribute1(performanceId)| String | 12345678 |
+| input1| String | 12345678 |
+| attribute2(festivalId)| String | 12345678 |
+| input2| String | 12345678 |
+
+### Response Body
+
+```json
+{
+    "result": [
+        {
+            "performanceId": number,
+            "festivalId": number,
+            "startTime": string,
+            "endTime": string,
+            "popularity":number            
+        }
+    ]
+}
+```
+
+### Error
+
+```json
+{
+	"error": string,
+	"code": number
+}
+```
+
+### Sample Request
+
+```http
+GET /search
+```
+
+### Sample Response
+
+```json
+{
+    "result": [
+        {
+            "performanceId": 123457,
+            "festivalId": 123456,
+            "startTime": "2100",
+            "endTime": "2230",
+            "popularity":0            
+        }
+    ]
+}
+```
+
+### Sample Error
+
+```json
+{
+	"error": "Server Error",
+	"code": 500
+}
+```
+----------------------------------------------------------------
+## Insert data into database(basic)
+
+| attribute   | value       |
+| ----------- | ----------- |
+| HTTP Method | POST     |
+| Endpoint    | /basic/insert |
+
+### Parameters
+
+| parameter | datatype        | example   |
+| --------- | --------------- | --------- |
+| performanceId| bigint |12345678 |
+| festivalId| bigint | 12345678 |
+| startTime| String | "2200" |
+
+### Response Body
+
+```json
+{
+    "result": [
+        {
+            "performanceId": number,
+            "festivalId": number,
+            "startTime": string,
+            "endTime": string,
+            "popularity":number            
+        }
+    ]
+}
+```
+
+### Error
+
+```json
+{
+	"error": string,
+	"code": number
+}
+```
+
+### Sample Request
+
+```http
+POST /search
+```
+
+### Sample Response
+
+```json
+"Your data has been inserted!"
+```
+
+### Sample Error
+
+```json
+{
+	"error": "Server Error",
+	"code": 500
+}
+```
+----------------------------------------------------------------
+## Insert data into database(advanced)
+
+| attribute   | value       |
+| ----------- | ----------- |
+| HTTP Method | POST     |
+| Endpoint    | /advance/insert |
+
+### Parameters
+
+| parameter | datatype        | example   |
+| --------- | --------------- | --------- |
+| performanceId| bigint |12345678 |
+| festivalId| bigint | 12345678 |
+| startTime| String | "2200" |
+| endTime| String | "2300" |
+| popularity| number | 1 |
+
+### Response Body
+
+```json
+{
+    "result": [
+        {
+            "performanceId": number,
+            "festivalId": number,
+            "startTime": string,
+            "endTime": string,
+            "popularity":number            
+        }
+    ]
+}
+```
+
+### Error
+
+```json
+{
+	"error": string,
+	"code": number
+}
+```
+
+### Sample Request
+
+```http
+POST /search
+```
+
+### Sample Response
+
+```json
+"Your data has been inserted!"
+```
+
+### Sample Error
+
+```json
+{
+	"error": "Server Error",
+	"code": 500
+}
+```
+----------------------------------------------------------------
+## Get The Number Of Records In The Database
+
+| attribute   | value       |
+| ----------- | ----------- |
+| HTTP Method | get     |
+| Endpoint    | /advance/recordCount |
+
+### Parameters
+
+No Parameter
+
+### Response Body
+
+```json
+{
+    "result": [
+        {
+            "recordCount":number         
+        }
+    ]
+}
+```
+
+### Error
+
+```json
+{
+	"error": string,
+	"code": number
+}
+```
+
+### Sample Request
+
+```http
+POST /search
+```
+
+### Sample Response
+
+```json
+{
+    "result": [
+        {
+            "recordCount":100         
+        }
+    ]
+}
+```
+
+### Sample Error
+
+```json
+{
+	"error": "Server Error",
+	"code": 500
+}
+```
+----------------------------------------------------------------

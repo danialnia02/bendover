@@ -62,7 +62,7 @@ const App = () => {
     const fetchPosts = async () => {
       setLoading(true);
 
-      const res = await axios.get('http://localhost:8011/advance/result');
+      const res = await axios.get('http://localhost:8011/basic/result');
       setPosts(res.data);
       setLoading(false);
     };
