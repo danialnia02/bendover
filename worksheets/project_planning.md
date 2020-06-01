@@ -36,7 +36,7 @@ This document helps you identify the smaller tasks and helps you create a rough 
 
 ## Estimate Schedule
 
-### Member 1 - <Mohamed Danial Irfan Bin Salimi>
+### Member 1 - Mohamed Danial Irfan Bin Salimi
 
 | Week | Level    | Component | Feature                    | Task                           |
 | ---- | -----    | --------- | -------------              | --------------                 |
@@ -58,7 +58,7 @@ This document helps you identify the smaller tasks and helps you create a rough 
 | 4    | Advanced | Backend   | Ionic(React)               | Integration                    |
 
 > This is just a template, you just need to state **WHO** will do **WHAT** and **WHEN**.
-### Member 1 - <Cleavon>
+### Member 1 - Cleavon Ong
 
 | Week | Level | Component | Feature       | Task           |
 | ---- | ----- | --------- | ------------- | -------------- |
