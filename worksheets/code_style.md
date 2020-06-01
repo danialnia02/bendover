@@ -19,30 +19,90 @@ Based on your chosen rules, give an example of a code that follows the code styl
 
 ### Good Example
 
-  .App {
-    text-align: center;
-  }
+## Case Styles
+categoryInformation;
+eBook;
+worldMap
 
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 40vmin;
-    pointer-events: none;
-  }
+## Acronym Case
+CASE
+IBM
+DMIT
 
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
+## Indentation Style (1TBS)
+void checknegative(x) {
+    if (x < 0) {
+        puts("Negative");
+    } else {
+        nonnegative(x);
+    }
+}
 
+## Indentation
+void checknegative(x) {
+    if (x < 0) {
+        puts("Negative");
+    } else {
+        nonnegative(x);
+    }
+}
+
+## Indentaion Space
+void checknegative(x) {
+    if (x < 0) {
+        puts("Negative");
+    } else {
+        nonnegative(x);
+    }
+}
+
+## Semicolon
+var test="test";
+var info =1;
 
 ### Bad Example
 
-div > nav > ul > li > a {
-    color: #1200FF;
+## Case Styles
+CategoryInformation;
+ebook;
+Worldap
+
+## Acronym Case
+Case
+Ibm
+dMIT
+
+## Indentation Style (1TBS)
+void checknegative(x) 
+{
+    if (x < 0) 
+    {
+        puts("Negative");
+    } 
+    else 
+    {
+        nonnegative(x);
+    }
 }
+
+## Indentation
+void checknegative(x) {
+  if (x < 0) {
+  puts("Negative");
+  } else {
+  nonnegative(x);
+  }
+}
+
+## Indentaion Space
+void checknegative(x){
+    if(x < 0){
+        puts("Negative");
+    }else{
+        nonnegative(x);
+    }
+}
+
+## Semicolon
+var test="test"
+var info =1;
