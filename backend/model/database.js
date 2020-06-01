@@ -39,6 +39,7 @@ var database = {
         })
     },
 
+    //used in Data Viewer search bar
     getList2: function (Info, callback) {
         var conn = new mssql.ConnectionPool(dbConfig);
         conn.connect(function (err) {
@@ -48,10 +49,14 @@ var database = {
             }
             else {
                 console.log("Connected!");
-                var req = new mssql.Request(conn);
-
-                //database codeionic
-                var sql = 'SELECT * FROM dbo.festivalInfo where ' + Info.attribute + " " + Info.operation + " " + "" + Info.userInput + "";
+                var req = new mssql.Request(conn);                    
+                var objectCount=(Object.keys(Info).length)                
+                var sql;
+                if (objectCount==2){
+                    sql='SELECT * FROM dbo.festivalInfo where '+Info.attribute +" like '%"+Info.input+"%'";
+                }else{
+                    sql='SELECT * FROM dbo.festivalInfo where '+Info.attribute1+" like '%"+Info.input1+"%' and "+Info.attribute2+" like '%"+Info.input2+"%'";
+                }                                
                 console.log(sql)
                 req.query(sql, function (err, result) {
                     if (err) {
@@ -107,42 +112,6 @@ var database = {
 
                 //database code
                 var sql = 'SELECT * FROM dbo.festivalInfo where performanceId = ' + id;
-                console.log(sql)
-                req.query(sql, function (err, result) {
-                    if (err) {
-                        console.log(err);
-                        return callback(err, null);
-                    } else {
-                        return callback(null, result.recordset);
-                    }
-                });
-            }
-        })
-    },
-
-    getfestivalInfoUser: function (Info, callback) {
-        var conn = new mssql.ConnectionPool(dbConfig);
-        conn.connect(function (err) {
-            if (err) {
-                console.log(err);
-                return callback(err, null);
-            }
-            else {
-                console.log("Connected!");
-                var req = new mssql.Request(conn);
-                var query = "";
-                if (Info.userInput != null) {
-                    query = 'where ' + Info.attribute + " " + Info.operation + " " + Info.userInput
-                }
-                if (Info.order != null) {
-                    query += " order by " + Info.orderFrom + " " + Info.order
-                }
-                if (query == undefined) {
-                    query = "";
-                }
-                //database code            
-
-                var sql = 'SELECT * FROM dbo.festivalInfo ' + query;
                 console.log(sql)
                 req.query(sql, function (err, result) {
                     if (err) {

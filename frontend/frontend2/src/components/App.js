@@ -17,10 +17,12 @@ const App = () => {
 
   //input get
   const [state, setState] = React.useState({
-    input: "",
+    input1: "",
+    input2: "",
     operation: "",
     pagination: 10,
-    attribute: "",
+    attribute1: "",
+    attribute2: "",
   })
 
 
@@ -40,13 +42,15 @@ const App = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
     var info = {
-      input: state.input,
       operation: state.operation,
       pagination: state.pagination,
-      attribute: state.attribute
+      attribute1: state.attribute1,
+      input1: state.input1,
+      attribute2: state.attribute2,
+      input2: state.input2,
     }
     console.log(info)
-    axios.post('http://localhost:8011/advance/result/individual', info)
+    axios.post('http://localhost:8011/search', info)
       .then(res => {
         console.log(res.data)
         setPosts(res.data)
@@ -60,7 +64,6 @@ const App = () => {
 
       const res = await axios.get('http://localhost:8011/advance/result');
       setPosts(res.data);
-      console.log(res.data);
       setLoading(false);
     };
 
@@ -98,28 +101,18 @@ const App = () => {
         </Form.Control>
       </Nav>
       {/* Navbar header Code */}
-      <Navbar bg="light" expand="lg "> 
+      <Navbar bg="light" expand="lg ">
         <Navbar.Brand href="#home">Music-Db</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="d-flex justify-content-center">
 
-
-          {/* <Form.Control as="select" value="Choose..." name="pagination" value={state.pagination} onChange={handleChange} >
-                <option></option>
-                <option value="5">5</option>
-                <option value="15">15</option>
-                <option value="25">25</option>
-                <option value="30">30</option>
-          </Form.Control> */}
-
-          {/* <Form.Label>Search</Form.Label> */}
 
           <Form className="row">
             <Form.Row>
               <form onSubmit={handleSubmit}>
                 <Form.Row> {/*row for categories*/}
                   <Form.Group as={Col} controlId="category1">
-                    <Form.Control as="select" value="Choose..." name="attribute" size="5" value={state.attribute} onChange={handleChange}>
+                    <Form.Control as="select" value="Choose..." name="attribute1" size="5" value={state.attribute1} onChange={handleChange}>
                       <option></option>
                       <option value="performanceId">performanceId</option>
                       <option value="festivalId">festivalId</option>
@@ -130,7 +123,7 @@ const App = () => {
                     </Form.Control>
                   </Form.Group>
                   <Form.Group as={Col} controlId="category2">
-                    <Form.Control as="select" value="Choose..." name="attribute" size="5" value={state.attribute} onChange={handleChange}>
+                    <Form.Control as="select" value="Choose..." name="attribute2" size="5" value={state.attribute2} onChange={handleChange}>
                       <option></option>
                       <option value="performanceId">performanceId</option>
                       <option value="festivalId">festivalId</option>
@@ -142,21 +135,21 @@ const App = () => {
                   </Form.Group>
                 </Form.Row> {/*end row for categories*/}
                 <Form.Row> {/*row for searchid*/}
-
                   {/*searchbox*/}
                   <Form.Group as={Col} controlId="searchid1">
-                    <input type="number" placeholder="Search" name="input" size="5" value={state.input} onChange={handleChange} />
+                    <input type="number" placeholder="Search" name="input1" size="5" value={state.input1} onChange={handleChange} />
                   </Form.Group>
                   {/*searchbox*/}
                   <Form.Group as={Col} controlId="searchid2">
-                    <input type="number" placeholder="Search" name="input" size="5" value={state.input} onChange={handleChange} />
+                    <input type="number" placeholder="Search" name="input2" size="5" value={state.input2} onChange={handleChange} />
                   </Form.Group>
                 </Form.Row> {/*end row for searchid*/}
+                <div className="d-block justify-content-center">
+              <Button variant="outline-success" type="submit">Search</Button>
+            </div>
               </form>
             </Form.Row>
-            <div className="d-block ml-5 mt-4 justify-content-center">
-                  <Button variant="outline-success" type="submit">Search</Button>
-                </div>
+            
           </Form>
         </Navbar.Collapse>
       </Navbar>

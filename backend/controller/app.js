@@ -20,7 +20,7 @@ var multParse = multer();
 //get all info
 app.get('/basic/results', function (req, res) {
 
-console.log("here")
+    console.log("here")
 
     musicDb.getAllfestivalInfo(function (err, result) {
         if (!err) {
@@ -61,27 +61,86 @@ app.get('/advance/result', function (req, res) {
     })
 })
 
-app.post('/advance/result/individual', function (req, res) {
-    var Info = {
-        userInput: req.body.input,
-        operation: req.body.operation,
-        pagination: req.body.pagination,
-        attribute: req.body.attribute
+//used in Data Viewer search bar
+app.post('/search', function (req, res) {
+    var operation = req.body.operation;
+    var attribute1 = req.body.attribute1;
+    var input1 = req.body.input1;
+    var attribute2 = req.body.attribute2;
+    var input2 = req.body.input2
+    var Info;
+
+    console.log(attribute1, input1, attribute2, input2)
+
+    if (attribute1 == "") {
+        console.log("here1");
+        Info = {
+            attribute: attribute2,
+            input: input2
+        }
+    } else if (attribute2 == "") {
+        console.log("here2");
+        Info = {
+            attribute: attribute1,
+            input: input1
+        }
+    } else {
+        Info = {
+            attribute1: attribute1,
+            input1: input1,
+            attribute2: attribute2,
+            input2: input2
+        }
     }
 
-    console.log("here2")
-    console.log(Info);
+    console.log(Info)
 
     musicDb.getList2(Info, function (err, result) {
         if (!err) {
             res.send(result)
         } else {
-            res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
+            res.status(500).send('Unknown error\nCode:500 Internal Server Error.')
         }
     })
 })
+//insert for basic
+app.post('/basic/insert', function (req, res) {
+    var { data } = req.body
+    // console.log({data})
 
+    musicDb.InsertIntoFestivalBulk({ data }, function (err, result) {
+        if (!err) {
 
+            res.send("Your data has been inserted!");
+        } else {
+            var result = err;
+            if (result == "undefined") {
+                result = "Something is undefined."
+            }
+            res.send(result)
+            // res.status(500).send('Unknown error\nCode:500 Interval Server Error.')
+        }
+    })
+})
+//insert for advance
+app.post('/advance/insert', function (req, res) {
+    var Info = {
+        performanceId: req.body.performanceId,
+        festivalId: req.body.festivalId,
+        startTime: req.body.startTime,
+        endTime: req.body.endTime,
+        popularity: req.body.popularity,
+    }
+    // res.send(Info)
+
+    musicDb.InsertIntoFestival(Info, function (err, result) {
+        if (!err) {
+            res.send("Your data has been inserted!");
+        } else {
+            res.status(500).send('Unknown error\nCode:500 Interval Server Error.')
+        }
+    })
+})
 
 app.get('/advance/results/:id', function (req, res) {
 
@@ -167,72 +226,7 @@ app.get('/advance/result/', function (req, res) {
     });
 });
 
-//get the name of the header
-app.get('/advance/header', function (req, res) {
 
-    musicDb.getAllfestivalInfoHeader(function (err, result) {
-        if (!err) {
-            // console.log(result)
-            res.send(result);
-        } else {
-            res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
-        }
-    })
-})
-
-//////////////////
-app.post('/basic/insert', function (req, res) {    
-    var {data}= req.body       
-    // console.log({data})
-
-    musicDb.InsertIntoFestivalBulk({data}, function (err, result) {
-        if (!err) {               
-            
-            res.send("Your data has been inserted!");
-        } else {
-            var result=err;
-            if (result=="undefined"){
-                result="Something is undefined."
-            }
-            res.send(result)
-            // res.status(500).send('Unknown error\nCode:500 Interval Server Error.')
-        }
-    })
-})
-
-//////////////////
-app.post('/basic/insert/individual', function (req, res) {    
-    var {data}= req.body
-    var data1={data}
-    console.log(data1.data[0])
-
-    musicDb.InsertIntoFestivalBulk2(data1, function (err, result) {
-        if (!err) {
-            res.send("Your data has been inserted!");
-        } else {
-            res.status(500).send('Unknown error\nCode:500 Interval Server Error.')
-        }
-    })
-})
-
-app.post('/advance/insert', function (req, res) {
-    var Info = {
-        performanceId: req.body.performanceId,
-        festivalId: req.body.festivalId,
-        startTime: req.body.startTime,
-        endTime: req.body.endTime,
-        popularity: req.body.popularity,
-    }
-    // res.send(Info)
-
-    musicDb.InsertIntoFestival(Info, function (err, result) {
-        if (!err) {
-            res.send("Your data has been inserted!");
-        } else {
-            res.status(500).send('Unknown error\nCode:500 Interval Server Error.')
-        }
-    })
-})
 
 //get the number of records in the database
 app.get('/advance/recordCount', function (req, res) {
