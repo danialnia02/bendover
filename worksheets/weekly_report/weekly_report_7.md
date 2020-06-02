@@ -1,6 +1,9 @@
 # Weekly Report
 
-This report is for you to document the progres of your project. You should also document any change in plan, e.g. change in design or change in API specification or change in work allocation. The following is a template for you to follow.
+I started to do my work again, completed all the worksheets.
+Fixed the things that i missed out in CA1 and CA2.
+Fixed Bulk Insert and Insert.
+
 
 ## What have I done last week
 
