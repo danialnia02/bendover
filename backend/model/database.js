@@ -1,5 +1,5 @@
 var mssql = require('mssql');
-
+var functions = require('./functions.js');
 
 var dbConfig = {
     server: "bendover.database.windows.net",
@@ -85,14 +85,15 @@ var database = {
                 var req = new mssql.Request(conn);
 
                 //database codeionic
-                var sql = 'select * from dbo.festivalInfo where festivalId =' + Info.userInput
-                console.log(sql)
+                var sql = 'select * from dbo.festivalInfo where festivalId = ' + Info.userInput
+                // console.log(sql)
                 req.query(sql, function (err, result) {
                     if (err) {
                         console.log(err);
                         return callback(err, null);
                     } else {
-                        console.log(result.recordset)
+                        // console.log(result.recordset)
+                        console.log(functions.calculateTime(result.recordset))
                         return callback(null, result.recordset);
                     }
                 });
@@ -151,10 +152,11 @@ var database = {
             }
         })
     },
+
     //Insert data into database(basic) and advanced
     InsertIntoFestivalBulk: function ({ data }, callback) {
         var data2 = { data }.data
-        console.log(data2)
+        // console.log(data2)
         var conn = new mssql.ConnectionPool(dbConfig);
         conn.connect(function (err) {
             if (err) {
@@ -171,32 +173,45 @@ var database = {
                     if (err) {
                         console.log(err);
                     } else {
+                        //get the all the column names in the database
                         columnNames = result.recordset;
-
-                        // console.log(columnNames[0].name);
-                        var penis = 0;
+                        var objectElementsCount;
                         //database code                
+                        //length of database
                         for (let i = 0; i < data2.length; i++) {
-                            console.log(Object.keys(data2[i]).length)
+                            // console.log(Object.keys(data2[i]).length)
+                            // y refers to the column names in the database                            
                             for (let y = 0; y < Object.keys(data2[i]).length; y++) {
-                                // console.log(Object.values(data2[i])[y]);
-
+                                objectElementsCount = (Object.keys(data2[i]).length);
+                                //if statement to check the if the columns in the json data is equal to the column in the database
                                 if (columnNames[y].name != (Object.keys(data2[i])[y])) {
-                                    console.log(Object.keys(data2[i])[y]);
-                                    return callback("undefined", null)
+                                    return callback(("Error at insert object number " + i), null)
+                                }
+                            }
+                        }                        
+                        // console.log(objectElementsCount)
+                        //check for basic or advanced insert
+                        var sql;
+                        if (objectElementsCount == 4) {
+                            sql = "insert into festivalInfo (performanceId,festivalId,startTime,endTime) values";
+                            for (var i = 0; i < data2.length; i++) {
+                                var sqlString = "(" + data2[i].performanceId + "," + data2[i].festivalId + ",'" + data2[i].startTime + "','" + data2[i].endTime + "')"
+                                sql += sqlString;
+                                if (i < (data2.length - 1)) {
+                                    sql += ","
+                                }
+                            }
+                        } else if (objectElementsCount == 5) {
+                            sql = "insert into festivalInfo (performanceId,festivalId,startTime,endTime,popularity) values";
+                            for (var i = 0; i < data2.length; i++) {
+                                var sqlString = "(" + data2[i].performanceId + "," + data2[i].festivalId + ",'" + data2[i].startTime + "','" + data2[i].endTime+ "'," + data2[i].popularity+ ")"
+                                sql += sqlString;
+                                if (i < (data2.length - 1)) {
+                                    sql += ","
                                 }
                             }
                         }
-
-                        var sql = "insert into festivalInfo (performanceId,festivalId,startTime,endTime) values";
-                        for (var i = 0; i < data2.length; i++) {
-                            var sqlString = "(" + data2[i].performanceId + "," + data2[i].festivalId + ",'" + data2[i].startTime + "','" + data2[i].endTime + "')"
-                            sql += sqlString;
-                            if (i < (data2.length - 1)) {
-                                sql += ","
-                            }
-                        }
-                        // console.log("\n" + sql + "\n")
+                        console.log("\n" + sql + "\n")
                         req.query(sql, function (err, result) {
                             if (err) {
                                 console.log(err);
@@ -211,7 +226,7 @@ var database = {
             }
         })
     },
-    
+
 }
 
 

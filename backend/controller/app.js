@@ -26,7 +26,19 @@ app.get('/basic/result', function (req, res) {
         if (!err) {
             res.send(result)
         } else {
-            res.status(500).send({ error: 'String', code: 500 })
+            res.status(500).send({ error: 'server Error', code: 500 })
+        }
+    })
+})
+app.get('/advance/result', function (req, res) {
+
+    console.log("here")
+
+    musicDb.getAllfestivalInfo(function (err, result) {
+        if (!err) {
+            res.send(result)
+        } else {
+            res.status(500).send({ error: 'server Error', code: 500 })
         }
     })
 })
@@ -36,9 +48,7 @@ app.get('/basic/result/:festivalid', function (req, res) {
     var Info = {
         userInput: req.params.festivalid
     }
-
-    console.log("here2")
-    console.log(Info);
+    // console.log(Info);
 
     musicDb.getFestivalId(Info, function (err, result) {
         if (!err) {
@@ -115,33 +125,53 @@ app.post('/basic/insert', function (req, res) {
 
             res.send("Your data has been inserted!");
         } else {
-            var result = err;
-            if (result == "undefined") {
-                result = "Something is undefined."
+            var string;
+            if (err == "undefined") {
+                errOutput = "Something is undefined."
+                res.send(errOutput)
             }
-            res.send(result)
-            // res.status(500).send('Unknown error\nCode:500 Interval Server Error.')
+            switch (err.number) {
+                case 207: string = "Invalid input"
+                    break;
+                case 2627: string = "Duplicate entries"
+                    break;
+                case 8114: string = "Invalid input"
+                    break;
+                default: string = "Other error"
+            }
+            res.send("{\"error\":" + string + ",\"code\":" + err.number + "}")
         }
     })
 })
-//Insert data into database(advanced)
-// app.post('/advance/insert', function (req, res) {
-//     var Info = {
-//         performanceId: req.body.performanceId,
-//         festivalId: req.body.festivalId,
-//         startTime: req.body.startTime,
-//         endTime: req.body.endTime,
-//         popularity: req.body.popularity,
-//     }    
 
-//     musicDb.InsertIntoFestival(Info, function (err, result) {
-//         if (!err) {
-//             res.send("Your data has been inserted!");
-//         } else {
-//             res.status(500).send('Unknown error\nCode:500 Interval Server Error.')
-//         }
-//     })
-// })
+app.post('/advance/insert', function (req, res) {
+    var { data } = req.body
+    // console.log({data})
+
+    musicDb.InsertIntoFestivalBulk({ data }, function (err, result) {
+        if (!err) {
+
+            res.send("Your data has been inserted!");
+        } else {
+            var string;
+            if (err == "undefined") {
+                errOutput = "Something is undefined."
+                res.send(errOutput)
+            }
+            switch (err.number) {
+                case 207: string = "Invalid input"
+                    break;
+                case 2627: string = "Duplicate entries"
+                    break;
+                case 8114: string = "Invalid input"
+                    break;
+                default: string = "Other error"
+            }
+            res.send("{\"error\":" + string + ",\"code\":" + err.number + "}")
+        }
+    })
+})
+
 
 
 
@@ -153,6 +183,7 @@ app.get('/advance/recordCount', function (req, res) {
             console.log(result)
             res.send(result);
         } else {
+            console.log(err)
             res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
         }
     })
