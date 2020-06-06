@@ -4,7 +4,7 @@ var dbConfig = {
     server: "bendover.database.windows.net",
     database: "MusicDb",
     user: "bendoveradmin",
-    password: "/Damenthrall/",
+    password: "/Damenthrall2/",
     port: 1433,
     dialect: "mssql",
     dialectOptions: {
