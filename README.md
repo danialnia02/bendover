@@ -1,7 +1,7 @@
 # JiBaBoom
 Music Festival
 # Database
-Azure Mysql
+ClearDB Mysql Hosted by Heroku
 # Backend
 Node.js
 # Frontend
