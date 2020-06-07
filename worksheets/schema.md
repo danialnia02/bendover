@@ -19,6 +19,8 @@ CREATE TABLE table_name_2(
    table_name_id VARCHAR NOT NULL REFERENCES table_name(id)
 );
 ```
+
+```sql
 CREATE TABLE [dbo].[festivalInfo](
 	[performanceId] [int] NOT NULL,
 	[festivalId] [int] NOT NULL,
