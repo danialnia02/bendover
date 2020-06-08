@@ -1,19 +1,14 @@
-// var mysql = require('mssql');
+var mysql = require('mysql');
 
-// var dbconnect = {
-//     getConnection: function () {
-//         var conn =new mysql.ConnectionPool({
-//             server: "bendover.database.windows.net",
-//             database: "MusicDb",
-//             user: "bendoveradmin",
-//             password: "/Damenthrall/",
-//             port: 1433,
-//             dialect: "mssql",
-//             dialectOptions: {
-//                 instanceName: "SQLEXPRESS"
-//             },
-//         });
-//         return conn;
-//     }
-// };
-// module.exports = dbconnect
+var dbconnect = {
+    getConnection: function () {
+        var conn = mysql.createConnection({
+            host: "us-cdbr-east-05.cleardb.net",
+            user: "bbeb0921838821",
+            password: "51388cc0",
+            database: "heroku_94052ba2a67819b"
+        });
+        return conn;
+    }
+};
+module.exports = dbconnect

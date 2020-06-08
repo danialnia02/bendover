@@ -52,6 +52,7 @@ app.get('/basic/result/:festivalid', function (req, res) {
 
     musicDb.getFestivalId(Info, function (err, result) {
         if (!err) {
+            console.log(result)
             res.send(result)
         } else {
             res.status(500).send({ error: 'String', code: 500 })
@@ -60,14 +61,16 @@ app.get('/basic/result/:festivalid', function (req, res) {
 })
 
 //serach based on performanceId
-app.get('/advance/results/:performanceId', function (req, res) {
+app.get('/basic/results/:performanceId', function (req, res) {
 
-    id = req.params.id
+    id = req.params.performanceId
+    console.log(id)
 
     musicDb.getPerformanceId(id, function (err, result) {
         if (!err) {
             res.send(result);
         } else {
+            console.log(err)
             res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
         }
     })
@@ -109,6 +112,7 @@ app.post('/search', function (req, res) {
 
     musicDb.search(Info, function (err, result) {
         if (!err) {
+            console.log(result)
             res.send(result)
         } else {
             res.status(500).send('Unknown error\nCode:500 Internal Server Error.')
@@ -151,7 +155,7 @@ app.post('/advance/insert', function (req, res) {
     musicDb.InsertIntoFestivalBulk({ data }, function (err, result) {
         if (!err) {
 
-            res.send("Your data has been inserted!");
+            res.send(result);
         } else {
             var string;
             if (err == "undefined") {
