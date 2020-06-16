@@ -82,7 +82,7 @@ var database = {
                     if (err) {
                         return callback(err, null);
                     } else {
-                        // console.log(functions.calculateTime(result))                        
+                        console.log(functions.calculateTime(result))                   
                         return callback(null, result);
                     }
                 });
