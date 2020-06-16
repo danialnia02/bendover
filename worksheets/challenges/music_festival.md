@@ -49,8 +49,6 @@ Name of problem: **Activity Selection**
 | Performance # | Performance Id |
 | ------------- | -------------- |
 | 1             | 1000000001     |
-| 2             | 1000000002     |
-| 3             | 1000000003     |
 
 ## Basic Query 2
 
@@ -63,9 +61,8 @@ Name of problem: **Activity Selection**
 | Performance # | Performance Id |
 | ------------- | -------------- |
 | 1             | 1000000004     |
-| 2            | 1000000005     |
+| 2             | 1000000005     |
 | 3             | 1000000006     |
-| 4             | 1000000007     |
 
 
 ## Basic Query 3
@@ -81,8 +78,7 @@ Name of problem: **Activity Selection**
 | 1             | 1000000008     |
 | 2             | 1000000009     |
 | 3             | 1000000010     |
-| 4             | 1000000011     |
-| 5             | 1000000012     |
+
 
 ## Basic Query 4
 

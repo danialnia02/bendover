@@ -77,13 +77,15 @@ var database = {
             else {
                 console.log("Connected!");
                 var sql = 'select * from festivalInfo where festivalId = ' + Info.userInput
+                console.log(sql)
                 conn.query(sql, function (err, result) {
                     conn.end();
                     if (err) {
                         return callback(err, null);
-                    } else {
-                        console.log(functions.calculateTime(result))                   
-                        return callback(null, result);
+                    } else {                        
+                        var result2= result
+                        var testResult = functions.calculateTime(result2)    
+                        return callback(null, testResult);
                     }
                 });
             }

@@ -52,7 +52,7 @@ app.get('/basic/result/:festivalid', function (req, res) {
 
     musicDb.getFestivalId(Info, function (err, result) {
         if (!err) {
-            console.log(result)
+            // console.log(result)
             res.send(result)
         } else {
             res.status(500).send({ error: 'String', code: 500 })

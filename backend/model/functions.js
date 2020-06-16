@@ -1,15 +1,10 @@
 
-
-// calculateTime(value)
-
 var functions = {
     calculateTime: function (festivalArray) {
-        // console.log(festivalArray)
         var timeArray = [festivalArray[0]];
 
         // var latestEndTime = festivalArray[0];
         var currentArray = festivalArray;
-        var nextClosestTime;
 
 
 
@@ -26,19 +21,21 @@ var functions = {
             }
         }
         //1: 1000 and 1100                    
-        // console.log("here" + JSON.stringify(currentArray))
+        // console.log("here " + JSON.stringify(currentArray))
 
         var ArrayCount = 0;
         var doCount = 0;
         do {
-            console.log("ArrayCount :" + ArrayCount)
-
             //removed current time from the array
-            for (var i = 0; i < currentArray.length; i++) {
-                if (currentArray[i].performanceId == timeArray[ArrayCount].performanceId) {
-                    currentArray.splice(i, 1);
-                    // console.log("here" + JSON.stringify(currentArray))
+            try {
+                for (var i = 0; i < currentArray.length; i++) {                    
+                    if (currentArray[i].performanceId == timeArray[ArrayCount].performanceId) {
+                        currentArray.splice(i, 1);
+                        // console.log("here" + JSON.stringify(currentArray))
+                    }
                 }
+            } catch (err) {
+                break;
             }
 
             var minStartTime = 4000;
@@ -49,23 +46,18 @@ var functions = {
             for (var i = 0; i < currentArray.length; i++) {
 
 
-                //get the next closest start time
-                // console.log(currentArray[i])
+                //get the next closest start time                
                 //check if number is before
                 if (parseInt(currentArray[i].startTime) < timeArray[ArrayCount].endTime) {
                 } else if (parseInt(currentArray[i].startTime) >= timeArray[ArrayCount].endTime) {
                     var raveEnd = parseInt(timeArray[ArrayCount].endTime)
-                    var raveStart = parseInt(currentArray[i].startTime)
-                    console.log("rave ends at :" + raveEnd)
-                    console.log("next rave ends at :" + raveStart + "\n")
+                    var raveStart = parseInt(currentArray[i].startTime)                    
                     // timediff = parseInt(currentArray[i].startTime) - timeArray[ArrayCount].endTime
                     timediff = raveStart - raveEnd
+
                     if (timediff < minStartTime) {
-                        // console.log("rave ends at :" + raveEnd)
-                        // console.log("next rave ends at :" + raveStart + "\n")
                         minStartTime = timediff
                         test = i;
-                        // console.log("here")
                     }
                 }
             }
@@ -76,7 +68,7 @@ var functions = {
             }
         } while (doCount < festivalArray.length)
 
-        console.log(timeArray);
+        // console.log(timeArray);
         return (timeArray)
     }
 }
