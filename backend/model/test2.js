@@ -37,10 +37,33 @@ value = [{
 },
 {
     performanceId: '1000000018',
-    festivalId: '1100000004',
+    festivalId: '1100000001',
     startTime: '0900',
     endTime: '1200',
     popularity: '5'
 }]
 
-console.log(functions.calculateTime(value))
+festival1 = [{
+    performanceId: '1000000001',
+    festivalId: '1100000001',
+    startTime: '1000',
+    endTime: '1100',
+    popularity: '1'
+},
+{
+    performanceId: '1000000002',
+    festivalId: '1100000001',
+    startTime: '1000',
+    endTime: '1100',
+    popularity: '1'
+},
+{
+    performanceId: '1000000003',
+    festivalId: '1100000001',
+    startTime: '1000',
+    endTime: '1100',
+    popularity: '100'
+},
+]
+functions.calculateTime2(festival1)
+// console.log(functions.calculateTime2(festival1))
