@@ -40,7 +40,7 @@ var functions = {
 
             var minStartTime = 4000;
             var minEndTime = 4000;
-            var test = -100;
+            var arrayId = -100;
             var timediff = 0;
 
             for (var i = 0; i < currentArray.length; i++) {
@@ -48,7 +48,7 @@ var functions = {
 
                 //get the next closest start time                
                 //check if number is before
-                if (parseInt(currentArray[i].startTime) < timeArray[ArrayCount].endTime) {
+                if (parseInt(currentArray[i].startTime) < timeArray[ArrayCount].endTime ) {
                 } else if (parseInt(currentArray[i].startTime) >= timeArray[ArrayCount].endTime) {
                     var raveEnd = parseInt(timeArray[ArrayCount].endTime)
                     var raveStart = parseInt(currentArray[i].startTime)
@@ -57,14 +57,14 @@ var functions = {
 
                     if (timediff < minStartTime) {
                         minStartTime = timediff
-                        test = i;
+                        arrayId = i;
                     }
                 }
             }
             doCount++;
             ArrayCount++;
-            if (test !== -100) {
-                timeArray[ArrayCount] = currentArray[test];
+            if (arrayId !== -100) {
+                timeArray[ArrayCount] = currentArray[arrayId];
             }
         } while (doCount < festivalArray.length)
 
@@ -95,12 +95,12 @@ var functions = {
         }
         firstRave = timeArray[0];        
 
-        for (var y = 0; y < festivalArray.length; y++) {
+        for (var y = 0; y < festivalArray.length; y++) {            
             if (parseInt(firstRave.popularity) < parseInt(festivalArray[y].popularity)) {
                 firstRave = festivalArray[y]
-                timeArrray[0]=firstRave
+                timeArray[0]=firstRave
             }
-        };                
+        };                       
 
         var ArrayCount = 0;
         var doCount = 0;
@@ -119,7 +119,7 @@ var functions = {
 
             var minStartTime = 4000;
             var minEndTime = 4000;
-            var test = -100;
+            var arrayId = -100;
             var timediff = 0;
 
             for (var i = 0; i < currentArray.length; i++) {
@@ -136,14 +136,14 @@ var functions = {
 
                     if (timediff < minStartTime) {
                         minStartTime = timediff
-                        test = i;
+                        arrayId = i;
                     }
                 }
             }
             doCount++;
             ArrayCount++;
-            if (test !== -100) {
-                timeArray[ArrayCount] = currentArray[test];
+            if (arrayId !== -100) {
+                timeArray[ArrayCount] = currentArray[arrayId];
                 
             }
         } while (doCount < festivalArray.length)
