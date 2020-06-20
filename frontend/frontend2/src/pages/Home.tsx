@@ -2,13 +2,14 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import React from 'react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Home.css';
-import App from '../components/App';
+import DataViewer from '../components/DataViewer/DataViewer';
+import DataViewer2 from '../components/testFolder/DataViewer2';
 
 const Home: React.FC = () => {
   return (
     <IonPage>
       <IonContent>        
-        <App/>           
+        <DataViewer2/>           
       </IonContent>
     </IonPage>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './DataViewer.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap"
 
