@@ -91,6 +91,31 @@ var database = {
             }
         });
     },
+    //Get Data based on festivalId
+    getFestivalId2: function (Info, callback) {
+        var conn = db.getConnection();
+        conn.connect(function (err) {
+            if (err) {
+                return callback(err, null);
+            }
+            else {
+                console.log("Connected!");
+                var sql = 'select * from festivalInfo where festivalId = ' + Info.userInput
+                console.log(sql)
+                conn.query(sql, function (err, result) {
+                    conn.end();
+                    if (err) {
+                        return callback(err, null);
+                    } else {                        
+                        var result2= result
+                        console.log(result2)
+                        var testResult = functions.calculateTime2(result2)    
+                        return callback(null, testResult);
+                    }
+                });
+            }
+        });
+    },
     //search based on performanceId
     getPerformanceId: function (id, callback) {
         var conn = db.getConnection();

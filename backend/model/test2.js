@@ -60,9 +60,39 @@ festival1 = [{
 {
     performanceId: '1000000003',
     festivalId: '1100000001',
+    startTime: '1030',
+    endTime: '1130',
+    popularity: '10'
+},
+]
+////////////////////////////////////////////////////////////////////////////////////////////////
+festival2 = [{
+    performanceId: '1000000004',
+    festivalId: '1100000002',
     startTime: '1000',
     endTime: '1100',
-    popularity: '100'
+    popularity: '1'
+},
+{
+    performanceId: '1000000005',
+    festivalId: '1100000002',
+    startTime: '1100',
+    endTime: '1200',
+    popularity: '1'
+},
+{
+    performanceId: '1000000006',
+    festivalId: '1100000002',
+    startTime: '1200',
+    endTime: '1300',
+    popularity: '1'
+},
+{
+    performanceId: '1000000007',
+    festivalId: '1100000002',
+    startTime: '1030',
+    endTime: '1230',
+    popularity: '3'
 },
 ]
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -147,5 +177,5 @@ festival4 = [{
 },
 ]
 
-// functions.calculateTime2(festival3)
+// functions.calculateTime2(festival4)
 console.log(functions.calculateTime2(festival1))

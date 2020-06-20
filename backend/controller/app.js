@@ -59,6 +59,21 @@ app.get('/basic/result/:festivalid', function (req, res) {
         }
     })
 })
+app.get('/advance/result/:festivalid', function (req, res) {
+    var Info = {
+        userInput: req.params.festivalid
+    }
+    // console.log(Info);
+
+    musicDb.getFestivalId2(Info, function (err, result) {
+        if (!err) {
+            // console.log(result)
+            res.send(result)
+        } else {
+            res.status(500).send({ error: 'String', code: 500 })
+        }
+    })
+})
 
 //serach based on performanceId
 app.get('/basic/results/:performanceId', function (req, res) {
