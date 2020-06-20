@@ -60,6 +60,13 @@
     text-align: center;
     color: #47ccde;
   }
+  
+  /* scroll */
+  
+  .table{
+    height:100%;
+    overflow-y:scroll;
+  }
 
   .table-title {
     padding-left: 400px;
