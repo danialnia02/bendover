@@ -187,8 +187,6 @@ const App = () => {
           {/* </Navbar> */}
         </Navbar.Collapse>
       </Navbar>
-
-
       {/* <Header /> */}
 
       {/* output Code */}
