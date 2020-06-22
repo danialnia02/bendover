@@ -13,7 +13,7 @@ const App = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  var [postsPerPage] = useState(10);
+  var [postsPerPage] = useState(10);    
 
   //input get
   const [state, setState] = React.useState({
@@ -23,6 +23,10 @@ const App = () => {
     pagination: 10,
     attribute1: "",
     attribute2: "",
+    link:'http://10.0.2.2/basic/result',
+    link2:'http://192.168.1.204:8011/basic/result',
+    searchLink:'http://10.0.2.2:8011/search',
+    searchLink2:'http://192.168.1.204:8011/search'
   })
 
 
@@ -49,21 +53,53 @@ const App = () => {
       attribute2: state.attribute2,
       input2: state.input2,
     }
-    console.log(info)
-    axios.post('http://localhost:8011/search', info)
+    // console.log(info)
+    // try{
+    //   axios.post(state.searchLink, info)
+    //   .then(res => {
+    //     var data = res.data
+    //     if (res.data.length == 0) {
+    //       console.log("There is no data here")
+    //       setState({
+    //         ...state,
+    //         ["arrayLength"]: 0
+    //       })
+    //     }
+    //     setPosts(res.data)
+    //   })
+    // }catch(err){
+      axios.post(state.searchLink2, info)
       .then(res => {
-        console.log(res.data)
+        var data = res.data
+        if (res.data.length == 0) {
+          console.log("There is no data here")
+          setState({
+            ...state,
+            ["arrayLength"]: 0
+          })
+        }
         setPosts(res.data)
       })
+    // }
   }
 
   //Get all inputs
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-
-      const res = await axios.get('http://localhost:8011/basic/result');
-      const res2 = await axios.get('http://localhost:8011/basic/result');
+      var res;
+      // try{
+      //    res = await axios.get(state.link);
+      // }catch(err){
+         res = await axios.get(state.link2);
+      // }      
+      // const res2 = await axios.get('http://10.0.2.2/basic/result');   
+      if (res.data.length == 0) {
+        setState({
+          ...state,
+          ["arrayLength"]: 0
+        })
+      }
       setPosts(res.data);
       setLoading(false);
     };
@@ -155,7 +191,7 @@ const App = () => {
 
       {/* output Code */}
       <div id="smallcontainer">
-        <Posts posts={currentPosts} loading={loading} id="three" />
+        <Posts posts={currentPosts} loading={loading} noOfPosts={posts.length} id="three" />
         <div className="pgnt">
           <Pagination
             currentPage={currentPage}
