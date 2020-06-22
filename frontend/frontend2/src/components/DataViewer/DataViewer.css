@@ -76,7 +76,11 @@
     padding:10px;
     text-align: center;
   }
-
+  /* here */
+  .list-group{
+    overflow-x:auto
+  }
+/* here */
   .item-names {
     padding:10px;
     font-weight: bold;

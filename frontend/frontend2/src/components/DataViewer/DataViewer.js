@@ -4,7 +4,7 @@ import Pagination from './Pagination';
 import ReactPaginate from 'react-paginate';
 // import Header from './Header2';
 import axios from 'axios';
-import './App.css'
+import './DataViewer.css'
 import { Navbar, Nav, Form, Button, Table } from "react-bootstrap"
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -151,8 +151,6 @@ const App = () => {
           {/* </Navbar> */}
         </Navbar.Collapse>
       </Navbar>
-
-
       {/* <Header /> */}
 
       {/* output Code */}

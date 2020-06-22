@@ -4,7 +4,7 @@ import Pagination from './Pagination';
 import ReactPaginate from 'react-paginate';
 // import Header from './Header2';
 import axios from 'axios';
-import './App.css'
+import './DataViewer.css'
 import { Navbar, Nav, Form, Button } from "react-bootstrap"
 
 const App = () => {
