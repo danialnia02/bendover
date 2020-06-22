@@ -1,5 +1,5 @@
 import React from 'react';
-import './DataViewer.css'
+// import './DataViewer.css'
 const Pagination = ({ currentPage, postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
   const maxPage = Math.ceil(totalPosts / postsPerPage)
@@ -26,7 +26,7 @@ const Pagination = ({ currentPage, postsPerPage, totalPosts, paginate }) => {
   }
   // console.log(pageNumbers);
   return (
-    <div class="row">
+    <div id = "row">
       <button>{<a onClick={() => test(1)} class='page-link'>&lt;&lt;</a>}</button>
 
 

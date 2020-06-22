@@ -3,7 +3,6 @@ import './DataViewer.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap"
 
-<<<<<<< HEAD
 const Posts = ({ posts, loading, noOfPosts }) => {
   if (loading) {
     return <h2>Loading...</h2>;

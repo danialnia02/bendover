@@ -39,21 +39,21 @@
   #smallcontainer{
     background-color:white;
   }
-  #three{
-    align-items:center;
-    padding:10px;
-  }
 
   .test{
     font-size:220px;
   }
 
-  .container {
-    padding-top:0;
+  #body{        
+    margin-top:0px;
     /* padding-left: 300px; */
     background-color:#e6e6e6;
+  }
+
+  .container {    
     width:100%;
-    height:100%;
+    height:100%;    
+    padding-bottom:10%
   }
 
   .container h1 {
@@ -85,7 +85,11 @@
   }
   /* here */
   .list-group{
-    overflow-x:auto
+    overflow-x:auto;
+    padding: 10px 10px 10px;     
+    margin-left:10px;
+    margin-right:10px;  
+    align-items:center;    
   }
 /* here */
   .item-names {
@@ -102,8 +106,11 @@
     color: darkgreen;
   }
 
-  .row {
-    padding: 10px;
+  #row {
+    display: flex;
+    /* align-items:center; */
+    justify-content: center;
+    padding-bottom:5%;
   }
 
   .page-link {
@@ -151,12 +158,13 @@
     box-sizing: border-box;
   }
   
-  .pgnt {
-    margin: auto;
-    width: 16%;
-    display: flex;
-    align-content: center;
-  }
+  /* .pgnt {
+    margin: auto; */
+    /* width: 16%; */
+    /* display: flex; */
+    /* align-content: center;
+    display:inline-block;
+  } */
 
   /* .form-group {
     width: 90%;
