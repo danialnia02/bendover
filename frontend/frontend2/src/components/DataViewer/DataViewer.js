@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Posts from './Posts';
 import Pagination from './Pagination';
 import ReactPaginate from 'react-paginate';
-// import Header from './Header2';
+import Navbars from "../Navbar"
 import axios from 'axios';
 import './DataViewer.css'
 import { Navbar, Nav, Form, Button, Table } from "react-bootstrap"
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const App = () => {
+const DataViewer = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -124,12 +124,7 @@ const App = () => {
         {/* <h1 class='text-primary table-title mb-3'>Data Viewer</h1> */}
 
         <Nav activeKey="/home">
-          <Nav.Item>
-            <Nav.Link href="/home">Data</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="link-1">Result</Nav.Link>
-          </Nav.Item>
+          <Navbars></Navbars>
           <Form.Control as="select" name="pagination" value={state.pagination} placeholder="test" onChange={handleChange} >
             <option value="10">Click here to change the number of posts per page</option>
             <option value="5">5</option>
@@ -211,4 +206,4 @@ const App = () => {
 
 };
 
-export default App;
+export default DataViewer;

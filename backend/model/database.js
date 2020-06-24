@@ -85,7 +85,8 @@ var database = {
                     } else {                        
                         var result2= result
                         var testResult = functions.calculateTime(result2)    
-                        return callback(null, testResult);
+                        var results = functions.exportTime(testResult)
+                        return callback(null, results);
                     }
                 });
             }
