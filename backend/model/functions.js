@@ -194,8 +194,10 @@ var functions = {
                 i,
                 array[i].performanceId,
                 array[i].performanceId,
-                new Date(firstTimeSeconds),
-                new Date(endTimeSeconds),
+                // new Date(firstTimeSeconds),
+                // new Date(endTimeSeconds),
+                firstTimeSeconds,
+                endTimeSeconds,
                 array[i].popularity,
                 100,
                 null

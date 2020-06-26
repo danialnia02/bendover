@@ -1,6 +1,6 @@
 import React from 'react';
 import './DataViewer.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+  import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap"
 
 const Posts = ({ posts, loading, noOfPosts }) => {

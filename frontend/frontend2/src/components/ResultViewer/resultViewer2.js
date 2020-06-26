@@ -10,7 +10,6 @@ var data = require('./data.js')
 
 
 const ResultViewer = () => {
-  const [newData, setnewData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [state, setState] = React.useState({
@@ -18,7 +17,7 @@ const ResultViewer = () => {
     height: '400px',
     chartType: 'Gantt',
     loader: <div>Loading Chart</div>,
-    data: null,
+    data:"",
     festivalInput: "",
     festivals: "",
     link11: 'http://10.0.2.2/basic/result',
@@ -38,40 +37,38 @@ const ResultViewer = () => {
   const handleSubmit = (event) => {
     setLoading(true)
     event.preventDefault()
-    var festival = state.festivals
-    var url = state.link22 + festival + "/result/" + state.festivalInput
-    console.log(url)
-
+    var festival=state.festivals    
+    var url=state.link22+festival+"/result/"+state.festivalInput
+    console.log(url)    
+    // try{
+    //   axios.post(state.searchLink, info)
+    //   .then(res => {
+    //     var data = res.data
+    //     if (res.data.length == 0) {
+    //       console.log("There is no data here")
+    //       setState({
+    //         ...state,
+    //         ["arrayLength"]: 0
+    //       })
+    //     }
+    //     setPosts(res.data)
+    //   })
+    // }catch(err){
     axios.get(url)
       .then(res => {
         var data = res.data
-        console.log(data)
         if (res.data.length == 0) {
-          console.log("There is no data here")
-        } else {
+          console.log("There is no data here")          
+        }else{
           setState({
             ...state,
             ["data"]: data
           })
-          setnewData(data)
+          
+          // console.log(state.data)
         }
       })
-  }
-
-  function getData() {
-    if (newData == null || newData == "") {
-      console.log(state.data)
-      return state.data;
-    } else {
-      var newArray=newData;
-      for(var i=1;i<newArray.length;i++){
-        newArray[i][3]=new Date(newData[i][3])
-        newArray[i][4]=new Date(newData[i][4])
-      }
-      console.log(newArray)
-      
-      return newArray
-    }
+    // }
   }
 
   //
@@ -79,18 +76,13 @@ const ResultViewer = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-
-      setState({
-        ...state,
-        ["data"]: data.exportTime()
-      })
-      setTimeout('', 3000)
-      console.log(console.log(data.exportTime()))
+      
       setLoading(false);
     };
 
     fetchPosts();
   }, []);
+
 
 
   return (
@@ -116,7 +108,7 @@ const ResultViewer = () => {
                       <Form.Control as="select" value="Choose..." name="festivals" size="5" value={state.festivals} onChange={handleChange}>
                         <option></option>
                         <option value="basic">basic</option>
-                        <option value="advance">advance</option>
+                        <option value="advance">advance</option>                        
                       </Form.Control>
                     </Form.Group>
                   </Form.Row> {/*end row for categories*/}
@@ -145,7 +137,7 @@ const ResultViewer = () => {
             chartType={state.chartType}
             loader={state.loader}
             data=
-            {getData()}
+            {state.data}
             options={{
               height: 400,
               gantt: {
