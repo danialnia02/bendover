@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { Nav } from "react-bootstrap"
 import './Navbar.css'
 
@@ -9,10 +8,10 @@ const Navbars = () => {
             {/* Nav bar */}
             {/* <Nav activeKey="/home"> */}
             <Nav.Item>
-                <Nav.Link href="/home">Data</Nav.Link>
+                <Nav.Link href="/DataViewer">Data</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-1">Result</Nav.Link>
+                <Nav.Link href="/ResultViewer">Result</Nav.Link>
             </Nav.Item>
             {/* </Nav> */}
         </div>

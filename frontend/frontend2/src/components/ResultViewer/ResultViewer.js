@@ -20,9 +20,10 @@ const ResultViewer = () => {
     loader: <div>Loading Chart</div>,
     data: null,
     festivalInput: "",
-    festivals: "",
-    link11: 'http://10.0.2.2/basic/result',
-    link22: 'http://192.168.1.204:8011/',
+    festivals: "",    
+    // link22: 'http://192.168.1.204:8011/',
+    link22:'http://localhost:8011/'
+    
   })
 
 
@@ -99,7 +100,7 @@ const ResultViewer = () => {
         <h1>Data Viewer</h1>
         {/* <h1 class='text-primary table-title mb-3'>Data Viewer</h1> */}
 
-        <Nav activeKey="/home">
+        <Nav activeKey="/ResultViewer">
           <Navbars></Navbars>
         </Nav>
         {/* Navbar header Code */}

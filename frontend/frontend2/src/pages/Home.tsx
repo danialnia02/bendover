@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRouterOutlet,IonTabs } from '@ionic/react';
 import React from 'react';
 import './Home.css';
 import DataViewer from '../components/DataViewer/DataViewer';
@@ -8,7 +8,7 @@ const Home: React.FC = () => {
   return (
     <IonPage>
       <IonContent>        
-        <ResultViewer />
+        <DataViewer />
       </IonContent>
     </IonPage>
   );

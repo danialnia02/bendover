@@ -24,10 +24,11 @@ const DataViewer = () => {
     attribute1: "",
     attribute2: "",
     link: 'http://10.0.2.2/basic/result',
-    link2: 'http://192.168.1.204:8011/basic/result',
-    // link2:'localhost:8011/basic/result',
+    // link2: 'http://192.168.1.204:8011/basic/result',
+    link2: 'http://localhost:8011/basic/result',
     searchLink: 'http://10.0.2.2:8011/search',
-    searchLink2: 'http://192.168.1.204:8011/search'
+    // searchLink2: 'http://192.168.1.204:8011/search'
+    searchLink2: 'http://localhost:8011/search',
   })
 
 
@@ -88,11 +89,13 @@ const DataViewer = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-      var res;
       // try{
       //    res = await axios.get(state.link);
       // }catch(err){
-      res = await axios.get(state.link2);
+      console.log(state.link2)
+      var res = await axios.get(state.link2);
+      console.log(res.data)
+
       // }      
       // const res2 = await axios.get('http://10.0.2.2/basic/result');   
       if (res.data.length == 0) {
@@ -123,15 +126,16 @@ const DataViewer = () => {
         <h1>Data Viewer</h1>
         {/* <h1 class='text-primary table-title mb-3'>Data Viewer</h1> */}
 
-        <Nav activeKey="/home">
+        <Nav activeKey="/DataViewer">
           <Navbars></Navbars>
-          <Form.Control as="select" name="pagination" value={state.pagination} placeholder="test" onChange={handleChange} >
-            <option value="10">Click here to change the number of posts per page</option>
-            <option value="5">5</option>
-            <option value="15">15</option>
-            <option value="25">25</option>
-          </Form.Control>
         </Nav>
+        <Form.Control as="select" name="pagination" value={state.pagination} placeholder="test" onChange={handleChange} >
+          <option value="10">Click here to change the number of posts per page</option>
+          <option value="5">5</option>
+          <option value="15">15</option>
+          <option value="25">25</option>
+        </Form.Control>
+
         {/* Navbar header Code */}
         <Navbar bg="light" expand="lg ">
           <Navbar.Brand href="#home">Music-Db</Navbar.Brand>
@@ -141,6 +145,7 @@ const DataViewer = () => {
             <Form className="row d-flex justify-content-center">
               <Form.Row>
                 <form onSubmit={handleSubmit}>
+
                   <Form.Row> {/*row for categories*/}
                     <Form.Group as={Col} controlId="category1">
                       <Form.Control as="select" value="Choose..." name="attribute1" size="5" value={state.attribute1} onChange={handleChange}>
@@ -174,6 +179,7 @@ const DataViewer = () => {
                     <Form.Group as={Col} controlId="searchid2">
                       <input type="number" placeholder="Search" name="input2" size="5" value={state.input2} onChange={handleChange} />
                     </Form.Group>
+
                   </Form.Row> {/*end row for searchid*/}
                   <div className="d-block justify-content-center">
                     <Button variant="outline-success" type="submit">Search</Button>
