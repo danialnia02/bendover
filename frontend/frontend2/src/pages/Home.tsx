@@ -3,7 +3,6 @@ import React from 'react';
 import './Home.css';
 import DataViewer from '../components/DataViewer/DataViewer';
 import ResultViewer from '../components/ResultViewer/ResultViewer'
-import Test from '../components/ResultViewer/Test'
 
 const Home: React.FC = () => {
   return (
