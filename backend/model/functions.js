@@ -170,6 +170,64 @@ var functions = {
 
         // console.log(timeArray);
         return (timeArray)
+    },
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    exportTime: function (array) {
+        var resultArray = [[
+            { type: 'string', label: 'count' },
+            { type: 'string', label: 'popularity' },
+            { type: 'string', label: 'peformanceId' },
+            { type: 'date', label: 'startTime' },
+            { type: 'date', label: 'endTime' },
+            { type: 'number', label: 'popularity' },
+            { type: 'number', label: 'Percent Complete' },
+            { type: 'string', label: 'Dependencies' },
+        ]];
+
+        for (var i = 0; i < array.length; i++) {
+            var firstTime = parseInt(array[i].startTime)
+            var endTime = parseInt(array[i].endTime);
+            var firstTimeSeconds = functions.convertTime(firstTime)
+            var endTimeSeconds = functions.convertTime(endTime)
+
+            resultArray[i+1] = [
+                i,
+                array[i].performanceId,
+                array[i].performanceId,
+                // new Date(firstTimeSeconds),
+                // new Date(endTimeSeconds),
+                firstTimeSeconds,
+                endTimeSeconds,
+                array[i].popularity,
+                100,
+                null
+            ]
+        }
+        // console.log(resultArray)
+        return resultArray
+    },
+    convertTime: function (numberString) {
+        var number = parseInt(numberString);
+        if (number > 2399 || number < 0) {
+            console.log("broken");
+            return false;
+        }
+        var ones = Math.floor(number % 10)
+        // console.log(ones+ " 1")
+        var tenths = Math.floor(number / 10 % 10)
+        // console.log(tenths+" 2")
+        var minute = (tenths * 10) + ones
+        // console.log(minute+ " 3")
+        var hundreds = Math.floor(number / 100 % 10)
+        // console.log(hundreds+ "4 ");
+        var thousands = Math.floor(number / 1000 % 10)
+        var hours = (thousands * 10) + hundreds
+        // console.log(hours+ " 5")
+        var milisecs = (hours * 3600000) + (minute * 60000)
+
+        var returnN = milisecs + 1592841600000
+        // console.log(returnN)
+        return (returnN)
     }
 }
 

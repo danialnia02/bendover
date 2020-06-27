@@ -77,7 +77,7 @@ var database = {
             else {
                 console.log("Connected!");
                 var sql = 'select * from festivalInfo where festivalId = ' + Info.userInput
-                console.log(sql)
+                // console.log(sql)
                 conn.query(sql, function (err, result) {
                     conn.end();
                     if (err) {
@@ -85,7 +85,9 @@ var database = {
                     } else {                        
                         var result2= result
                         var testResult = functions.calculateTime(result2)    
-                        return callback(null, testResult);
+                        var results = functions.exportTime(testResult)
+                        console.log(results);
+                        return callback(null, results);
                     }
                 });
             }
@@ -110,7 +112,8 @@ var database = {
                         var result2= result
                         console.log(result2)
                         var testResult = functions.calculateTime2(result2)    
-                        return callback(null, testResult);
+                        var results = functions.exportTime(testResult)
+                        return callback(null, results);
                     }
                 });
             }

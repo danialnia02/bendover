@@ -1,5 +1,5 @@
 import React from 'react';
-// import './DataViewer.css'
+// import './ResultViewer.css'
 const Pagination = ({ currentPage, postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
   const maxPage = Math.ceil(totalPosts / postsPerPage)
