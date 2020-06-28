@@ -82,11 +82,14 @@ var database = {
                     conn.end();
                     if (err) {
                         return callback(err, null);
-                    } else {                        
-                        var result2= result
-                        var testResult = functions.calculateTime(result2)    
+                    } else {
+                        var result2 = result
+                        var testResult = functions.calculateTime(result2)
                         var results = functions.exportTime(testResult)
-                        console.log(results);
+                        console.log(results)
+                        if (results == null) {
+                            return callback("null", null)
+                        }
                         return callback(null, results);
                     }
                 });
@@ -108,11 +111,14 @@ var database = {
                     conn.end();
                     if (err) {
                         return callback(err, null);
-                    } else {                        
-                        var result2= result
+                    } else {
+                        var result2 = result
                         console.log(result2)
-                        var testResult = functions.calculateTime2(result2)    
+                        var testResult = functions.calculateTime2(result2)
                         var results = functions.exportTime(testResult)
+                        if (results == null) {
+                            return callback("null", null)
+                        }
                         return callback(null, results);
                     }
                 });
@@ -181,8 +187,8 @@ var database = {
                         console.log(err);
                     } else {
                         //get the all the column names in the database                        
-                        columnNames = result;           
-                        columnNames1= JSON.stringify(columnNames)
+                        columnNames = result;
+                        columnNames1 = JSON.stringify(columnNames)
 
                         console.log("here " + columnNames1)
 
@@ -195,7 +201,7 @@ var database = {
                             for (let y = 0; y < Object.keys(data2[i]).length; y++) {
                                 objectElementsCount = (Object.keys(data2[i]).length);
                                 //if statement to check the if the columns in the json data is equal to the column in the database
-                                if (columnNames[y].name != (Object.keys(data2[i])[y])) {                                    
+                                if (columnNames[y].name != (Object.keys(data2[i])[y])) {
                                     return callback(("Error at insert object number " + i), null)
                                 }
                             }

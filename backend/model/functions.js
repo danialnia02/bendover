@@ -173,38 +173,43 @@ var functions = {
     },
     ////////////////////////////////////////////////////////////////////////////////////////////////
     exportTime: function (array) {
-        var resultArray = [[
-            { type: 'string', label: 'count' },
-            { type: 'string', label: 'popularity' },
-            { type: 'string', label: 'peformanceId' },
-            { type: 'date', label: 'startTime' },
-            { type: 'date', label: 'endTime' },
-            { type: 'number', label: 'popularity' },
-            { type: 'number', label: 'Percent Complete' },
-            { type: 'string', label: 'Dependencies' },
-        ]];
+        try {
+            var resultArray = [[
+                { type: 'string', label: 'count' },
+                { type: 'string', label: 'popularity' },
+                { type: 'string', label: 'peformanceId' },
+                { type: 'date', label: 'startTime' },
+                { type: 'date', label: 'endTime' },
+                { type: 'number', label: 'popularity' },
+                { type: 'number', label: 'Percent Complete' },
+                { type: 'string', label: 'Dependencies' },
+            ]];
 
-        for (var i = 0; i < array.length; i++) {
-            var firstTime = parseInt(array[i].startTime)
-            var endTime = parseInt(array[i].endTime);
-            var firstTimeSeconds = functions.convertTime(firstTime)
-            var endTimeSeconds = functions.convertTime(endTime)
+            for (var i = 0; i < array.length; i++) {
+                var firstTime = parseInt(array[i].startTime)
+                var endTime = parseInt(array[i].endTime);
+                var firstTimeSeconds = functions.convertTime(firstTime)
+                var endTimeSeconds = functions.convertTime(endTime)
 
-            resultArray[i+1] = [
-                i,
-                array[i].performanceId,
-                array[i].performanceId,
-                // new Date(firstTimeSeconds),
-                // new Date(endTimeSeconds),
-                firstTimeSeconds,
-                endTimeSeconds,
-                array[i].popularity,
-                100,
-                null
-            ]
+                resultArray[i + 1] = [
+                    i,
+                    array[i].performanceId,
+                    array[i].performanceId,
+                    // new Date(firstTimeSeconds),
+                    // new Date(endTimeSeconds),
+                    firstTimeSeconds,
+                    endTimeSeconds,
+                    array[i].popularity,
+                    100,
+                    null
+                ]
+            }
+            // console.log(resultArray)
+            return resultArray
+        } catch (err) {
+            return null;
         }
-        // console.log(resultArray)
-        return resultArray
+
     },
     convertTime: function (numberString) {
         var number = parseInt(numberString);

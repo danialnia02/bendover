@@ -30,6 +30,7 @@ app.get('/basic/result', function (req, res) {
         }
     })
 })
+//Get All Data 2
 app.get('/advance/result', function (req, res) {
 
     console.log("here")
@@ -55,7 +56,11 @@ app.get('/basic/result/:festivalid', function (req, res) {
             // console.log(result)
             res.send(result)
         } else {
-            res.status(500).send({ error: 'String', code: 500 })
+            if (err == "null") {
+                res.status(500).send({ error: 'Error with festivalId Input', code: 500 })
+            } else {
+                res.status(500).send({ error: 'String', code: 500 })
+            }
         }
     })
 })
@@ -67,10 +72,14 @@ app.get('/advance/result/:festivalid', function (req, res) {
 
     musicDb.getFestivalId2(Info, function (err, result) {
         if (!err) {
-            // console.log(result)
+            // console.log(result)            
             res.send(result)
         } else {
-            res.status(500).send({ error: 'String', code: 500 })
+            if (err == "null") {
+                res.status(500).send({ error: 'Error with festivalId Input', code: 500 })
+            } else {
+                res.status(500).send({ error: 'String', code: 500 })
+            }
         }
     })
 })

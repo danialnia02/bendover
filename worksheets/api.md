@@ -21,7 +21,7 @@ Each API should include
 | ----------- | ----------- |
 | HTTP Method | GET         |
 | Endpoint    | /basic/data |
-
+ 
 ### Parameters
 
 | parameter | datatype        | example   |
@@ -88,7 +88,7 @@ GET /basic/data?id=1234567890
 | attribute   | value       |
 | ----------- | ----------- |
 | HTTP Method | GET         |
-| Endpoint    | /basic/results |
+| Endpoint    | /basic/result |
 
 ### Parameters
 
@@ -97,17 +97,16 @@ No parameters
 ### Response Body
 
 ```json
-{
-    "result": [
-        {
-            "performanceId": number,
-            "festivalId": number,
-            "startTime": string,
-            "endTime": string,
-            "popularity":number            
-        }
-    ]
-}
+
+[
+    {
+        "performanceId": number,
+        "festivalId": number,
+        "startTime": string,
+        "endTime": string,
+        "popularity":number   
+    }
+]
 ```
 
 ### Error
@@ -128,17 +127,15 @@ GET /basic/results
 ### Sample Response
 
 ```json
-{
-    "result": [
-        {
-            "performanceId": 123457,
-            "festivalId": 123456,
-            "startTime": "2100",
-            "endTime": "2230",
-            "popularity":0            
-        }
-    ]
-}
+[
+    {
+        "performanceId": 123457,
+        "festivalId": 123456,
+        "startTime": "2100",
+        "endTime": "2230",
+        "popularity":0   
+    }
+]
 ```
 
 ### Sample Error
@@ -162,7 +159,7 @@ GET /basic/results
 
 | parameter | datatype        | example   |
 | --------- | --------------- | --------- |
-| festivalid        | 10 digit number | 123456789 |
+| festivalid | number | 123456789 |
 
 ### Response Body
 
@@ -178,6 +175,52 @@ GET /basic/results
         }
     ]
 }
+[
+    [
+        {
+            "type": "string",
+            "label":"count"
+        },
+        {
+            "type": "string",
+            "label":"popularity"
+        },
+        {
+            "type": "string",
+            "label":"performanceId"
+        },
+        {
+            "type": "date",
+            "label":"startTime"
+        },
+        {
+            "type": "date",
+            "label":"endTime"
+        },
+        {
+            "type": "number",
+            "label":"popularity"
+        },
+        {
+            "type": "number",
+            "label":"Percent Complete"
+        },
+        {
+            "type": "string",
+            "label":"Dependencies"
+        }
+    ],
+    [
+        number,
+        number,
+        number,
+        number,
+        number,
+        number,
+        number,
+        null,
+    ]
+]
 ```
 
 ### Error
@@ -198,18 +241,52 @@ GET /basic/result/:festivalid=123456
 ### Sample Response
 
 ```json
-{
-    "result": [
+[
+    [
         {
-            "performanceId": 123457,
-            "festivalId": 123456,
-            "startTime": "2100",
-            "endTime": "2230",
-            "popularity":0            
+            "type": "string",
+            "label": "count"
         },
-        
+        {
+            "type": "string",
+            "label": "peformanceId"
+        },
+        {
+            "type": "string",
+            "label": "peformanceId"
+        },
+        {
+            "type": "date",
+            "label": "startTime"
+        },
+        {
+            "type": "date",
+            "label": "endTime"
+        },
+        {
+            "type": "number",
+            "label": "popularity"
+        },
+        {
+            "type": "number",
+            "label": "Percent Complete"
+        },
+        {
+            "type": "string",
+            "label": "Dependencies"
+        }
+    ],
+    [
+        0,
+        1000000001,
+        1000000001,
+        1592877600000,
+        1592881200000,
+        1,
+        100,
+        null
     ]
-}
+]
 ```
 
 ### Sample Error
