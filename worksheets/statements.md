@@ -2,40 +2,46 @@
 
 For this worksheet you will need to provide an example of your own SQL statement. The two given are examples.
 
+ ## GET
+
+ ```sql
+SELECT * FROM festivalInfo
+ ```
+
+ ```sql
+ SELECT * from festivalInfo where Info.attribute like '%input%'
+ ```
+ 
+ ```sql
+SELECT * FROM festivalInfo where  + Info.attribute1 +  like "'%" + Info.input + "%'"+ Info.attribute2 + like "'%" + Info.input2 + "%'"
+ ```
+
+ ```sql
+ SELECT * from festivalInfo where festivalId = Info.userInput
+ ```
+
+ ```sql
+ SELECT * from festivalInfo where festivalId = Info.userInput
+ ```
+
+ ```sql
+ SELECT * FORM festivalInfo where performaceId = + id
+```
+
+```sql
+SELECT count(*) as recordcount from festivalInfo
+```
+
+```sql
+SELECT column_name as name from information_schema.columns where table_name = 'festivalInfo'
+```
+
 ## INSERT
 
-Example:
 ```sql
-INSERT INTO table_name (attr1, attr2,...) VALUES (value1, value2, ...);
+INSERT INTO festivalInfo(performanceId,festivalId,startTime,endTime) values ( + data2[i].performanceId + "," + data2[i].festivalId + ",'" + data2[i].startTime + "','" + data2[i].endTime + )
 ```
 
 ```sql
-insert into dbo.festivalInfo (performanceId,festivalId,startTime,endTime,popularity) VALUES (?,?,?,?,?);
-```
-
-## SELECT with Filtering and Pagination
-
-Example:
-```sql
-SELECT * FROM table_name WHERE attr1 == value1 AND attr2 >= value2 LIMIT 10 OFFSET 20;
-
-```
-```sql
-SELECT * FROM dbo.festivalInfo where  + Info.attribute + " " + Info.operation + " + " + Info.userInput +
-
-```
-```sql
-SELECT * FROM dbo.festivalInfo where performanceId = + Info.userInput + 
-
-
-```sql
-SELECT * FROM dbo.festivalInfo where performanceId =  + id
-```
-
-```sql
-SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'festivalInfo' ORDER BY ORDINAL_POSITION
-```
-
-```sql
-SELECT count(*) as recordCount from dbo.festivalInfo
+INSERT INTO festivalInfo(performanceId,festivalId,startTime,endTime) values ( + data2[i].performanceId + "," + data2[i].festivalId + ",'" + data2[i].startTime + "','" + data2[i].endTime + "'," + data2[i].popularity + )
 ```
