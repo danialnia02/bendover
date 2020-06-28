@@ -18,8 +18,7 @@ const DataViewer = () => {
   //input get
   const [state, setState] = React.useState({
     input1: "",
-    input2: "",
-    operation: "",
+    input2: "",    
     pagination: 10,
     attribute1: "",
     attribute2: "",
@@ -47,8 +46,7 @@ const DataViewer = () => {
   // Get custom input
   const handleSubmit = (event) => {
     event.preventDefault()
-    var info = {
-      operation: state.operation,
+    var info = {      
       pagination: state.pagination,
       attribute1: state.attribute1,
       input1: state.input1,

@@ -50,7 +50,7 @@ const App: React.FC = () => (
         <IonRouterOutlet>
         <Route path="/DataViewer" component={DataViewer} exact={true} />        
         <Route path="/ResultViewer" component={ResultViewer} exact={true} />
-        {/* <Redirect from ="/ResultViewer" to="/DataViewer" /> */}
+        <Route exact path="/" render={() => <Redirect to="/DataViewer" />} />
         </IonRouterOutlet>
         <IonTabBar slot="top">
           {/* <IonTabButton tab="DataViewer" href="/DataViewer">

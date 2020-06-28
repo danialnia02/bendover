@@ -101,8 +101,7 @@ app.get('/basic/results/:performanceId', function (req, res) {
 })
 
 //Get Data based on search bar in Data Viewer
-app.post('/search', function (req, res) {
-    var operation = req.body.operation;
+app.post('/search', function (req, res) {    
     var attribute1 = req.body.attribute1;
     var input1 = req.body.input1;
     var attribute2 = req.body.attribute2;
@@ -200,9 +199,6 @@ app.post('/advance/insert', function (req, res) {
     })
 })
 
-
-
-
 //get the number of records in the database
 app.get('/advance/recordCount', function (req, res) {
 
@@ -216,10 +212,4 @@ app.get('/advance/recordCount', function (req, res) {
         }
     })
 })
-
-app.get('/advance/random', function (req, res) {
-
-    res.send("{1,1,1}")
-})
-
 module.exports = app

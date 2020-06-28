@@ -164,17 +164,6 @@ GET /basic/results
 ### Response Body
 
 ```json
-{
-    "result": [
-        {
-            "performanceId": number,
-            "festivalId": number,
-            "startTime": string,
-            "endTime": string,
-            "popularity":number            
-        }
-    ]
-}
 [
     [
         {
@@ -303,7 +292,7 @@ GET /basic/result/:festivalid=123456
 | attribute   | value       |
 | ----------- | ----------- |
 | HTTP Method | GET         |
-| Endpoint    | /basic/result/:performanceId |
+| Endpoint    | /basic/results/:performanceId |
 
 ### Parameters
 
@@ -314,16 +303,14 @@ GET /basic/result/:festivalid=123456
 ### Response Body
 
 ```json
-{
-    "result": [
+{    
         {
             "performanceId": number,
             "festivalId": number,
             "startTime": string,
             "endTime": string,
             "popularity":number            
-        }
-    ]
+        }    
 }
 ```
 
@@ -339,7 +326,7 @@ GET /basic/result/:festivalid=123456
 ### Sample Request
 
 ```http
-GET /basic/result/:festivalid=123456
+GET /basic/results/:performanceId=1000000003
 ```
 
 ### Sample Response
@@ -348,11 +335,11 @@ GET /basic/result/:festivalid=123456
 {
     "result": [
         {
-            "performanceId": 123457,
-            "festivalId": 123456,
-            "startTime": "2100",
-            "endTime": "2230",
-            "popularity":0            
+            "performanceId": 1000000003,
+            "festivalId": 1100000001,
+            "startTime": "1030",
+            "endTime": "1130",
+            "popularity":10            
         },
         
     ]
@@ -380,7 +367,6 @@ GET /basic/result/:festivalid=123456
 
 | parameter | datatype        | example   |
 | --------- | --------------- | --------- |
-| operation| String | +,=,<,> |
 | attribute1(performanceId)| String | 12345678 |
 | input1| String | 12345678 |
 | attribute2(festivalId)| String | 12345678 |
@@ -389,17 +375,15 @@ GET /basic/result/:festivalid=123456
 ### Response Body
 
 ```json
-{
-    "result": [
-        {
-            "performanceId": number,
-            "festivalId": number,
-            "startTime": string,
-            "endTime": string,
-            "popularity":number            
-        }
-    ]
-}
+[
+    {
+        "performanceId": number,
+        "festivalId": number,
+        "startTime": string,
+        "endTime": string,
+        "popularity":number            
+    }  
+]
 ```
 
 ### Error
@@ -423,11 +407,11 @@ GET /search
 {
     "result": [
         {
-            "performanceId": 123457,
-            "festivalId": 123456,
-            "startTime": "2100",
-            "endTime": "2230",
-            "popularity":0            
+            "performanceId": 1000000002,
+            "festivalId": 1100000001,
+            "startTime": "1000",
+            "endTime": "1100",
+            "popularity":1  
         }
     ]
 }
@@ -456,6 +440,7 @@ GET /search
 | performanceId| bigint |12345678 |
 | festivalId| bigint | 12345678 |
 | startTime| String | "2200" |
+| endTime| String | "2300" |
 
 ### Response Body
 
@@ -466,8 +451,7 @@ GET /search
             "performanceId": number,
             "festivalId": number,
             "startTime": string,
-            "endTime": string,
-            "popularity":number            
+            "endTime": string,                   
         }
     ]
 }
@@ -498,8 +482,8 @@ POST /search
 
 ```json
 {
-	"error": "Server Error",
-	"code": 500
+	"error": "Invalid Input",
+	"code": 207
 }
 ```
 ----------------------------------------------------------------
