@@ -136,53 +136,57 @@ const DataViewer = () => {
 
         {/* Navbar header Code */}
         <Navbar bg="light" expand="lg ">
-          <Navbar.Brand href="#home">Music-Db</Navbar.Brand>
+          <Navbar.Brand href="#home">Music-Db Search</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" >
             {/* <Navbar className=""> */}
-            <Form className="row d-flex justify-content-center">
+            <Form className="row containerforfilterbox d-flex justify-content-center"> {/*apparently the naming schemes for here and result viewer affect each other if u didnt know, so dun make them the same name can alr */}
+              {/* <Form.Row> */}
               <Form.Row>
+                <div class="filtersection"> {/*here as well^ */}
                 <form onSubmit={handleSubmit}>
+                  <Form.Group as={Col} controlId="categories">
+                    <Form.Row> {/*row for categories*/}
+                      <Form.Group as={Col} controlId="category1">
+                        <Form.Control as="select" value="Choose..." name="attribute1" size="5" value={state.attribute1} onChange={handleChange}>
+                          <option></option>
+                          <option value="performanceId">performanceId</option>
+                          <option value="festivalId">festivalId</option>
+                          <option value="startTime">startTime</option>
+                          <option value="endTime">endTime</option>
+                          <option value="popularity">popularity</option>
+                          <option value="dataInserted">dataInserted</option>
+                        </Form.Control>
+                      </Form.Group> {/* end group for category1 */}
+                      <Form.Group as={Col} controlId="category2">
+                        <Form.Control as="select" value="Choose..." name="attribute2" size="5" value={state.attribute2} onChange={handleChange}>
+                          <option></option>
+                          <option value="performanceId">performanceId</option>
+                          <option value="festivalId">festivalId</option>
+                          <option value="startTime">startTime</option>
+                          <option value="endTime">endTime</option>
+                          <option value="popularity">popularity</option>
+                          <option value="dataInserted">dataInserted</option>
+                        </Form.Control>
+                      </Form.Group> {/* end group for category2 */}
+                    </Form.Row> {/*end row for categories*/}
 
-                  <Form.Row> {/*row for categories*/}
-                    <Form.Group as={Col} controlId="category1">
-                      <Form.Control as="select" value="Choose..." name="attribute1" size="5" value={state.attribute1} onChange={handleChange}>
-                        <option></option>
-                        <option value="performanceId">performanceId</option>
-                        <option value="festivalId">festivalId</option>
-                        <option value="startTime">startTime</option>
-                        <option value="endTime">endTime</option>
-                        <option value="popularity">popularity</option>
-                        <option value="dataInserted">dataInserted</option>
-                      </Form.Control>
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="category2">
-                      <Form.Control as="select" value="Choose..." name="attribute2" size="5" value={state.attribute2} onChange={handleChange}>
-                        <option></option>
-                        <option value="performanceId">performanceId</option>
-                        <option value="festivalId">festivalId</option>
-                        <option value="startTime">startTime</option>
-                        <option value="endTime">endTime</option>
-                        <option value="popularity">popularity</option>
-                        <option value="dataInserted">dataInserted</option>
-                      </Form.Control>
-                    </Form.Group>
-                  </Form.Row> {/*end row for categories*/}
-                  <Form.Row> {/*row for searchid*/}
-                    {/*searchbox*/}
-                    <Form.Group as={Col} controlId="searchid1">
-                      <input type="number" placeholder="Search" name="input1" size="5" value={state.input1} onChange={handleChange} />
-                    </Form.Group>
-                    {/*searchbox*/}
-                    <Form.Group as={Col} controlId="searchid2">
-                      <input type="number" placeholder="Search" name="input2" size="5" value={state.input2} onChange={handleChange} />
-                    </Form.Group>
-
-                  </Form.Row> {/*end row for searchid*/}
+                    <Form.Row> {/*row for searchid*/}
+                      <Form.Group as={Col} controlId="searchid1">
+                        <input type="number" placeholder="Search" name="input1" size="5" value={state.input1} onChange={handleChange} />
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="searchid2">
+                        <input type="number" placeholder="Search" name="input2" size="5" value={state.input2} onChange={handleChange} />
+                      </Form.Group>
+                    </Form.Row> {/*end row for searchid*/}
+                  </Form.Group>
+                </form>
+                </div>
+                <Form.Group as={Col} controlId="searchbutton">
                   <div className="d-block justify-content-center">
                     <Button variant="outline-success" type="submit">Search</Button>
                   </div>
-                </form>
+                </Form.Group>
               </Form.Row>
             </Form>
             {/* </Navbar> */}

@@ -105,33 +105,63 @@ const ResultViewer = () => {
         </Nav>
         {/* Navbar header Code */}
         <Navbar bg="light" expand="lg ">
-          {/* <Navbar.Brand href="#home">Music-Db</Navbar.Brand> */}
+          <Navbar.Brand href="#home">Music-Db</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" >
             {/* <Navbar className=""> */}
-            <Form className="row d-flex justify-content-center">
-              <Form.Row>
+            <Form className="row containerforfilterbox2 d-flex justify-content-center">
                 <form onSubmit={handleSubmit}>
-                  <Form.Row> {/*row for categories*/}
-                    <Form.Group as={Col} controlId="category1">
-                      <Form.Control as="select" value="Choose..." name="festivals" size="5" value={state.festivals} onChange={handleChange}>
-                        <option></option>
-                        <option value="basic">basic</option>
-                        <option value="advance">advance</option>
-                      </Form.Control>
-                    </Form.Group>
-                  </Form.Row> {/*end row for categories*/}
-                  <Form.Row> {/*row for searchid*/}
-                    {/*searchbox*/}
-                    <Form.Group as={Col} controlId="searchid1">
-                      <input type="number" min="1" placeholder="Search" name="festivalInput" size="5" value={state.festivalInput} onChange={handleChange} />
-                    </Form.Group>
-                  </Form.Row> {/*end row for searchid*/}
-                  <div className="d-block justify-content-center">
-                    <Button variant="outline-success" type="submit">Search</Button>
+                  <div className="filtersection2">
+                    <Form.Row> {/*row for everything*/}
+                      <Form.Group as={Col} controlId="searchid1">
+                        <Form.Control as="select" value="Choose..." name="festival" size="5" value={state.festivals} onChange={handleChange}>
+                          <option>festivalId</option>
+                          <option value="basic">basic</option>
+                          <option value="advance">advance</option>
+                        </Form.Control>
+                        {/* (This is the other type of box, which rn im not sure how to adjust the size to fit properly)<input type="number" min="1" placeholder="festivalId" name="festivalInput" size="5" value={state.festivalInput} onChange={handleChange} /> */}
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="searchid2">
+                        <Form.Control as="select" value="Choose..." name="performance" size="5" value={state.festivals} onChange={handleChange}>
+                          <option>performanceId</option>
+                          <option value="basic">basic</option>
+                          <option value="advance">advance</option>
+                        </Form.Control>
+                        {/*  (This is the other type of box, which rn im not sure how to adjust the size to fit properly)<input type="number" min="1" placeholder="performanceId" name="festivalInput" size="5" value={state.festivalInput} onChange={handleChange} /> */}
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="searchid3">
+                        <Form.Control as="select" value="Choose..." name="startTime" size="5" value={state.festivals} onChange={handleChange}>
+                          <option>startTime</option>
+                          <option value="basic">basic</option>
+                          <option value="advance">advance</option>
+                        </Form.Control>
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="searchid4">
+                        <Form.Control as="select" value="Choose..." name="endTime" size="5" value={state.festivals} onChange={handleChange}>
+                          <option>endTime</option>
+                          <option value="basic">basic</option>
+                          <option value="advance">advance</option>
+                        </Form.Control>
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="searchid5">
+                        <Form.Control as="select" value="Choose..." name="popularity" size="5" value={state.festivals} onChange={handleChange}>
+                          <option>popularity</option>
+                          <option value="basic">basic</option>
+                          <option value="advance">advance</option>
+                        </Form.Control>
+                      </Form.Group>
+                      {/* <Form.Group as={Col} controlId="submitbutton">
+                        <input type="number" min="1" placeholder="Search" name="festivalInput" size="5" value={state.festivalInput} onChange={handleChange} />
+                      </Form.Group> */}
+                      {/* tbh im not too sure how to use this^ can leave me a note here once u see this? thx */}
+                      <Form.Group as={Col} controlId="searchbutton">
+                        <div className="d-block justify-content-center">
+                          <Button variant="outline-success" type="submit">Search</Button>
+                        </div>
+                      </Form.Group>
+                    </Form.Row> {/*end row for everything*/}
                   </div>
                 </form>
-              </Form.Row>
             </Form>
             {/* </Navbar> */}
           </Navbar.Collapse>
