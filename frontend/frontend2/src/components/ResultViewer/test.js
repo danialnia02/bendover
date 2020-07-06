@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Chart } from "react-google-charts"
 import axios from 'axios';
 import './ResultViewer.css'
-import { Navbar, Nav, Form, Button, InputGroup, FormControl } from "react-bootstrap"
+import { Navbar, Nav, Form, Button, InputGroup,FormControl } from "react-bootstrap"
 import Navbars from "../Navbar"
 import Col from 'react-bootstrap/Col';
 
@@ -109,10 +109,10 @@ const ResultViewer = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" >
             {/* <Navbar className=""> */}
-            {/* <Form className="row containerforfilterbox2 d-flex justify-content-center">
+            <Form className="row containerforfilterbox2 d-flex justify-content-center">
               <div className="filtersection2">
                 <form onSubmit={handleSubmit}>
-                  <Form.Row> 
+                  <Form.Row> {/*row for everything*/}
 
                     <Form.Group as={Col} controlId="category1">
                       <Form.Control as="select" value="Choose..." name="festivals" size="5" value={state.festivals} onChange={handleChange}>
@@ -132,62 +132,34 @@ const ResultViewer = () => {
                       </div>
                     </Form.Group>
                     
-                  </Form.Row>
+                  </Form.Row> {/*end row for everything*/}
                 </form>
               </div>
 
-            </Form> */}
-            <form onSubmit={handleSubmit}>
-              <Form inline>
-
-                <InputGroup className="mb-3 mr-sm-3">
-                  <InputGroup.Prepend>
-                    <InputGroup.Text>Type of Result</InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <Form.Control as="select" value="Choose..." name="festivals" size="5" value={state.festivals} onChange={handleChange}>
-                    <option></option>
-                    <option value="basic">basic</option>
-                    <option value="advance">advance</option>
-                  </Form.Control>
-                </InputGroup>
-
-
-                <InputGroup className="mb-3 mr-sm-3">
-                  <InputGroup.Prepend>
-                    <InputGroup.Text>FestivalID</InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <input type="number" min="1" placeholder="Search" name="festivalInput" size="5" value={state.festivalInput} onChange={handleChange} />
-                </InputGroup>
-                <Button type="submit" className="mb-2">
-                  Submit
-            </Button>
-              </Form>
-            </form>
-
+            </Form>
             {/* </Navbar> */}
           </Navbar.Collapse>
+          
         </Navbar>
         {/* <Header /> */}
 
         {/* output Code */}
         <div id="smallcontainer">
-          <div id="chart">
-            <Chart
-              width={state.width}
-              height={state.height}
-              chartType={state.chartType}
-              loader={state.loader}
-              data=
-              {getData()}
-              options={{
-                height: 400,
-                gantt: {
-                  trackHeight: 30,
-                },
-              }}
-              rootProps={{ 'data-testid': '2' }}
-            />
-          </div>
+          <Chart
+            width={state.width}
+            height={state.height}
+            chartType={state.chartType}
+            loader={state.loader}
+            data=
+            {getData()}
+            options={{
+              height: 400,
+              gantt: {
+                trackHeight: 30,
+              },
+            }}
+            rootProps={{ 'data-testid': '2' }}
+          />
         </div>
       </div>
     </div >
