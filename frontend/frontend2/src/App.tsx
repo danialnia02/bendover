@@ -28,40 +28,11 @@ import './theme/variables.css';
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      {/* <IonTabs>
-        <IonRouterOutlet>
-          <IonTabBar>
-
-            <IonTabButton>
-              <Route path="/DataViewer" component={DataViewer} exact={true} />
-              <Route exact path="/" render={() => <Redirect to="/DataViewer" />} />
-            </IonTabButton>
-
-            <IonTabButton>
-              <Route path="/ResultViewer" component={ResultViewer} exact={true} />
-            </IonTabButton>
-
-          </IonTabBar>
-        </IonRouterOutlet>
-
-      </IonTabs> */}
-      
-      <IonTabs>
         <IonRouterOutlet>
         <Route path="/DataViewer" component={DataViewer} exact={true} />        
         <Route path="/ResultViewer" component={ResultViewer} exact={true} />
         <Route exact path="/" render={() => <Redirect to="/DataViewer" />} />
-        </IonRouterOutlet>
-        <IonTabBar slot="top">
-          {/* <IonTabButton tab="DataViewer" href="/DataViewer">
-            <IonLabel> DataViewer</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="ResultViewer" href="/ResultViewer">
-            <IonLabel> ResultViewer</IonLabel>
-          </IonTabButton> */}
-        </IonTabBar>
-      </IonTabs>
-
+        </IonRouterOutlet>        
     </IonReactRouter>
   </IonApp>
 );

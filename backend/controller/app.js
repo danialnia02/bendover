@@ -21,7 +21,7 @@ var multParse = multer();
 app.get('/basic/data', function (req, res) {
 
     console.log("here")
-
+    
     musicDb.getAllfestivalInfo(function (err, result) {
         if (!err) {
             res.send(result)

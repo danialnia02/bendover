@@ -6,11 +6,11 @@ import ResultViewer from '../components/ResultViewer/ResultViewer'
 
 const Home: React.FC = () => {
   return (
-    <IonPage>
+    // <IonPage>
       <IonContent>        
         <DataViewer />
       </IonContent>
-    </IonPage>
+    // </IonPage>
   );
 };
 

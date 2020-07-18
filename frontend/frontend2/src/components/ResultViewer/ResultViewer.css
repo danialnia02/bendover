@@ -37,8 +37,11 @@
   
   }
   #smallcontainer{
-    background-color:white;    
-  }    
+    background-color:white;        
+  }      
+  #chart{    
+    padding:10px;
+  }
 
   .test{
     font-size:220px;

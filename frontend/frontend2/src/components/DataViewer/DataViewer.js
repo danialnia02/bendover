@@ -18,15 +18,13 @@ const DataViewer = () => {
   //input get
   const [state, setState] = React.useState({
     input1: "",
-    input2: "",    
+    input2: "",
     pagination: 10,
     attribute1: "",
     attribute2: "",
     link: 'http://10.0.2.2/basic/data',
-    // link2: 'http://192.168.1.204:8011/basic/result',
     link2: 'http://localhost:8011/basic/data',
     searchLink: 'http://10.0.2.2:8011/search',
-    // searchLink2: 'http://192.168.1.204:8011/search'
     searchLink2: 'http://localhost:8011/search',
   })
 
@@ -44,30 +42,31 @@ const DataViewer = () => {
   }
 
   // Get custom input
-  const handleSubmit = (event) => {
+  const searchSubmit = (event) => {
     event.preventDefault()
-    var info = {      
+    var info = {
       pagination: state.pagination,
       attribute1: state.attribute1,
       input1: state.input1,
       attribute2: state.attribute2,
       input2: state.input2,
     }
-    // console.log(info)
-    // try{
+    console.log(info)
+    console.log(info)
+    // try {
     //   axios.post(state.searchLink, info)
-    //   .then(res => {
-    //     var data = res.data
-    //     if (res.data.length == 0) {
-    //       console.log("There is no data here")
-    //       setState({
-    //         ...state,
-    //         ["arrayLength"]: 0
-    //       })
-    //     }
-    //     setPosts(res.data)
-    //   })
-    // }catch(err){
+    //     .then(res => {
+    //       var data = res.data
+    //       if (res.data.length == 0) {
+    //         console.log("There is no data here")
+    //         setState({
+    //           ...state,
+    //           ["arrayLength"]: 0
+    //         })
+    //       }
+    //       setPosts(res.data)
+    //     })
+    // } catch (err) {
     axios.post(state.searchLink2, info)
       .then(res => {
         var data = res.data
@@ -87,15 +86,14 @@ const DataViewer = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-      // try{
-      //    res = await axios.get(state.link);
-      // }catch(err){
-      console.log(state.link2)
-      var res = await axios.get(state.link2);
-      console.log(res.data)
+      // try {
+      //   res = await axios.get(state.link);
+      // } catch (err) {
+        console.log(state.link2)
+        var res = await axios.get(state.link2);
+        console.log(res.data)
 
       // }      
-      // const res2 = await axios.get('http://10.0.2.2/basic/result');   
       if (res.data.length == 0) {
         setState({
           ...state,
@@ -142,45 +140,45 @@ const DataViewer = () => {
             {/* <Navbar className=""> */}
             <Form className="row containerforfilterbox d-flex justify-content-center"> {/*apparently the naming schemes for here and result viewer affect each other if u didnt know, so dun make them the same name can alr */}
               {/* <Form.Row> */}
+              <form onSubmit={searchSubmit}>
               <Form.Row>
                 <div class="filtersection"> {/*here as well^ */}
-                <form onSubmit={handleSubmit}>
-                  <Form.Group as={Col} controlId="categories">
-                    <Form.Row> {/*row for categories*/}
-                      <Form.Group as={Col} controlId="category1">
-                        <Form.Control as="select" value="Choose..." name="attribute1" size="5" value={state.attribute1} onChange={handleChange}>
-                          <option></option>
-                          <option value="performanceId">performanceId</option>
-                          <option value="festivalId">festivalId</option>
-                          <option value="startTime">startTime</option>
-                          <option value="endTime">endTime</option>
-                          <option value="popularity">popularity</option>
-                          <option value="dataInserted">dataInserted</option>
-                        </Form.Control>
-                      </Form.Group> {/* end group for category1 */}
-                      <Form.Group as={Col} controlId="category2">
-                        <Form.Control as="select" value="Choose..." name="attribute2" size="5" value={state.attribute2} onChange={handleChange}>
-                          <option></option>
-                          <option value="performanceId">performanceId</option>
-                          <option value="festivalId">festivalId</option>
-                          <option value="startTime">startTime</option>
-                          <option value="endTime">endTime</option>
-                          <option value="popularity">popularity</option>
-                          <option value="dataInserted">dataInserted</option>
-                        </Form.Control>
-                      </Form.Group> {/* end group for category2 */}
-                    </Form.Row> {/*end row for categories*/}
+                  
+                    <Form.Group as={Col} controlId="categories">
+                      <Form.Row> {/*row for categories*/}
+                        <Form.Group as={Col} controlId="category1">
+                          <Form.Control as="select" value="Choose..." name="attribute1" size="5" value={state.attribute1} onChange={handleChange}>
+                            <option></option>
+                            <option value="performanceId">performanceId</option>
+                            <option value="festivalId">festivalId</option>
+                            <option value="startTime">startTime</option>
+                            <option value="endTime">endTime</option>
+                            <option value="popularity">popularity</option>
+                            <option value="dataInserted">dataInserted</option>
+                          </Form.Control>
+                        </Form.Group> {/* end group for category1 */}
+                        <Form.Group as={Col} controlId="category2">
+                          <Form.Control as="select" value="Choose..." name="attribute2" size="5" value={state.attribute2} onChange={handleChange}>
+                            <option></option>
+                            <option value="performanceId">performanceId</option>
+                            <option value="festivalId">festivalId</option>
+                            <option value="startTime">startTime</option>
+                            <option value="endTime">endTime</option>
+                            <option value="popularity">popularity</option>
+                            <option value="dataInserted">dataInserted</option>
+                          </Form.Control>
+                        </Form.Group> {/* end group for category2 */}
+                      </Form.Row> {/*end row for categories*/}
 
-                    <Form.Row> {/*row for searchid*/}
-                      <Form.Group as={Col} controlId="searchid1">
-                        <input type="number" placeholder="Search" name="input1" size="5" value={state.input1} onChange={handleChange} />
-                      </Form.Group>
-                      <Form.Group as={Col} controlId="searchid2">
-                        <input type="number" placeholder="Search" name="input2" size="5" value={state.input2} onChange={handleChange} />
-                      </Form.Group>
-                    </Form.Row> {/*end row for searchid*/}
-                  </Form.Group>
-                </form>
+                      <Form.Row> {/*row for searchid*/}
+                        <Form.Group as={Col} controlId="searchid1">
+                          <input type="number" placeholder="Search" name="input1" size="5" value={state.input1} onChange={handleChange} />
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="searchid2">
+                          <input type="number" placeholder="Search" name="input2" size="5" value={state.input2} onChange={handleChange} />
+                        </Form.Group>
+                      </Form.Row> {/*end row for searchid*/}
+                    </Form.Group>                  
                 </div>
                 <Form.Group as={Col} controlId="searchbutton">
                   <div className="d-block justify-content-center">
@@ -188,6 +186,7 @@ const DataViewer = () => {
                   </div>
                 </Form.Group>
               </Form.Row>
+              </form>
             </Form>
             {/* </Navbar> */}
           </Navbar.Collapse>
