@@ -22,9 +22,9 @@ const DataViewer = () => {
     pagination: 10,
     attribute1: "",
     attribute2: "",
-    link: 'http://10.0.2.2/basic/result',
+    link: 'http://10.0.2.2/basic/data',
     // link2: 'http://192.168.1.204:8011/basic/result',
-    link2: 'http://localhost:8011/basic/result',
+    link2: 'http://localhost:8011/basic/data',
     searchLink: 'http://10.0.2.2:8011/search',
     // searchLink2: 'http://192.168.1.204:8011/search'
     searchLink2: 'http://localhost:8011/search',
