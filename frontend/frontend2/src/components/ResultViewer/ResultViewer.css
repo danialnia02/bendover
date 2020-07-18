@@ -37,8 +37,8 @@
   
   }
   #smallcontainer{
-    background-color:white;
-  }
+    background-color:white;    
+  }    
 
   .test{
     font-size:220px;
@@ -61,6 +61,17 @@
     color: #47ccde;
   }
   
+  .containerforfilterbox2 { /*This and filtersection is quite hard-coded, u uncomment the background to see what i mean then lmk what u think*/
+    /* background: blue; */
+    height: 33%;
+    width: 1050px;
+  }
+
+  .filtersection2 {
+    /* background: red; */
+    height:40px;
+    width: 1000px;
+  }
   /* scroll */
   
   .table{

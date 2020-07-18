@@ -61,6 +61,17 @@
     color: #47ccde;
   }
   
+  .containerforfilterbox {
+    /* background: blue; */
+    height: 100px;
+    width: 100%;
+  }
+  .filtersection {
+    /* background: red; */
+    margin: 0;
+    vertical-align: middle;
+    width: 84%;
+  }
   /* scroll */
   
   .table{
