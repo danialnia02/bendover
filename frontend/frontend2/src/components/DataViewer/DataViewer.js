@@ -10,7 +10,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 //
-import { BrowserView, MobileView, isBrowser, isMobile } from "react-device-detect";
+import { isMobile } from "react-device-detect";
 //
 
 const DataViewer = () => {
@@ -57,21 +57,13 @@ const DataViewer = () => {
     }
     console.log(info)
     console.log(info)
-    // try {
-    //   axios.post(state.searchLink, info)
-    //     .then(res => {
-    //       var data = res.data
-    //       if (res.data.length == 0) {
-    //         console.log("There is no data here")
-    //         setState({
-    //           ...state,
-    //           ["arrayLength"]: 0
-    //         })
-    //       }
-    //       setPosts(res.data)
-    //     })
-    // } catch (err) {
-    axios.post(state.searchLink2, info)
+    var link;
+    if (isMobile) {
+      link = state.searchLink;
+    } else {
+      link = state.searchLink2;
+    }
+    axios.post(link, info)
       .then(res => {
         var data = res.data
         if (res.data.length == 0) {
@@ -89,14 +81,14 @@ const DataViewer = () => {
   //Get all inputs
   useEffect(() => {
     const fetchPosts = async () => {
-      setLoading(true);      
+      setLoading(true);
       var res;
       if (isMobile) {
         res = await axios.get(state.link);
       } else {
         res = await axios.get(state.link2);
       }
-      console.log(res)      
+      console.log(res)
       if (res.data.length == 0) {
         setState({
           ...state,

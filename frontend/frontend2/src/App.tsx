@@ -3,8 +3,10 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, IonTabs, IonTabBar, IonTabButton, IonLabel } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
-import DataViewer from './components/DataViewer/DataViewer'
-import ResultViewer from './components/ResultViewer/ResultViewer'
+// import DataViewer from './components/DataViewer/DataViewer'
+// import ResultViewer from './components/ResultViewer/ResultViewer'
+import DataViewer from './pages/DataViewer'
+import ResultViewer from './pages/ResultViewer'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';

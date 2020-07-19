@@ -14,7 +14,7 @@ const Posts = ({ posts, loading, noOfPosts }) => {
     );
   } else {
     return (      
-        <table class='list-group' id='three'>
+        <table class='list-group'>
           <ReactBootStrap.Table striped bordered hover>
             <tr>
               <th class="list-header">performanceId</th>

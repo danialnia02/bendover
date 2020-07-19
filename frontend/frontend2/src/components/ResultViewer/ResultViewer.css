@@ -37,7 +37,8 @@
   
   }
   #smallcontainer{
-    background-color:white;        
+    background-color:white;      
+    display:block
   }      
   #chart{    
     padding:10px;
@@ -98,8 +99,8 @@
     text-align: center;
   }
   /* here */
-  .list-group{
-    overflow-x:auto;
+  .list-group{    
+    overflow-x:auto;    
     padding: 10px 10px 10px;     
     margin-left:10px;
     margin-right:10px;  
