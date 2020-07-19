@@ -27,12 +27,11 @@ const Pagination = ({ currentPage, postsPerPage, totalPosts, paginate }) => {
   // console.log(pageNumbers);
   return (
     <div id = "row">
-      <button>{<a onClick={() => test(1)} class='page-link'>&lt;&lt;</a>}</button>
-
+      <button>{<a onClick={() => test(1)} className='page-link'>&lt;&lt;</a>}</button>
 
       {pageNumbers.map(number => (<a onClick={() => paginate(number)} class='page-link'>{number}</a>))}
 
-      <button>{<a onClick={() => test(-1)} class='page-link'>>></a>}</button>
+      <button>{<a onClick={() => test(-1)} className='page-link'>>></a>}</button>
     </div>
   );
 };

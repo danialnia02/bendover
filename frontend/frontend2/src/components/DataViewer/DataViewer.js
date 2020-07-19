@@ -9,6 +9,10 @@ import { Navbar, Nav, Form, Button, Table } from "react-bootstrap"
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+//
+import { BrowserView, MobileView, isBrowser, isMobile } from "react-device-detect";
+//
+
 const DataViewer = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -85,15 +89,14 @@ const DataViewer = () => {
   //Get all inputs
   useEffect(() => {
     const fetchPosts = async () => {
-      setLoading(true);
-      // try {
-      //   res = await axios.get(state.link);
-      // } catch (err) {
-        console.log(state.link2)
-        var res = await axios.get(state.link2);
-        console.log(res.data)
-
-      // }      
+      setLoading(true);      
+      var res;
+      if (isMobile) {
+        res = await axios.get(state.link);
+      } else {
+        res = await axios.get(state.link2);
+      }
+      console.log(res)      
       if (res.data.length == 0) {
         setState({
           ...state,
@@ -107,6 +110,14 @@ const DataViewer = () => {
     fetchPosts();
   }, []);
 
+  function renderMobile() {
+    if (isMobile) {
+      return <div> This content is available on mobile</div>
+    } else {
+      return <div>This content is unavailable on mobile</div>
+    }
+  }
+
   // Get current posts
   var indexOfLastPost = currentPage * state.pagination;
   var indexOfFirstPost = indexOfLastPost - state.pagination;
@@ -119,6 +130,9 @@ const DataViewer = () => {
   return (
     <div id='body'>
       <div class='container'>
+
+        <h1>{renderMobile()}</h1>
+
         <h1>Data Viewer</h1>
         {/* <h1 class='text-primary table-title mb-3'>Data Viewer</h1> */}
 
@@ -141,9 +155,9 @@ const DataViewer = () => {
             <Form className="row containerforfilterbox d-flex justify-content-center"> {/*apparently the naming schemes for here and result viewer affect each other if u didnt know, so dun make them the same name can alr */}
               {/* <Form.Row> */}
               <form onSubmit={searchSubmit}>
-              <Form.Row>
-                <div class="filtersection"> {/*here as well^ */}
-                  
+                <Form.Row>
+                  <div className="filtersection"> {/*here as well^ */}
+
                     <Form.Group as={Col} controlId="categories">
                       <Form.Row> {/*row for categories*/}
                         <Form.Group as={Col} controlId="category1">
@@ -178,14 +192,14 @@ const DataViewer = () => {
                           <input type="number" placeholder="Search" name="input2" size="5" value={state.input2} onChange={handleChange} />
                         </Form.Group>
                       </Form.Row> {/*end row for searchid*/}
-                    </Form.Group>                  
-                </div>
-                <Form.Group as={Col} controlId="searchbutton">
-                  <div className="d-block justify-content-center">
-                    <Button variant="outline-success" type="submit">Search</Button>
+                    </Form.Group>
                   </div>
-                </Form.Group>
-              </Form.Row>
+                  <Form.Group as={Col} controlId="searchbutton">
+                    <div className="d-block justify-content-center">
+                      <Button variant="outline-success" type="submit">Search</Button>
+                    </div>
+                  </Form.Group>
+                </Form.Row>
               </form>
             </Form>
             {/* </Navbar> */}
