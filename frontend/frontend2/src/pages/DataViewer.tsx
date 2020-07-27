@@ -2,15 +2,14 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRouterOutlet,I
 import React from 'react';
 import './Home.css';
 import DataViewer from '../components/DataViewer/DataViewer';
-import ResultViewer from '../components/ResultViewer/ResultViewer'
 
 const Home: React.FC = () => {
   return (
-    // <IonPage>
+    <IonPage>
       <IonContent>        
         <DataViewer />
       </IonContent>
-    // </IonPage>
+    </IonPage>
   );
 };
 

@@ -18,10 +18,10 @@ var multer = require('multer');
 var multParse = multer();
 
 //Get All Data
-app.get('/basic/result', function (req, res) {
+app.get('/basic/data', function (req, res) {
 
     console.log("here")
-
+    
     musicDb.getAllfestivalInfo(function (err, result) {
         if (!err) {
             res.send(result)
@@ -31,7 +31,7 @@ app.get('/basic/result', function (req, res) {
     })
 })
 //Get All Data 2
-app.get('/advance/result', function (req, res) {
+app.get('/advance/data', function (req, res) {
 
     console.log("here")
 
