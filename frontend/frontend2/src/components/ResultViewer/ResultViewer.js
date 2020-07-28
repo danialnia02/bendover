@@ -10,6 +10,8 @@ import {isMobile } from "react-device-detect";
 
 var data = require('./data.js')
 
+var link2 = "null"
+
 
 const ResultViewer = () => {
   const [newData, setnewData] = useState([]);
@@ -24,7 +26,8 @@ const ResultViewer = () => {
     festivalInput: "",
     festivals: "",    
     web: 'http://localhost:8011/',
-    mobile:'http://10.0.2.2:8011/'
+    mobile:'http://10.0.2.2/',
+    testLink:null
 
   })
 
@@ -36,13 +39,14 @@ const ResultViewer = () => {
       [evt.target.name]: value
     })
   }
+  
 
   // Get custom input
   const handleSubmit = (event) => {
     setLoading(true)
     event.preventDefault()
     var festival = state.festivals
-    var link;
+    var link;    
     
     if(isMobile){
       link=state.mobile;
@@ -50,10 +54,14 @@ const ResultViewer = () => {
       link=state.web;
     }
 
-    var url = link + festival + "/result/" + state.festivalInput
-    console.log(url)
+    var link2 = link + festival + "/result/" + state.festivalInput
+    setState({
+      ...state,
+      ["testLink"]: link2
+    })
+    console.log(link2)
 
-    axios.get(url)
+    axios.get(link2)
       .then(res => {
         var data = res.data
         console.log(data)
@@ -93,7 +101,7 @@ const ResultViewer = () => {
 
       setState({
         ...state,
-        ["data"]: data.exportTime()
+        ["data"]: null //data.exportTime()
       })
       setTimeout('', 3000)
       console.log(console.log(data.exportTime()))
@@ -108,6 +116,7 @@ const ResultViewer = () => {
     <div id='body'>
       <div class='container'>
         <h1>Result Viewer</h1>
+        <h1>{state.testLink}</h1>
         {/* <h1 class='text-primary table-title mb-3'>Data Viewer</h1> */}
 
         <Nav activeKey="/ResultViewer">
