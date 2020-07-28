@@ -236,6 +236,6 @@ var functions = {
 
 }
 
-// console.log(functions.exportTime())
+console.log(functions.exportTime())
 
 module.exports = functions
