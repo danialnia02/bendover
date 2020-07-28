@@ -6,6 +6,8 @@ import { Navbar, Nav, Form, Button, InputGroup, FormControl } from "react-bootst
 import Navbars from "../Navbar"
 import Col from 'react-bootstrap/Col';
 
+import {isMobile } from "react-device-detect";
+
 var data = require('./data.js')
 
 
@@ -17,12 +19,12 @@ const ResultViewer = () => {
     width: '100%',
     height: '400px',
     chartType: 'Gantt',
-    loader: <div>Loading Chart</div>,
+    loader: <div><h1>Loading Chart..</h1></div>,
     data: null,
     festivalInput: "",
-    festivals: "",
-    // link22: 'http://192.168.1.204:8011/',
-    link22: 'http://localhost:8011/'
+    festivals: "",    
+    web: 'http://localhost:8011/',
+    mobile:'http://10.0.2.2:8011/'
 
   })
 
@@ -40,7 +42,15 @@ const ResultViewer = () => {
     setLoading(true)
     event.preventDefault()
     var festival = state.festivals
-    var url = state.link22 + festival + "/result/" + state.festivalInput
+    var link;
+    
+    if(isMobile){
+      link=state.mobile;
+    }else{
+      link=state.web;
+    }
+
+    var url = link + festival + "/result/" + state.festivalInput
     console.log(url)
 
     axios.get(url)

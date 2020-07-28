@@ -7,14 +7,14 @@ const Posts = ({ posts, loading, noOfPosts }) => {
   if (loading) {
     return <h2>Loading...</h2>;
   }
-  console.log(noOfPosts)
+  // console.log(noOfPosts)
   if (noOfPosts === 0) {
     return (
       <div>The result is empty.</div>
     );
   } else {
     return (      
-        <table class='list-group' id='three'>
+        <table class='list-group'>
           <ReactBootStrap.Table striped bordered hover>
             <tr>
               <th class="list-header">performanceId</th>
