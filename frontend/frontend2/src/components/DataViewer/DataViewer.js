@@ -9,8 +9,15 @@ import { Navbar, Nav, Form, Button, Table } from "react-bootstrap"
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
 //
 import { isMobile } from "react-device-detect";
+import { Plugins } from '@capacitor/core'
+// import { url } from 'inspector';
+import Inspector from 'react-inspector'
+import { isCompositeComponent } from 'react-dom/test-utils';
+
+const { Storage } = Plugins;
 //
 
 const DataViewer = () => {
@@ -18,6 +25,8 @@ const DataViewer = () => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   var [postsPerPage] = useState(10);
+
+  var globalLink;
 
   //input get
   const [state, setState] = React.useState({
@@ -30,8 +39,36 @@ const DataViewer = () => {
     link2: 'http://localhost:8011/basic/data',
     searchLink: 'http://10.0.2.2/search',
     searchLink2: 'http://localhost:8011/search',
+
+    //cache data
+    cacheData: []
   })
 
+
+  //function get cache data
+  const setData = async (url, data) => {
+    await Storage.set({
+      key: 'http://localhost:8011/basic/data',
+      value: JSON.stringify(data)
+    })
+  };
+  //
+  function test() {
+
+  }
+
+  async function getAllData() {
+    // const  data  = await 
+    // console.log(data)
+    return Storage.get({ key: 'http://localhost:8011/basic/data' }).then((data) => { return data })
+  }
+
+  const keys = async () => {
+    const { keys } = await Storage.keys()
+    console.log(keys)
+    return keys
+    // return data;
+  }
 
 
   function handleChange(evt) {
@@ -80,26 +117,66 @@ const DataViewer = () => {
 
   //Get all inputs
   useEffect(() => {
-    const fetchPosts = async () => {
-      setLoading(true);
-      var res;
-      if (isMobile) {
-        res = await axios.get(state.link);
-      } else {
-        res = await axios.get(state.link2);
-      }
-      console.log(res)
-      if (res.data.length == 0) {
+    var cacheData = JSON.parse(localStorage.getItem('data'));
+    // console.log(JSON.stringify(getAllData()))    
+
+    // var cacheData = getAllData();
+
+    async function getAllData() {
+      const data = await Storage.get({ key: 'http://localhost:8011/basic/data' })
+      return Promise.resolve(data);
+
+    }
+
+    getAllData().then(data => { cacheData=data.value});
+    
+    // var testdata=await getAllData();    
+    if (cacheData != null) {
+      if (cacheData.length == 0) {
         setState({
           ...state,
           ["arrayLength"]: 0
         })
       }
-      setPosts(res.data);
+      console.log("using cache data");
+      console.log(cacheData)
+      setLoading(true);
+      setPosts(cacheData);
       setLoading(false);
-    };
+    } else {
+      console.log("not using cache data");
+      const fetchPosts = async () => {
+        setLoading(true);
+        var res;
+        var link;
+        if (isMobile) {
+          res = await axios.get(state.link);
+          link = state.link;
+          globalLink = state.link;
+        } else {
+          res = await axios.get(state.link2);
+          link = state.link2;
+          globalLink = state.link2;
+        }
+        // console.log(res)
+        if (res.data.length == 0) {
+          setState({
+            ...state,
+            ["arrayLength"]: 0
+          })
+        }
 
-    fetchPosts();
+        // localStorage.setItem('data',JSON.stringify(res.data))
+        //caching    
+        console.log(link)
+        setData(link, res.data)
+        console.log("here")
+        //
+        setPosts(res.data);
+        setLoading(false);
+      };
+      fetchPosts();
+    }
   }, []);
 
   function renderMobile() {

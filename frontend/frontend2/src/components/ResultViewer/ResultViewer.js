@@ -6,17 +6,15 @@ import { Navbar, Nav, Form, Button, InputGroup, FormControl } from "react-bootst
 import Navbars from "../Navbar"
 import Col from 'react-bootstrap/Col';
 
+
 import {isMobile } from "react-device-detect";
 
 var data = require('./data.js')
-
 var link2 = "null"
-
 
 const ResultViewer = () => {
   const [newData, setnewData] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const [state, setState] = React.useState({
     width: '100%',
     height: '400px',
@@ -28,7 +26,6 @@ const ResultViewer = () => {
     web: 'http://localhost:8011/',
     mobile:'http://10.0.2.2/',
     testLink:null
-
   })
 
 
@@ -126,36 +123,7 @@ const ResultViewer = () => {
         <Navbar bg="light" expand="lg ">
           <Navbar.Brand href="#home">Music-Db</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav" >
-            {/* <Navbar className=""> */}
-            {/* <Form className="row containerforfilterbox2 d-flex justify-content-center">
-              <div className="filtersection2">
-                <form onSubmit={handleSubmit}>
-                  <Form.Row> 
-
-                    <Form.Group as={Col} controlId="category1">
-                      <Form.Control as="select" value="Choose..." name="festivals" size="5" value={state.festivals} onChange={handleChange}>
-                        <option></option>
-                        <option value="basic">basic</option>
-                        <option value="advance">advance</option>
-                      </Form.Control>
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="searchid1">
-                      <input type="number" min="1" placeholder="Search" name="festivalInput" size="5" value={state.festivalInput} onChange={handleChange} />
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="searchbutton">
-                      <div className="d-block justify-content-center">
-                        <Button variant="outline-success" type="submit">Search</Button>
-                      </div>
-                    </Form.Group>
-                    
-                  </Form.Row>
-                </form>
-              </div>
-
-            </Form> */}
+          <Navbar.Collapse id="basic-navbar-nav" >            
             <form onSubmit={handleSubmit}>
               <Form inline>
 
