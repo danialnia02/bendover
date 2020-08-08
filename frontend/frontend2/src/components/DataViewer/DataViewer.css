@@ -127,10 +127,11 @@
     /* align-items:center; */
     justify-content: center;
     padding-bottom:5%;
+    columns: #000000;
   }
 
   .page-link {
-    color: black;
+    color: black !important; 
     text-decoration: underline;
     cursor: pointer;
     padding-left: 10px;
@@ -146,7 +147,7 @@
   .pagination > .active > a{
     background-color: #47ccde ;
     border-color: #47ccde ;
-    color: #fff;
+    color: #000000;
   }
   .pagination > li > a{
     border: 1px solid #47ccde ;
@@ -172,4 +173,5 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    color:#000000;
   }

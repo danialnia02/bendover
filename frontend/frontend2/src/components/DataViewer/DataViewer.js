@@ -8,14 +8,14 @@ import './DataViewer.css'
 import { Navbar, Nav, Form, Button, Table } from "react-bootstrap"
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import functions from './search';
 
 //
 import { isMobile } from "react-device-detect";
 import { Plugins } from '@capacitor/core'
 // import { url } from 'inspector';
-import Inspector from 'react-inspector'
-import { isCompositeComponent } from 'react-dom/test-utils';
+//import Inspector from 'react-inspector'
+//import { isCompositeComponent } from 'react-dom/test-utils';
 
 const { Storage } = Plugins;
 //
@@ -92,26 +92,42 @@ const DataViewer = () => {
       attribute2: state.attribute2,
       input2: state.input2,
     }
-    console.log(info)
-    console.log(info)
+    //console.log(info)
     var link;
     if (isMobile) {
       link = state.searchLink;
     } else {
       link = state.searchLink2;
     }
-    axios.post(link, info)
-      .then(res => {
-        var data = res.data
-        if (res.data.length == 0) {
-          console.log("There is no data here")
-          setState({
-            ...state,
-            ["arrayLength"]: 0
-          })
-        }
-        setPosts(res.data)
-      })
+
+    //getting the cached data
+    var cacheData = JSON.parse(localStorage.getItem('data'));
+    async function getAllData() {
+      const data = await Storage.get({ key: 'http://localhost:8011/basic/data' })
+      return Promise.resolve(data);
+
+    }
+    getAllData().then(data => { cacheData=data.value});
+    var resultArray=functions.search(cacheData,info);
+    setState({
+      ...state,
+      ["arrayLength"]:0
+    })
+    setPosts(resultArray);
+
+
+
+    // axios.post(link, info)
+    //   .then(res => {        
+    //     if (res.data.length == 0) {
+    //       console.log("There is no data here")
+    //       setState({
+    //         ...state,
+    //         ["arrayLength"]: 0
+    //       })
+    //     }
+    //     setPosts(res.data)
+    //   })
     // }
   }
 
@@ -139,7 +155,7 @@ const DataViewer = () => {
         })
       }
       console.log("using cache data");
-      console.log(cacheData)
+      //console.log(cacheData)
       setLoading(true);
       setPosts(cacheData);
       setLoading(false);
