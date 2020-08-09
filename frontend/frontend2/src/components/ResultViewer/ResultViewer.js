@@ -55,41 +55,21 @@ const ResultViewer = () => {
     console.log(dataType);
     console.log(festivalInput);
     console.log(state.allData)
-    var resultArray = functions.resultArray(dataType, festivalInput, state.allData)
-    console.log(resultArray)
-    if (resultArray.length == 0) {
-      console.log("There is no data here");
-    } else {
-      setState({
-        ...state,
-        ["data"]: resultArray
-      })
-      setnewData(resultArray);
-    }
+    getAllData().then(data => {
+      var testData = JSON.parse(data.value);
+      var resultArray = functions.resultArray(dataType, festivalInput, testData)      
+      if (resultArray.length == 0) {
+        console.log("There is no data here");
+      } else {
+        setState({
+          ...state,
+          ["data"]: resultArray
+        })
+        setnewData(resultArray);
+      }
+    })
 
 
-    // var link2 = state.web + dataType + "/result/" + state.festivalInput
-    // console.log(link2);
-    // // setState({
-    // //   ...state,
-    // //   ["links"]: link2
-    // // })
-    // // console.log(link2)
-
-    // axios.get(link2)
-    //   .then(res => {
-    //     var data = res.data
-    //     console.log(data)
-    //     if (res.data.length == 0) {
-    //       console.log("There is no data here")
-    //     } else {
-    //       setState({
-    //         ...state,
-    //         ["data"]: data
-    //       })
-    //       setnewData(data)
-    //     }
-    //   })
   }
 
   function getData() {

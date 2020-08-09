@@ -152,10 +152,10 @@ const DataViewer = () => {
     } catch (error) {
       //else use the cache data from the previous connection        
       console.log("using cache data");
-      async function getAllData() {
-        const data = await Storage.get({ key: "testing" })
-        return Promise.resolve(data);
-      }
+      // async function getAllData() {
+      //   const data = await Storage.get({ key: "testing" })
+      //   return Promise.resolve(data);
+      // }
 
       getAllData().then(data => {        
         var cacheData = data.value;
