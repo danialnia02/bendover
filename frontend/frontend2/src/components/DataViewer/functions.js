@@ -1,4 +1,5 @@
 var functions = {
+    //dataviewer search functions
     search: function (cacheData, info) {
 
         cacheData=JSON.parse(cacheData)
@@ -76,9 +77,9 @@ var functions = {
             }
         };
         return resultArray;
-    }
-
+    },
 
 }
+
 
 module.exports = functions;

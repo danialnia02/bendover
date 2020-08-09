@@ -8,7 +8,7 @@ import './DataViewer.css'
 import { Navbar, Nav, Form, Button } from "react-bootstrap"
 //import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import functions from './search';
+import functions from './functions';
 
 //
 import { isMobile } from "react-device-detect";
@@ -48,21 +48,18 @@ const DataViewer = () => {
 
   //function get set data
   const setData = async (url, data) => {
-    // console.log("globalLink: "+globalLink);
-    // console.log("url: "+url);
     console.log(data)
-    await Storage.set({
-      // key: 'http://localhost:8011/basic/data',
-      key: "testing",
+    await Storage.set({      
+      key: "AllData",
       value: JSON.stringify(data)
     })
   };
   //
-
+  //getting the data from storage
   async function getAllData() {
     // const  data  = await 
     // console.log(data)
-    return Storage.get({ key: "testing" }).then((data) => { return data })
+    return Storage.get({ key: "AllData" }).then((data) => { return data })
   }
 
   const keys = async () => {
@@ -102,16 +99,7 @@ const DataViewer = () => {
       link = state.searchLink2;
     }
 
-    //getting the cached data
-    //var cacheData = JSON.parse(localStorage.getItem('data'));
-
-    var cacheData;
-    async function getAllData() {
-      const data = await Storage.get({ key: "testing" })
-      return Promise.resolve(data);
-
-    }
-    //getAllData().then(data => {console.log(data.value) });
+    //getting the cached data        
     getAllData().then(data => {
       var resultArray = functions.search(data.value, info);
       setState({
@@ -129,16 +117,7 @@ const DataViewer = () => {
   }
 
   //Get all inputs
-  useEffect(() => {
-    //var cacheData = JSON.parse(localStorage.getItem('data'));
-    // console.log(JSON.stringify(getAllData()))    
-    // var cacheData = getAllData();
-
-
-    // console.log("using cache data");
-    //console.log(cacheData)
-
-    // } else {
+  useEffect(() => {    
     //if connection is good, always get from database 1st
     try {
       const fetchPosts = async () => {
@@ -154,8 +133,7 @@ const DataViewer = () => {
           res = await axios.get(state.link2);
           link = state.link2;
           globalLink = state.link2;
-        }
-        // console.log(res)
+        }        
         if (res.data.length == 0) {
           setState({
             ...state,

@@ -5,18 +5,22 @@ import './ResultViewer.css'
 import { Navbar, Nav, Form, Button, InputGroup, FormControl } from "react-bootstrap"
 import Navbars from "../Navbar"
 import Col from 'react-bootstrap/Col';
+import functions from './functions';
 
 
-import {isMobile } from "react-device-detect";
+import { isMobile } from "react-device-detect";
+import { Plugins } from '@capacitor/core'
+import { resultsArray } from '../DataViewer/functions';
+
+const { Storage } = Plugins;
 
 var data = require('./data.js')
 var link2 = "null"
 
-
 const ResultViewer = () => {
   const [newData, setnewData] = useState([]);
+  const [allData, setallData] = useState([]);
   const [loading, setLoading] = useState(false);
-  var globalLink;
   const [state, setState] = React.useState({
     width: '100%',
     height: '400px',
@@ -24,21 +28,13 @@ const ResultViewer = () => {
     loader: <div><h1>Loading Chart..</h1></div>,
     data: null,
     festivalInput: "",
-    festivals: "",    
+    festivals: "",
     web: 'http://localhost:8011/',
-    mobile:'http://10.0.2.2/',
-    testLink:null,
+    mobile: 'http://10.0.2.2/',
+    links: null,
 
-    cacheData:[]
+    allData: null
   })
-
-  //function set the cache data
-  const setData = async(url,data) =>{
-    await Storage.set({
-      key:globalLink,
-      value:JSON.stringify(data)
-    })
-  }
 
 
   function handleChange(evt) {
@@ -48,47 +44,57 @@ const ResultViewer = () => {
       [evt.target.name]: value
     })
   }
-  
+
 
   // Get custom input
   const handleSubmit = (event) => {
     setLoading(true)
     event.preventDefault()
-    var festival = state.festivals
-    var link;    
-    
-    if(isMobile){
-      link=state.mobile;
-    }else{
-      link=state.web;
+    var dataType = state.festivals
+    var festivalInput = state.festivalInput;
+    console.log(dataType);
+    console.log(festivalInput);
+    console.log(state.allData)
+    var resultArray = functions.resultArray(dataType, festivalInput, state.allData)
+    console.log(resultArray)
+    if (resultArray.length == 0) {
+      console.log("There is no data here");
+    } else {
+      setState({
+        ...state,
+        ["data"]: resultArray
+      })
+      setnewData(resultArray);
     }
 
-    var link2 = link + festival + "/result/" + state.festivalInput
-    setState({
-      ...state,
-      ["testLink"]: link2
-    })
-    console.log(link2)
 
-    axios.get(link2)
-      .then(res => {
-        var data = res.data
-        console.log(data)
-        if (res.data.length == 0) {
-          console.log("There is no data here")
-        } else {
-          setState({
-            ...state,
-            ["data"]: data
-          })
-          setnewData(data)
-        }
-      })
+    // var link2 = state.web + dataType + "/result/" + state.festivalInput
+    // console.log(link2);
+    // // setState({
+    // //   ...state,
+    // //   ["links"]: link2
+    // // })
+    // // console.log(link2)
+
+    // axios.get(link2)
+    //   .then(res => {
+    //     var data = res.data
+    //     console.log(data)
+    //     if (res.data.length == 0) {
+    //       console.log("There is no data here")
+    //     } else {
+    //       setState({
+    //         ...state,
+    //         ["data"]: data
+    //       })
+    //       setnewData(data)
+    //     }
+    //   })
   }
 
   function getData() {
     if (newData == null || newData == "") {
-      console.log(state.data)
+      //console.log(state.data)
       return state.data;
     } else {
       var newArray = newData;
@@ -102,18 +108,61 @@ const ResultViewer = () => {
     }
   }
 
-  //
+  //setting the data in storage
+  const setData = async (data) => {
+    console.log(data);
+    await Storage.set({
+      key: "allData",
+      value: JSON.stringify(data)
+    })
+  }
+  //getting the data from storage
+  async function getAllData() {
+    return Storage.get({ key: "AllData" }).then((data) => { return data })
+  }
   //Get all inputs
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
+
+      var res;
+      var link;
+      //check which platform is the user on
+      if (isMobile) {
+        console.log("im on mobile")
+        link = state.mobile
+      } else {
+        console.log("im on web")
+        link = state.web
+      }
+      console.log(link)
+      axios.get(link + "basic/data")
+        .then(res => {
+          var data = res.data
+
+          if (res.data.length == 0) {
+            console.log("There is no data here")
+          } else {
+            setData(data);
+            setallData(data);
+
+            setState({
+              ...state,
+              ["allData"]: data //data.exportTime()
+            })
+
+            //caching
+
+
+          }
+        })
 
       setState({
         ...state,
         ["data"]: null //data.exportTime()
       })
       setTimeout('', 3000)
-      console.log(console.log(data.exportTime()))
+      //console.log(console.log(data.exportTime()))
       setLoading(false);
     };
 
@@ -135,7 +184,7 @@ const ResultViewer = () => {
         <Navbar bg="light" expand="lg ">
           <Navbar.Brand href="#home">Music-Db</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav" >            
+          <Navbar.Collapse id="basic-navbar-nav" >
             <form onSubmit={handleSubmit}>
               <Form inline>
 
