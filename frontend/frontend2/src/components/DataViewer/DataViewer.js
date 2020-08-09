@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Posts from './Posts';
 import Pagination from './Pagination';
-import ReactPaginate from 'react-paginate';
+//import ReactPaginate from 'react-paginate';
 import Navbars from "../Navbar"
 import axios from 'axios';
 import './DataViewer.css'
-import { Navbar, Nav, Form, Button, Table } from "react-bootstrap"
-import Row from 'react-bootstrap/Row';
+import { Navbar, Nav, Form, Button } from "react-bootstrap"
+//import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import functions from './search';
 
@@ -24,9 +24,9 @@ const DataViewer = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [page, refreshpage] = useState([])
   var [postsPerPage] = useState(10);
-
-  var globalLink;
+  var globalLink = "testing";
 
   //input get
   const [state, setState] = React.useState({
@@ -41,26 +41,28 @@ const DataViewer = () => {
     searchLink2: 'http://localhost:8011/search',
 
     //cache data
-    cacheData: []
+    cacheData: [],
+    testData: []
   })
 
 
-  //function get cache data
+  //function get set data
   const setData = async (url, data) => {
+    // console.log("globalLink: "+globalLink);
+    // console.log("url: "+url);
+    console.log(data)
     await Storage.set({
-      key: 'http://localhost:8011/basic/data',
+      // key: 'http://localhost:8011/basic/data',
+      key: "testing",
       value: JSON.stringify(data)
     })
   };
   //
-  function test() {
-
-  }
 
   async function getAllData() {
     // const  data  = await 
     // console.log(data)
-    return Storage.get({ key: 'http://localhost:8011/basic/data' }).then((data) => { return data })
+    return Storage.get({ key: "testing" }).then((data) => { return data })
   }
 
   const keys = async () => {
@@ -101,67 +103,46 @@ const DataViewer = () => {
     }
 
     //getting the cached data
-    var cacheData = JSON.parse(localStorage.getItem('data'));
+    //var cacheData = JSON.parse(localStorage.getItem('data'));
+
+    var cacheData;
     async function getAllData() {
-      const data = await Storage.get({ key: 'http://localhost:8011/basic/data' })
+      const data = await Storage.get({ key: "testing" })
       return Promise.resolve(data);
 
     }
-    getAllData().then(data => { cacheData=data.value});
-    var resultArray=functions.search(cacheData,info);
-    setState({
-      ...state,
-      ["arrayLength"]:0
-    })
-    setPosts(resultArray);
+    //getAllData().then(data => {console.log(data.value) });
+    getAllData().then(data => {
+      var resultArray = functions.search(data.value, info);
+      setState({
+        ...state,
+        ["arrayLength"]: 0
+      })
 
+      setState({
+        ...state,
+        ["testData"]: resultArray
+      })
+      setPosts(resultArray);
 
-
-    // axios.post(link, info)
-    //   .then(res => {        
-    //     if (res.data.length == 0) {
-    //       console.log("There is no data here")
-    //       setState({
-    //         ...state,
-    //         ["arrayLength"]: 0
-    //       })
-    //     }
-    //     setPosts(res.data)
-    //   })
-    // }
+    });
   }
 
   //Get all inputs
   useEffect(() => {
-    var cacheData = JSON.parse(localStorage.getItem('data'));
+    //var cacheData = JSON.parse(localStorage.getItem('data'));
     // console.log(JSON.stringify(getAllData()))    
-
     // var cacheData = getAllData();
 
-    async function getAllData() {
-      const data = await Storage.get({ key: 'http://localhost:8011/basic/data' })
-      return Promise.resolve(data);
 
-    }
+    // console.log("using cache data");
+    //console.log(cacheData)
 
-    getAllData().then(data => { cacheData=data.value});
-    
-    // var testdata=await getAllData();    
-    if (cacheData != null) {
-      if (cacheData.length == 0) {
-        setState({
-          ...state,
-          ["arrayLength"]: 0
-        })
-      }
-      console.log("using cache data");
-      //console.log(cacheData)
-      setLoading(true);
-      setPosts(cacheData);
-      setLoading(false);
-    } else {
-      console.log("not using cache data");
+    // } else {
+    //if connection is good, always get from database 1st
+    try {
       const fetchPosts = async () => {
+        console.log("not using cache data")
         setLoading(true);
         var res;
         var link;
@@ -181,8 +162,6 @@ const DataViewer = () => {
             ["arrayLength"]: 0
           })
         }
-
-        // localStorage.setItem('data',JSON.stringify(res.data))
         //caching    
         console.log(link)
         setData(link, res.data)
@@ -192,7 +171,29 @@ const DataViewer = () => {
         setLoading(false);
       };
       fetchPosts();
-    }
+    } catch (error) {
+      //else use the cache data from the previous connection        
+      console.log("using cache data");
+      async function getAllData() {
+        const data = await Storage.get({ key: "testing" })
+        return Promise.resolve(data);
+      }
+
+      getAllData().then(data => {        
+        var cacheData = data.value;
+        if (cacheData.length == 0) {
+          setState({
+            ...state,
+            ["arrayLength"]: 0
+          })
+          setPosts()
+        }
+        setLoading(true);
+        setPosts(cacheData);
+        setLoading(false);
+      });      
+    }    
+    // }
   }, []);
 
   function renderMobile() {
@@ -217,12 +218,16 @@ const DataViewer = () => {
       <div class='container'>
 
         <h1>{renderMobile()}</h1>
+        <h1>{JSON.stringify(state.testData)}</h1>
 
         <h1>Data Viewer</h1>
         {/* <h1 class='text-primary table-title mb-3'>Data Viewer</h1> */}
 
         <Nav activeKey="/DataViewer">
-          <Navbars></Navbars>
+          <Navbars
+            allData={posts}
+            cacheData={state.cacheData}
+          ></Navbars>
         </Nav>
         <Form.Control as="select" name="pagination" value={state.pagination} placeholder="test" onChange={handleChange} >
           <option value="10">Click here to change the number of posts per page</option>
@@ -234,6 +239,7 @@ const DataViewer = () => {
         {/* Navbar header Code */}
         <Navbar bg="light" expand="lg ">
           <Navbar.Brand href="#home">Music-Db Search</Navbar.Brand>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" >
             {/* <Navbar className=""> */}

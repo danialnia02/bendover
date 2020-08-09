@@ -2,7 +2,9 @@ import React from 'react';
 import { Nav } from "react-bootstrap"
 import './Navbar.css'
 
-const Navbars = () => {
+const Navbars = ({allData,cacheData}) => {
+    // console.log(allData);
+    // console.log(cacheData)
     return (
         <div className="nav">
             {/* Nav bar */}

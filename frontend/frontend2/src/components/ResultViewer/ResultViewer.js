@@ -12,9 +12,11 @@ import {isMobile } from "react-device-detect";
 var data = require('./data.js')
 var link2 = "null"
 
+
 const ResultViewer = () => {
   const [newData, setnewData] = useState([]);
   const [loading, setLoading] = useState(false);
+  var globalLink;
   const [state, setState] = React.useState({
     width: '100%',
     height: '400px',
@@ -25,8 +27,18 @@ const ResultViewer = () => {
     festivals: "",    
     web: 'http://localhost:8011/',
     mobile:'http://10.0.2.2/',
-    testLink:null
+    testLink:null,
+
+    cacheData:[]
   })
+
+  //function set the cache data
+  const setData = async(url,data) =>{
+    await Storage.set({
+      key:globalLink,
+      value:JSON.stringify(data)
+    })
+  }
 
 
   function handleChange(evt) {

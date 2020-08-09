@@ -1,12 +1,13 @@
 var functions = {
     search: function (cacheData, info) {
 
+        cacheData=JSON.parse(cacheData)
         console.log(cacheData);
-        console.log(info);
-        console.log(info.attribute1);
-        console.log(info.input1);
-        console.log(info.attribute2);
-        console.log(info.input2);
+        // console.log(info);
+        // console.log(info.attribute1);
+        // console.log(info.input1);
+        // console.log(info.attribute2);
+        // console.log(info.input2);
         var attribute1 = info.attribute1;
         var input1 = info.input1;
         var attribute2 = info.attribute2;
@@ -33,7 +34,7 @@ var functions = {
             console.log("here3");
             console.log(resultArray);
             return resultArray;
-        }
+        }        
 
 
     },
@@ -52,6 +53,7 @@ var functions = {
             }
 
         };
+        console.log(resultArray);
         return resultArray;
     },
     checkFor2: function (attribute1, input1, attribute2, input2, cacheData) {
