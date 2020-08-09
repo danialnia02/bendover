@@ -33,7 +33,8 @@ const ResultViewer = () => {
     mobile: 'http://10.0.2.2/',
     links: null,
 
-    allData: null
+    allData: null,
+    description: "Currently showing nothing, enter your input above to retrive your data."
   })
 
 
@@ -55,19 +56,32 @@ const ResultViewer = () => {
     console.log(dataType);
     console.log(festivalInput);
     console.log(state.allData)
+
     getAllData().then(data => {
       var testData = JSON.parse(data.value);
-      var resultArray = functions.resultArray(dataType, festivalInput, testData)      
-      if (resultArray.length == 0) {
-        console.log("There is no data here");
-      } else {
+      var resultArray = functions.resultArray(dataType, festivalInput, testData)
+
+      if(resultArray!=null){
         setState({
           ...state,
           ["data"]: resultArray
         })
+        setState({
+          ...state,
+          ["description"]: ""
+        })
         setnewData(resultArray);
-      }
+      }else{
+        console.log("There is no data here");
+
+        setState({
+          ...state,
+          ["description"]: "Entered an invalid input!"
+        })
+      }      
+              
     })
+
 
 
   }
@@ -116,7 +130,7 @@ const ResultViewer = () => {
         link = state.web
       }
       console.log(link)
-      axios.get(link + "basic/data")
+      axios.get(link + "basic/result")
         .then(res => {
           var data = res.data
 
@@ -199,6 +213,7 @@ const ResultViewer = () => {
 
         {/* output Code */}
         <div id="smallcontainer">
+          <h1>{state.description}</h1>
           <div id="chart">
             <Chart
               width={state.width}

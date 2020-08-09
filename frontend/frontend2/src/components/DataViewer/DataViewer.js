@@ -35,8 +35,8 @@ const DataViewer = () => {
     pagination: 10,
     attribute1: "",
     attribute2: "",
-    link: 'http://10.0.2.2/basic/data',
-    link2: 'http://localhost:8011/basic/data',
+    link: 'http://10.0.2.2/basic/result',
+    link2: 'http://localhost:8011/basic/result',
     searchLink: 'http://10.0.2.2/search',
     searchLink2: 'http://localhost:8011/search',
 
@@ -60,6 +60,7 @@ const DataViewer = () => {
     // const  data  = await 
     // console.log(data)
     return Storage.get({ key: "AllData" }).then((data) => { return data })
+    
   }
 
   const keys = async () => {
@@ -115,6 +116,8 @@ const DataViewer = () => {
 
     });
   }
+
+  
 
   //Get all inputs
   useEffect(() => {    
@@ -187,6 +190,11 @@ const DataViewer = () => {
   var indexOfFirstPost = indexOfLastPost - state.pagination;
   var currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
   //////////////////////
@@ -217,6 +225,7 @@ const DataViewer = () => {
         {/* Navbar header Code */}
         <Navbar bg="light" expand="lg ">
           <Navbar.Brand href="#home">Music-Db Search</Navbar.Brand>
+          <button onClick={refreshPage}>Click to reload!</button>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" >

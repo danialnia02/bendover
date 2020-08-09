@@ -1,4 +1,4 @@
-@url = http://localhost:8011/basic/insert
+@url = http://localhost:8011/basic/insert2
 @url2 = http://localhost:8011/basic/insert/individual
 
 @httpMethod = POST

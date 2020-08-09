@@ -26,10 +26,7 @@ var functions = {
     },
     calculateTimeBasic: function (festivalArray) {
         var timeArray = [festivalArray[0]];
-        
         var currentArray = festivalArray;
-
-
 
         //get the earliest end Time
         for (var i = 0; i < festivalArray.length; i++) {            

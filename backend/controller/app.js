@@ -3,7 +3,6 @@ var app = express();
 var musicDb = require('../model/database.js');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
-var formidableMiddleware = require('express-formidable')
 var path = require('path');
 
 
@@ -14,35 +13,78 @@ app.use('/', express.static('../frontend'))
 var cors = require('cors')
 app.use(cors());
 
-var multer = require('multer');
-var multParse = multer();
+
+//reset and recreate the table
+app.get('/reset', function (req, res) {
+
+    musicDb.resetTable2(function (error, result) {
+        if (error) {
+            console.log(error);
+            return res.json({ error: error });
+        }
+        return res.json({ success: true });
+    });
+});
 
 //Get All Data
 app.get('/basic/data', function (req, res) {
 
-    console.log("here")
-    
-    musicDb.getAllfestivalInfo(function (err, result) {
-        if (!err) {
-            res.send(result)
-        } else {
-            res.status(500).send({ error: 'server Error', code: 500 })
+    musicDb.getAllfestivalInfo(function (error, result) {
+        if (error) {
+            console.log(error);
+            return res.json({ error: error });
         }
-    })
-})
-//Get All Data 2
+        res.send(result);
+    });
+});
+
 app.get('/advance/data', function (req, res) {
 
-    console.log("here")
+    musicDb.getAllfestivalInfo(function (error, result) {
+        if (error) {
+            console.log(error);
+            return res.json({ error: error });
+        }
+        res.send(result);
+    });
+});
 
-    musicDb.getAllfestivalInfo(function (err, result) {
-        if (!err) {
-            res.send(result)
+//get festivalId for basic
+app.get('/basic/result', function (req, res, next) {
+    const { festivalId } = req.query;
+    musicDb.getAllfestivalInfoBasic(festivalId, function (err, result) {
+        if (err) {
+            return next(err);
         } else {
-            res.status(500).send({ error: 'server Error', code: 500 })
+            console.log('/basic/result -Result', result)
+            res.json(result);
         }
     })
 })
+
+//get festivalId for result
+app.get('/advance/result', function (req, res, next) {
+
+    const { festivalId } = req.query;
+
+    musicDb.getAllfestivalInfoAdvance(festivalId,function (err, result) {
+        if (err) {
+            return next(err);
+        } else {
+            console.log('/basic/result -Result', result)
+            res.json(result);
+        }
+    })
+})
+
+
+app.use(function (err, req, res, next) {
+    return res.json({
+        error: err.message, code: 500
+
+    })
+})
+
 
 //Get Data based on festivalId
 app.get('/basic/result/:festivalid', function (req, res) {
@@ -101,7 +143,7 @@ app.get('/basic/results/:performanceId', function (req, res) {
 })
 
 //Get Data based on search bar in Data Viewer
-app.post('/search', function (req, res) {    
+app.post('/search', function (req, res) {
     var attribute1 = req.body.attribute1;
     var input1 = req.body.input1;
     var attribute2 = req.body.attribute2;
@@ -142,59 +184,38 @@ app.post('/search', function (req, res) {
         }
     })
 })
-//Insert data into database(basic)
+
+//basic insert
 app.post('/basic/insert', function (req, res) {
     var { data } = req.body
-    // console.log({data})
+    console.log({ data })
 
-    musicDb.InsertIntoFestivalBulk({ data }, function (err, result) {
+    musicDb.InsertIntoFestivalBulk2(data, function (err, result) {
         if (!err) {
-
-            res.send("Your data has been inserted!");
+            res.status(200).send(JSON.parse('{"result":"success"}'));
+        } else if (err.errno == 1048) {
+            res.status(400).send(JSON.parse('{"error":"Null Entry","code":400}'));
+        } else if (err.errno == 1062) {
+            res.status(400).send(JSON.parse('{"error":"Duplicate Entry","code":400}'));
         } else {
-            var string;
-            if (err == "undefined") {
-                errOutput = "Something is undefined."
-                res.send(errOutput)
-            }
-            switch (err.number) {
-                case 207: string = "Invalid input"
-                    break;
-                case 2627: string = "Duplicate entries"
-                    break;
-                case 8114: string = "Invalid input"
-                    break;
-                default: string = "Other error"
-            }
-            res.send("{\"error\":" + string + ",\"code\":" + err.number + "}")
+            res.status(500).send(JSON.parse('{"error":"Server Error","code":500}'));
         }
     })
 })
-
+//advance insert
 app.post('/advance/insert', function (req, res) {
     var { data } = req.body
-    // console.log({data})
+    console.log({ data })
 
-    musicDb.InsertIntoFestivalBulk({ data }, function (err, result) {
+    musicDb.InsertIntoFestivalBulk2(data, function (err, result) {
         if (!err) {
-
-            res.send(result);
+            res.status(200).send(JSON.parse('{"result":"success"}'));
+        } else if (err.errno == 1048) {
+            res.status(400).send(JSON.parse('{"error":"Null Entry","code":400}'));
+        } else if (err.errno == 1062) {
+            res.status(400).send(JSON.parse('{"error":"Duplicate Entry","code":400}'));
         } else {
-            var string;
-            if (err == "undefined") {
-                errOutput = "Something is undefined."
-                res.send(errOutput)
-            }
-            switch (err.number) {
-                case 207: string = "Invalid input"
-                    break;
-                case 2627: string = "Duplicate entries"
-                    break;
-                case 8114: string = "Invalid input"
-                    break;
-                default: string = "Other error"
-            }
-            res.send("{\"error\":" + string + ",\"code\":" + err.number + "}")
+            res.status(500).send(JSON.parse('{"error":"Server Error","code":500}'));
         }
     })
 })

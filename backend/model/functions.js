@@ -1,27 +1,28 @@
 
-var functions = {
-    calculateTime: function (festivalArray) {
-        var timeArray = [festivalArray[0]];
+var functions = {    
+    calculateTime: function (festivalArray, userInput) {
+        if (festivalArray.length == 0) {
+            return {result:[]}
+        }
 
-        // var latestEndTime = festivalArray[0];
+        festivalArray = functions.convertTimeBasic(festivalArray);
+
+
+
+        var result = [festivalArray[0]];
         var currentArray = festivalArray;
-
-
 
         //get the earliest end Time
         for (var i = 0; i < festivalArray.length; i++) {
-            // if (parseInt(festivalArray[i].endTime) > latestEndTime.endTime) {
-            //     latestEndTime = festivalArray[i];
-            // }
+
             //get the earliest start and end time
-            if (parseInt(festivalArray[i].startTime) < timeArray[0].startTime) {
-                if (parseInt(festivalArray[i].endTime) < timeArray[0].endTime) {
-                    timeArray[0] = festivalArray[i];
+            if (parseInt(festivalArray[i].startTime) < result[0].startTime) {
+                if (parseInt(festivalArray[i].endTime) < result[0].endTime) {
+                    result[0] = festivalArray[i];
                 }
             }
         }
-        //1: 1000 and 1100                    
-        // console.log("here " + JSON.stringify(currentArray))
+        //1: 1000 and 1100                            
 
         var ArrayCount = 0;
         var doCount = 0;
@@ -29,7 +30,7 @@ var functions = {
             //removed current time from the array
             try {
                 for (var i = 0; i < currentArray.length; i++) {
-                    if (currentArray[i].performanceId == timeArray[ArrayCount].performanceId) {
+                    if (currentArray[i].performanceId == result[ArrayCount].performanceId) {
                         currentArray.splice(i, 1);
                         // console.log("here" + JSON.stringify(currentArray))
                     }
@@ -48,11 +49,10 @@ var functions = {
 
                 //get the next closest start time                
                 //check if number is before
-                if (parseInt(currentArray[i].startTime) < timeArray[ArrayCount].endTime) {
-                } else if (parseInt(currentArray[i].startTime) >= timeArray[ArrayCount].endTime) {
-                    var raveEnd = parseInt(timeArray[ArrayCount].endTime)
-                    var raveStart = parseInt(currentArray[i].startTime)
-                    // timediff = parseInt(currentArray[i].startTime) - timeArray[ArrayCount].endTime
+                if (parseInt(currentArray[i].startTime) < result[ArrayCount].endTime) {
+                } else if (parseInt(currentArray[i].startTime) >= result[ArrayCount].endTime) {
+                    var raveEnd = parseInt(result[ArrayCount].endTime)
+                    var raveStart = parseInt(currentArray[i].startTime)                    
                     timediff = raveStart - raveEnd
 
                     if (timediff < minStartTime) {
@@ -64,18 +64,30 @@ var functions = {
             doCount++;
             ArrayCount++;
             if (arrayId !== -100) {
-                timeArray[ArrayCount] = currentArray[arrayId];
+                result[ArrayCount] = {
+                    performanceId: currentArray[arrayId].performanceId,
+                    startTime: currentArray[arrayId].startTime,
+                    endTime: currentArray[arrayId].endTime
+                }
+                    console.log(result[ArrayCount])
             }
         } while (doCount < festivalArray.length)
 
-        // console.log(timeArray);
-        return (timeArray)
+        console.log(result);
+        return ({result})
     },
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    calculateTime2: function (festivalArray) {
-        var timeArray = [festivalArray[0]];
 
-        // var latestEndTime = festivalArray[0];
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    calculateTime2: function (festivalArray, userInput) {
+
+        if (festivalArray.length == 0) {
+            return {result:[]}
+        }
+
+        festivalArray = functions.convertTimeAdvance(festivalArray);
+
+        var result = [festivalArray[0]];
+        
         var currentArray = festivalArray;
         var firstRave;
 
@@ -84,25 +96,20 @@ var functions = {
         //get the earliest end Time
         for (var i = 0; i < festivalArray.length; i++) {
             //get the earliest start and end time
-            if (parseInt(festivalArray[i].startTime) < timeArray[0].startTime) {
-                if (parseInt(festivalArray[i].endTime) < timeArray[0].endTime) {
-                    timeArray[0] = festivalArray[i];
+            if (parseInt(festivalArray[i].startTime) < result[0].startTime) {
+                if (parseInt(festivalArray[i].endTime) < result[0].endTime) {
+                    result[0] = festivalArray[i];
                 }
             }
         }
-        firstRave = timeArray[0];
+        firstRave = result[0];
 
         for (var y = 0; y < festivalArray.length; y++) {
-            if (parseInt(festivalArray[y].startTime) <= firstRave.startTime && (parseInt(firstRave.popularity) < parseInt(festivalArray[y].popularity))) {
-                // if (parseInt(festivalArray[y].endTime) <= firstRave.endTime) {
-                // if (parseInt(firstRave.popularity) < parseInt(festivalArray[y].popularity)) {
+            if (parseInt(festivalArray[y].startTime) <= firstRave.startTime && (parseInt(firstRave.popularity) < parseInt(festivalArray[y].popularity))) {                
                 firstRave = festivalArray[y]
-                timeArray[0] = firstRave
-                // }
-                // }
+                result[0] = firstRave                
             }
-        };
-        // console.log(firstRave)
+        };        
 
         var ArrayCount = 0;
         var doCount = 0;
@@ -110,9 +117,8 @@ var functions = {
             //removed current time from the array
             try {
                 for (var i = 0; i < currentArray.length; i++) {
-                    if (currentArray[i].performanceId == timeArray[ArrayCount].performanceId) {
-                        currentArray.splice(i, 1);
-                        // console.log("here" + JSON.stringify(currentArray))
+                    if (currentArray[i].performanceId == result[ArrayCount].performanceId) {
+                        currentArray.splice(i, 1);                        
                     }
                 }
             } catch (err) {
@@ -129,9 +135,9 @@ var functions = {
 
                 //get the next closest start time                
                 //check if number is before
-                if (parseInt(currentArray[i].startTime) < timeArray[ArrayCount].endTime) {
-                } else if (parseInt(currentArray[i].startTime) >= timeArray[ArrayCount].endTime) {
-                    var raveEnd = parseInt(timeArray[ArrayCount].endTime)
+                if (parseInt(currentArray[i].startTime) < result[ArrayCount].endTime) {
+                } else if (parseInt(currentArray[i].startTime) >= result[ArrayCount].endTime) {
+                    var raveEnd = parseInt(result[ArrayCount].endTime)
                     var raveStart = parseInt(currentArray[i].startTime)
                     timediff = raveStart - raveEnd
 
@@ -156,20 +162,20 @@ var functions = {
                         }
                     }
                 };
-                timeArray[ArrayCount] = nextRave;
+                result[ArrayCount] = nextRave;
 
             }
-            if (timeArray.length == 1) {
+            if (result.length == 1) {
                 for (var y = 0; y < festivalArray.length; y++) {
-                    if (parseInt(festivalArray[y].startTime) >= timeArray[0].popularity) {
-                        timeArray[0] = festivalArray[y];
+                    if (parseInt(festivalArray[y].startTime) >= result[0].popularity) {
+                        result[0] = festivalArray[y];
                     }
                 };
             }
         } while (doCount < festivalArray.length)
 
         // console.log(timeArray);
-        return (timeArray)
+        return ({result})
     },
     ////////////////////////////////////////////////////////////////////////////////////////////////
     exportTime: function (array) {
@@ -233,6 +239,45 @@ var functions = {
         var returnN = milisecs + 1592841600000
         // console.log(returnN)
         return (returnN)
+    },
+    convertTimeBasic: function (timeArray) {
+        var currentArray = [];
+        for (var i = 0; i < timeArray.length; i++) {
+            var newStartTime = timeArray[i].startTime.split(/[.:]/);
+            newStartTime = newStartTime[1] + newStartTime[2]
+
+            var newEndTime = timeArray[i].endTime.split(/[.:]/);
+            newEndTime = newEndTime[1] + newEndTime[2]
+
+
+            currentArray.push({
+                performanceId: timeArray[i].performanceId,
+                festivalId: timeArray[i].festivalArray,
+                startTime: newStartTime,
+                endTime: newEndTime,                
+            })
+        }
+        return currentArray
+    },
+    convertTimeAdvance: function (timeArray) {
+        var currentArray = [];
+        for (var i = 0; i < timeArray.length; i++) {
+            var newStartTime = timeArray[i].startTime.split(/[.:]/);
+            newStartTime = newStartTime[1] + newStartTime[2]
+
+            var newEndTime = timeArray[i].endTime.split(/[.:]/);
+            newEndTime = newEndTime[1] + newEndTime[2]
+
+
+            currentArray.push({
+                performanceId: timeArray[i].performanceId,
+                festivalId: timeArray[i].festivalArray,
+                startTime: newStartTime,
+                endTime: newEndTime,
+                popularity: timeArray[i].popularity
+            })
+        }
+        return currentArray
     }
 }
 
