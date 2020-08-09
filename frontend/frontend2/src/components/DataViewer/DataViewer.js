@@ -35,8 +35,8 @@ const DataViewer = () => {
     pagination: 10,
     attribute1: "",
     attribute2: "",
-    link: 'http://10.0.2.2/basic/result',
-    link2: 'http://localhost:8011/basic/result',
+    link: 'http://10.0.2.2/basic/data',
+    link2: 'http://localhost:8011/basic/data',
     searchLink: 'http://10.0.2.2/search',
     searchLink2: 'http://localhost:8011/search',
 
@@ -137,6 +137,7 @@ const DataViewer = () => {
           link = state.link2;
           globalLink = state.link2;
         }        
+        console.log(res.data);
         if (res.data.length == 0) {
           setState({
             ...state,

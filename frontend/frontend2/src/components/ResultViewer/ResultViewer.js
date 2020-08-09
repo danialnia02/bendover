@@ -53,12 +53,10 @@ const ResultViewer = () => {
     event.preventDefault()
     var dataType = state.festivals
     var festivalInput = state.festivalInput;
-    console.log(dataType);
-    console.log(festivalInput);
-    console.log(state.allData)
+    console.log(dataType);    
 
-    getAllData().then(data => {
-      var testData = JSON.parse(data.value);
+    getAllData().then(data => {      
+      var testData = JSON.parse(data.value);           
       var resultArray = functions.resultArray(dataType, festivalInput, testData)
 
       if(resultArray!=null){
@@ -130,13 +128,14 @@ const ResultViewer = () => {
         link = state.web
       }
       console.log(link)
-      axios.get(link + "basic/result")
+      axios.get(link + "advance/data")
         .then(res => {
           var data = res.data
 
           if (res.data.length == 0) {
             console.log("There is no data here")
           } else {
+            console.log(data);
             setData(data);
             setallData(data);
 

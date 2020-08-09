@@ -2,14 +2,18 @@ var functions = {
 
     //functions for resultviewer
 
-    resultArray: function (dataType, festivalInput, allData) {
-        var resultArray = [];
+    resultArray: function (dataType, festivalInput, allData) {        
+        allData=functions.convertTime2String(allData)    
+        console.log(allData);    
+        console.log(allData[0])
+        var resultArray = [];        
 
         for (var i = 0; i < allData.length; i++) {
             if (allData[i].festivalId == (festivalInput)) {
                 resultArray.push(allData[i]);
             }
         }
+        console.log(resultArray);
 
         switch (dataType) {
             case "basic":
@@ -83,7 +87,7 @@ var functions = {
         } while (doCount < festivalArray.length)        
         return (timeArray)
     },
-    calculateTime2: function (festivalArray) {
+    calculateTimeAdvance: function (festivalArray) {
         var timeArray = [festivalArray[0]];
 
         // var latestEndTime = festivalArray[0];
@@ -236,6 +240,27 @@ var functions = {
         var returnN = milisecs + 1592841600000
         // console.log(returnN)
         return (returnN)
+    },
+    convertTime2String:function(timeArray){
+        console.log(timeArray);
+        var currentArray = [];
+        for (var i = 0; i < timeArray.length; i++) {
+            var newStartTime = timeArray[i].startTime.split(/[.:]/);
+            newStartTime = newStartTime[1] + newStartTime[2]
+
+            var newEndTime = timeArray[i].endTime.split(/[.:]/);
+            newEndTime = newEndTime[1] + newEndTime[2]
+
+
+            currentArray.push({
+                performanceId: timeArray[i].performanceId,
+                festivalId: timeArray[i].festivalId,
+                startTime: newStartTime,
+                endTime: newEndTime,   
+                popularity:timeArray[i].popularity             
+            })
+        }
+        return currentArray
     }
 
 
