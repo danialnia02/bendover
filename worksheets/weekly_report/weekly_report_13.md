@@ -1,21 +1,15 @@
 # Weekly Report
 
-This report is for you to document the progres of your project. You should also document any change in plan, e.g. change in design or change in API specification or change in work allocation. The following is a template for you to follow.
+-   The framework that we have chosen to use for our result viewer is react google charts, which is a framework with declarative API to make rendering charts fun and easy.
 
 ## What have I done last week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Alter our result with another function to give an output for a few possible framework that we can choose from to implement into our Result Viewer.
 
 ## What do I plan to do next week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Start trying to cache our data
 
 ## Additional Thoughts
 
--   VSCode is sick.
--   This addon is fabulous.
--   Lecturer is awesome.
+-   React Google Charts is not too hard to use and its very visually appealing yet simpleeee to implement.

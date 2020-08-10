@@ -1,24 +1,17 @@
 # Weekly Report
 
-I started to do my work again, completed all the worksheets.
-Fixed the things that i missed out in CA1 and CA2.
-Fixed Bulk Insert and Insert.
+Create basic algorithmn for basic/result
 
 
 ## What have I done last week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   I did nothing last week
+-   Did my other projects
 
 ## What do I plan to do next week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Create algorithmn for advance feature
 
 ## Additional Thoughts
 
--   VSCode is sick.
--   This addon is fabulous.
--   Lecturer is awesome.
+-   Coding the backend is fun, but frontend is frustrating and exhausting.

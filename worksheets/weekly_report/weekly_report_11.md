@@ -1,21 +1,15 @@
 # Weekly Report
 
-This report is for you to document the progres of your project. You should also document any change in plan, e.g. change in design or change in API specification or change in work allocation. The following is a template for you to follow.
+-   Find a few framework to show our results.
 
 ## What have I done last week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Test both algorithmn with our database data
 
 ## What do I plan to do next week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Alter our result to follow the structure that the framework needs.
 
 ## Additional Thoughts
 
--   VSCode is sick.
--   This addon is fabulous.
--   Lecturer is awesome.
+-   It was hard to understand at first on what a Framework is but its acutally self-explainatory, like in real life, the skeleton of the human body is the frame and the skin and meat is the input from the "user". Without the skeleton, we would just be like mushy goo moving around like slugs.

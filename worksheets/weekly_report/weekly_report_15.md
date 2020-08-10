@@ -1,21 +1,16 @@
 # Weekly Report
 
-This report is for you to document the progres of your project. You should also document any change in plan, e.g. change in design or change in API specification or change in work allocation. The following is a template for you to follow.
+-   Implement the caching service into our code.
 
 ## What have I done last week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Try to understand caching
+-   Try to find a few caching servie taht works with both mobile and web.
 
 ## What do I plan to do next week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Try to alter our code for the backend test.
 
 ## Additional Thoughts
 
--   VSCode is sick.
--   This addon is fabulous.
--   Lecturer is awesome.
+-   The hardest part was figuring out wheter the cache even works as im not sure if the cache saves even when the

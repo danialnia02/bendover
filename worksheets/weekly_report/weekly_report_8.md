@@ -1,21 +1,15 @@
 # Weekly Report
 
-This report is for you to document the progres of your project. You should also document any change in plan, e.g. change in design or change in API specification or change in work allocation. The following is a template for you to follow.
+-   I created an advance algorithmn for advance/result
 
 ## What have I done last week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Create basic algorithmn for basic/result
 
 ## What do I plan to do next week
 
--   Worked on...
--   Worked on...
--   Changed....
+-   Test the basic and advance algorithmn with mock data
 
 ## Additional Thoughts
 
--   VSCode is sick.
--   This addon is fabulous.
--   Lecturer is awesome.
+-   Coding the back end is fun, unlike frontend.
