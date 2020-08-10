@@ -60,8 +60,20 @@ This document helps you identify the smaller tasks and helps you create a rough 
 | 6 | Basic | Backend  | Insert API | Implementation|
 | 6 | Basic | Frontend + Mobile | Result Viewer | Implementation|
 | 6 | Basic | Frontend + Mobile | Result Viewer | Integration|
+| 7| Basic | Backend | Basic Algorithm| Creating algorithmn for basic feature|
+| 8| Advanced | Backend | Advance Algorithm| Creating algorithmn for Advance feature|
+|9 | Basic | Backend | Basic & Advance Algorithmn| Testing Algorithmn with mock data|
+|10 | Basic | Backend | Basic & Advance Algorithmn| Testing Algorithmn with database data|
+|11| Basic | BackEnd | Both Algorithmn| Insert our Algorithmn into our code|
+|12| Basic| Frontend| Result Viewer Framework| Find a few framework to show our results|
+|13| Basic| Frontend| Result Viewer Framework| Testing the framework to show our results|
+|14|Advanced| Backend| Caching of Data| Find a framework for caching|
+|15|Advanced|Backend| Caching of Data| useing the framework for caching|
+|16|Advanced|Backend| Alter code for backend test|Alter code for backend Test|
+|17|Advanced|Backend| Create Slides|Alter code for backend Test|
+|17|Advanced|Backend| Try selenium| Try to do selenium|
 
-> This is just a template, you just need to state **WHO** will do **WHAT** and **WHEN**.
+
 ### Member 1 - Cleavon Ong
 
 | Week | Level | Component | Feature       | Task           |
