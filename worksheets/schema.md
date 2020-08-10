@@ -17,7 +17,7 @@ CREATE TABLE festivalinfo(
 	festivalId BIGINT(50) NOT NULL,
 	startTime TIME NOT NULL,
 	endTime TIME NOT NULL,
-	popularity BIGINT(50) NOT NULL,
+	popularity BIGINT(50) NULL,
 	primary Key(performanceId)
 )
 ```
