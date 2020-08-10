@@ -85,52 +85,25 @@ app.use(function (err, req, res, next) {
     })
 })
 
+//search basic on performanceId
+app.get('/basic/result/:performanceId', function (req, res) {
 
-//Get Data based on festivalId
-app.get('/basic/result/:festivalid', function (req, res) {
-    var Info = {
-        userInput: req.params.festivalid
-    }
-    // console.log(Info);
+    id = req.params.performanceId    
 
-    musicDb.getFestivalId(Info, function (err, result) {
+    musicDb.getPerformanceId(id, function (err, result) {
         if (!err) {
-            // console.log(result)
-            res.send(result)
+            res.send(result);
         } else {
-            if (err == "null") {
-                res.status(500).send({ error: 'Error with festivalId Input', code: 500 })
-            } else {
-                res.status(500).send({ error: 'String', code: 500 })
-            }
-        }
-    })
-})
-app.get('/advance/result/:festivalid', function (req, res) {
-    var Info = {
-        userInput: req.params.festivalid
-    }
-    // console.log(Info);
-
-    musicDb.getFestivalId2(Info, function (err, result) {
-        if (!err) {
-            // console.log(result)            
-            res.send(result)
-        } else {
-            if (err == "null") {
-                res.status(500).send({ error: 'Error with festivalId Input', code: 500 })
-            } else {
-                res.status(500).send({ error: 'String', code: 500 })
-            }
+            console.log(err)
+            res.status(500).send('Unkown error\nCode:500 Internal Server Error.')
         }
     })
 })
 
-//serach based on performanceId
-app.get('/basic/results/:performanceId', function (req, res) {
+//search advance based on performanceId
+app.get('/advance/result/:performanceId', function (req, res) {
 
-    id = req.params.performanceId
-    console.log(id)
+    id = req.params.performanceId    
 
     musicDb.getPerformanceId(id, function (err, result) {
         if (!err) {
@@ -152,13 +125,13 @@ app.post('/search', function (req, res) {
 
     console.log(attribute1, input1, attribute2, input2)
 
-    if (attribute1 == "") {
+    if (attribute1 == "" || attribute1=="undefined" || attribute1==null) {
         console.log("here1");
         Info = {
             attribute: attribute2,
             input: input2
         }
-    } else if (attribute2 == "") {
+    } else if (attribute2 == "" || attribute2=="undefined" || attribute2==null) {
         console.log("here2");
         Info = {
             attribute: attribute1,
@@ -171,14 +144,12 @@ app.post('/search', function (req, res) {
             attribute2: attribute2,
             input2: input2
         }
-    }
-
-    console.log(Info)
+    }    
 
     musicDb.search(Info, function (err, result) {
         if (!err) {
             console.log(result)
-            res.send(result)
+            res.send({result})
         } else {
             res.status(500).send('Unknown error\nCode:500 Internal Server Error.')
         }
@@ -226,7 +197,7 @@ app.get('/advance/recordCount', function (req, res) {
     musicDb.recordCounter(function (err, result) {
         if (!err) {
             console.log(result)
-            res.send(result);
+            res.send({result});
         } else {
             console.log(err)
             res.status(500).send('Unkown error\nCode:500 Internal Server Error.')

@@ -238,7 +238,7 @@ var database = {
                     if (err) {
                         return callback(err, null);
                     } else {
-                        return callback(null, result);
+                        return callback(null, {result});
                     }
                 });
             }

@@ -15,6 +15,66 @@ Each API should include
 
 > Errors and it's corresponding code can be defined by yourself. You need not follow HTTP errors.
 
+## Reset Table
+
+| attribute   | value       |
+| ----------- | ----------- |
+| HTTP Method | GET         |
+| Endpoint    | /reset |
+ 
+### Parameters
+
+| parameter | datatype        | example   |
+| --------- | --------------- | --------- |
+| None        | None | None |
+
+### Response Body
+
+```json
+{
+    "success":string,
+}
+```
+
+### Error
+
+```json
+{
+	"error": string,	
+}
+```
+
+### Sample Request
+
+```http
+GET /reset
+```
+
+### Sample Response
+
+```json
+{
+    "success":"true"
+}   
+
+
+```
+
+### Sample Error
+
+```json
+    {
+        "error": {
+            "code": "ER_PARSE_ERROR",
+            "errno": 1064,
+            "sqlMessage": "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE TABLE festivalinfo (performanceId BIGINT(50) NOT NULL, festivalId BIGINT(' at line 1",
+            "sqlState": "42000",
+            "index": 0,
+            "sql": "DROP TABLE IF EXISTS festivalinfo; CREATE TABLE festivalinfo (performanceId BIGINT(50) NOT NULL, festivalId BIGINT(50)  NOT NULL, startTime TIME NOT NULL, endTime TIME NOT NULL, popularity BIGINT(50) NOT NULL, primary KEY(performanceId))"
+        }        
+    }
+```
+----------------------------------------------------------------
 ## Get Data
 
 | attribute   | value       |
@@ -26,7 +86,7 @@ Each API should include
 
 | parameter | datatype        | example   |
 | --------- | --------------- | --------- |
-| id        | 10 digit number | 123456789 |
+| None        | None | None |
 
 ### Response Body
 
@@ -34,9 +94,11 @@ Each API should include
 {
     "result": [
         {
-            "id": number,
-            "property1": number,
-            "property2": string,
+            "performanceId": BIGINT(50),
+            "festivalId": BIGINT(50),
+            "startTime": Time,
+            "endTime": Time,
+            "popularity":BIGINT(50)
             ...
         }
     ]
@@ -55,22 +117,92 @@ Each API should include
 ### Sample Request
 
 ```http
-GET /basic/data?id=1234567890
+GET /basic/data
 ```
 
 ### Sample Response
 
 ```json
+[
+    {
+        "performanceId": 9000000001,
+        "festivalId": 9900000001,
+        "startTime": "00:10:00",
+        "endTime": "00:11:00",
+        "popularity": 1
+    },
+    ...
+]
+
+```
+
+### Sample Error
+
+```json
+{
+	"error": "Server Error",
+	"code": 500
+}
+```
+----------------------------------------------------------------
+## Get Advance Data  
+| attribute   | value       |
+| ----------- | ----------- |
+| HTTP Method | GET         |
+| Endpoint    | /advance/data |
+ 
+### Parameters
+
+| parameter | datatype        | example   |
+| --------- | --------------- | --------- |
+| None        | None | None |
+
+### Response Body
+
+```json
 {
     "result": [
         {
-            "id": 1234567890,
-            "property1": 1234567890,
-            "property2": "haha",
+            "performanceId": BIGINT(50),
+            "festivalId": BIGINT(50),
+            "startTime": Time,
+            "endTime": Time,
+            "popularity":BIGINT(50)
             ...
         }
     ]
 }
+```
+
+### Error
+
+```json
+{
+	"error": string,
+	"code": number
+}
+```
+
+### Sample Request
+
+```http
+GET /advance/data
+```
+
+### Sample Response
+
+```json
+[
+    {
+        "performanceId": 9000000001,
+        "festivalId": 9900000001,
+        "startTime": "00:10:00",
+        "endTime": "00:11:00",
+        "popularity": 1
+    },
+    ...
+]
+
 ```
 
 ### Sample Error
@@ -83,133 +215,168 @@ GET /basic/data?id=1234567890
 ```
 ----------------------------------------------------------------
 
-## Get All Data
+## Get Basic Data based on Parameter
 
 | attribute   | value       |
 | ----------- | ----------- |
 | HTTP Method | GET         |
-| Endpoint    | /basic/result |
+| Endpoint    | /basic/result|
 
 ### Parameters
 
-No parameters
+| parameter | datatype        | example   |
+| --------- | --------------- | --------- |
+| festivalId        | String | festivalId=1234567890 |
 
 ### Response Body
 
 ```json
 
-[
-    {
-        "performanceId": number,
-        "festivalId": number,
-        "startTime": string,
-        "endTime": string,
-        "popularity":number   
-    }
-]
+{
+    "result": [
+        {
+            "performanceId": BIGINT(50),
+            "festivalId": BIGINT(50),
+            "startTime": Time,
+            "endTime": Time,            
+            ...
+        }
+    ]
+}
 ```
 
 ### Error
 
 ```json
 {
-	"error": string,
-	"code": number
+	"result":[]
 }
 ```
 
 ### Sample Request
 
 ```http
-GET /basic/results
+GET /basic/result?festivalId=9999999999
 ```
 
 ### Sample Response
 
 ```json
-[
+{
+  "result": [
     {
-        "performanceId": 123457,
-        "festivalId": 123456,
-        "startTime": "2100",
-        "endTime": "2230",
-        "popularity":0   
+      "performanceId": 9999999999,
+      "startTime": "0900",
+      "endTime": "1200",      
     }
-]
+  ]
+}
 ```
 
 ### Sample Error
 
 ```json
 {
-	"error": "Server Error",
-	"code": 500
+	result:[]
 }
 ```
 
 ----------------------------------------------------------------    
-## Get Data based on festivalId
+## Get Advance Data based on Parameter
 
 | attribute   | value       |
 | ----------- | ----------- |
 | HTTP Method | GET         |
-| Endpoint    | /basic/result/:festivalid |
+| Endpoint    | /advance/result|
 
 ### Parameters
 
 | parameter | datatype        | example   |
 | --------- | --------------- | --------- |
-| festivalid | number | 123456789 |
+| festivalId        | String | festivalId=1234567890 |
 
 ### Response Body
 
 ```json
-[
-    [
+
+{
+    "result": [
         {
-            "type": "string",
-            "label":"count"
-        },
-        {
-            "type": "string",
-            "label":"popularity"
-        },
-        {
-            "type": "string",
-            "label":"performanceId"
-        },
-        {
-            "type": "date",
-            "label":"startTime"
-        },
-        {
-            "type": "date",
-            "label":"endTime"
-        },
-        {
-            "type": "number",
-            "label":"popularity"
-        },
-        {
-            "type": "number",
-            "label":"Percent Complete"
-        },
-        {
-            "type": "string",
-            "label":"Dependencies"
+            "performanceId": BIGINT(50),
+            "festivalId": BIGINT(50),
+            "startTime": Time,
+            "endTime": Time,
+            "popularity":BIGINT(50)
+            ...
         }
-    ],
-    [
-        number,
-        number,
-        number,
-        number,
-        number,
-        number,
-        number,
-        null,
     ]
-]
+}
+```
+
+### Error
+
+```json
+{
+	"result":[]
+}
+```
+
+### Sample Request
+
+```http
+GET /advance/result?festivalId=9999999999
+```
+
+### Sample Response
+
+```json
+{
+  "result": [
+    {
+      "performanceId": 9999999999,
+      "startTime": "0900",
+      "endTime": "1200",
+      "popularity": 5
+    }
+  ]
+}
+```
+
+### Sample Error
+
+```json
+{
+	result:[]
+}
+```
+----------------------------------------------------------------
+## Get Basic Data based on performanceId
+
+| attribute   | value       |
+| ----------- | ----------- |
+| HTTP Method | GET         |
+| Endpoint    | /basic/result/:performanceId |
+
+### Parameters
+
+| parameter | datatype        | example   |
+| --------- | --------------- | --------- |
+| performanceId        | 10 digit number | 1000000001 |
+
+### Response Body
+
+```json
+{
+    "result": [
+        {
+            "performanceId": BIGINT(50),
+            "festivalId": BIGINT(50),
+            "startTime": Time,
+            "endTime": Time,
+            "popularity":BIGINT(50)            
+        }
+    ]
+}
 ```
 
 ### Error
@@ -224,58 +391,24 @@ GET /basic/results
 ### Sample Request
 
 ```http
-GET /basic/result/:festivalid=123456
+GET /basic/result/1000000001
 ```
 
 ### Sample Response
 
 ```json
-[
-    [
+{
+    "result": [
         {
-            "type": "string",
-            "label": "count"
+            "performanceId": 1000000001,
+            "festivalId": 1100000001,
+            "startTime": "1030",
+            "endTime": "1130",
+            "popularity":10            
         },
-        {
-            "type": "string",
-            "label": "peformanceId"
-        },
-        {
-            "type": "string",
-            "label": "peformanceId"
-        },
-        {
-            "type": "date",
-            "label": "startTime"
-        },
-        {
-            "type": "date",
-            "label": "endTime"
-        },
-        {
-            "type": "number",
-            "label": "popularity"
-        },
-        {
-            "type": "number",
-            "label": "Percent Complete"
-        },
-        {
-            "type": "string",
-            "label": "Dependencies"
-        }
-    ],
-    [
-        0,
-        1000000001,
-        1000000001,
-        1592877600000,
-        1592881200000,
-        1,
-        100,
-        null
+        
     ]
-]
+}
 ```
 
 ### Sample Error
@@ -287,30 +420,32 @@ GET /basic/result/:festivalid=123456
 }
 ```
 ----------------------------------------------------------------
-## Get Data based on performanceId
+## Get Advance Data based on performanceId
 
 | attribute   | value       |
 | ----------- | ----------- |
 | HTTP Method | GET         |
-| Endpoint    | /basic/results/:performanceId |
+| Endpoint    | /advance/result/:performanceId |
 
 ### Parameters
 
 | parameter | datatype        | example   |
 | --------- | --------------- | --------- |
-| performanceId        | 10 digit number | 123456789 |
+| performanceId        | 10 digit number | 1000000001 |
 
 ### Response Body
 
 ```json
-{    
+{
+    "result": [
         {
-            "performanceId": number,
-            "festivalId": number,
-            "startTime": string,
-            "endTime": string,
-            "popularity":number            
-        }    
+            "performanceId": BIGINT(50),
+            "festivalId": BIGINT(50),
+            "startTime": Time,
+            "endTime": Time,
+            "popularity":BIGINT(50)            
+        }
+    ]
 }
 ```
 
@@ -326,7 +461,7 @@ GET /basic/result/:festivalid=123456
 ### Sample Request
 
 ```http
-GET /basic/results/:performanceId=1000000003
+GET /advance/result/1000000001
 ```
 
 ### Sample Response
@@ -335,7 +470,7 @@ GET /basic/results/:performanceId=1000000003
 {
     "result": [
         {
-            "performanceId": 1000000003,
+            "performanceId": 1000000001,
             "festivalId": 1100000001,
             "startTime": "1030",
             "endTime": "1130",
@@ -367,31 +502,32 @@ GET /basic/results/:performanceId=1000000003
 
 | parameter | datatype        | example   |
 | --------- | --------------- | --------- |
-| attribute1(performanceId)| String | 12345678 |
-| input1| String | 12345678 |
-| attribute2(festivalId)| String | 12345678 |
-| input2| String | 12345678 |
+| attribute1(performanceId)| String | performanceId |
+| input1| String | 1000000001 |
+| attribute2(festivalId)| String | "" |
+| input2| String | "" |
 
 ### Response Body
 
 ```json
-[
-    {
-        "performanceId": number,
-        "festivalId": number,
-        "startTime": string,
-        "endTime": string,
-        "popularity":number            
-    }  
-]
+{
+    "result": [
+        {
+            "performanceId": BIGINT(50),
+            "festivalId": BIGINT(50),
+            "startTime": Time,
+            "endTime": Time,
+            "popularity":BIGINT(50)            
+        }
+    ]
+}
 ```
 
 ### Error
 
 ```json
 {
-	"error": string,
-	"code": number
+    "result":[]
 }
 ```
 
@@ -421,8 +557,7 @@ GET /search
 
 ```json
 {
-	"error": "Server Error",
-	"code": 500
+    "result":[]
 }
 ```
 ----------------------------------------------------------------
@@ -446,14 +581,7 @@ GET /search
 
 ```json
 {
-    "result": [
-        {
-            "performanceId": number,
-            "festivalId": number,
-            "startTime": string,
-            "endTime": string,                   
-        }
-    ]
+    "result":string
 }
 ```
 
@@ -475,7 +603,9 @@ POST /search
 ### Sample Response
 
 ```json
-"Your data has been inserted!"
+{
+    "result":"succes"
+}   
 ```
 
 ### Sample Error
@@ -508,15 +638,7 @@ POST /search
 
 ```json
 {
-    "result": [
-        {
-            "performanceId": number,
-            "festivalId": number,
-            "startTime": string,
-            "endTime": string,
-            "popularity":number            
-        }
-    ]
+    "result":string
 }
 ```
 
@@ -555,7 +677,7 @@ POST /search
 | attribute   | value       |
 | ----------- | ----------- |
 | HTTP Method | get     |
-| Endpoint    | /advance/recordCount |
+| Endpoint    | /advance/recordCount|
 
 ### Parameters
 
@@ -567,7 +689,7 @@ No Parameter
 {
     "result": [
         {
-            "recordCount":number         
+            "recordCount":number 
         }
     ]
 }
