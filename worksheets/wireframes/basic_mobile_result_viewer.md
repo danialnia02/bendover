@@ -5,6 +5,7 @@
 ## Wireframe
 
 ![Wireframe1](ResultViewer/resultViewerPhone.png)
+![Wireframe2](ResultViewer/resultViewerPhone2.png)
 
 1. Able to fit all the information in the same page.
 2. Able to display all the performances correctly.
