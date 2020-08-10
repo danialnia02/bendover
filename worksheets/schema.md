@@ -12,19 +12,12 @@ CREATE TABLE table_name_2(
 ```
 
 ```sql
-CREATE TABLE [dbo].[festivalInfo](
-	[performanceId] [int] NOT NULL,
-	[festivalId] [int] NOT NULL,
-	[startTime] [int] NOT NULL,
-	[endTime] [int] NOT NULL,
-	[popularity] [int] NOT NULL
-) ON [PRIMARY]
-
-CREATE TABLE [dbo].[pollUser](
-	[pollid] [int] NOT NULL,
-	[name] [varchar](1) NOT NULL,
-	[email] [varchar](1) NOT NULL,
-	[popularChosen] [int] NOT NULL
-) ON [PRIMARY]
-
+CREATE TABLE festivalinfo(
+	performanceId BIGINT(50) NOT NULL,
+	festivalId BIGINT(50) NOT NULL,
+	startTime TIME NOT NULL,
+	endTime TIME NOT NULL,
+	popularity BIGINT(50) NOT NULL,
+	primary Key(performanceId)
+)
 ```
