@@ -18,27 +18,27 @@ const { Connection } = require('pg');
 
 
 var database = {
-    //     
-    // resetTable: function (callback) {
-    //     var conn = db.getConnection();
-    //     conn.connect(function (err) {
-    //         if (err) {
-    //             return callback(err, null);
-    //         }
-    //         else {
-    //             console.log("Connected!");
-    //             sql = "DROP TABLE IF EXISTS festivalinfo; CREATE TABLE festivalinfo (performanceId BIGINT(50) NOT NULL, festivalId BIGINT(50) NOT NULL, startTime TIME NOT NULL, endTime TIME NOT NULL, popularity BIGINT(50) NOT NULL, primary KEY(performanceId))"
-    //             conn.query(sql, function (err, result) {
-    //                 conn.end();
-    //                 if (err) {
-    //                     return callback(err, null);
-    //                 } else {
-    //                     return callback(null, result);
-    //                 }
-    //             });
-    //         }
-    //     });
-    // },
+        
+    resetTable: function (callback) {
+        var conn = db.getConnection();
+        conn.connect(function (err) {
+            if (err) {
+                return callback(err, null);
+            }
+            else {
+                console.log("Connected!");
+                sql = "DROP TABLE IF EXISTS festivalinfo; CREATE TABLE festivalinfo (performanceId BIGINT(50) NOT NULL, festivalId BIGINT(50) NOT NULL, startTime TIME NOT NULL, endTime TIME NOT NULL, popularity BIGINT(50) NOT NULL, primary KEY(performanceId))"
+                conn.query(sql, function (err, result) {
+                    conn.end();
+                    if (err) {
+                        return callback(err, null);
+                    } else {
+                        return callback(null, result);
+                    }
+                });
+            }
+        });
+    },
 
     resetTable2: function (callback) {
         var sql = `DROP TABLE IF EXISTS festivalinfo; `;

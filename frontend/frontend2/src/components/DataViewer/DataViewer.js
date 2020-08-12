@@ -204,8 +204,8 @@ const DataViewer = () => {
     <div id='body'>
       <div class='container'>
 
-        <h1>{renderMobile()}</h1>
-        <h1>{JSON.stringify(state.testData)}</h1>
+        {/* <h1>{renderMobile()}</h1>
+        <h1>{JSON.stringify(state.testData)}</h1> */}
 
         <h1>Data Viewer</h1>
         {/* <h1 class='text-primary table-title mb-3'>Data Viewer</h1> */}
@@ -242,23 +242,23 @@ const DataViewer = () => {
                         <Form.Group as={Col} controlId="category1">
                           <Form.Control as="select" value="Choose..." name="attribute1" size="5" value={state.attribute1} onChange={handleChange}>
                             <option></option>
-                            <option value="performanceId">performanceId</option>
-                            <option value="festivalId">festivalId</option>
-                            <option value="startTime">startTime</option>
-                            <option value="endTime">endTime</option>
-                            <option value="popularity">popularity</option>
-                            <option value="dataInserted">dataInserted</option>
+                            <option id="performanceIdOne" value="performanceId">performanceId</option>
+                            <option id="festivalIdOne" value="festivalId">festivalId</option>
+                            <option id="startTimeOne" value="startTime">startTime</option>
+                            <option id="endTimeOne" value="endTime">endTime</option>
+                            <option id = "popularityOne" value="popularity">popularity</option>
+                            <option id = "dataInsertedOne" value="dataInserted">dataInserted</option>
                           </Form.Control>
                         </Form.Group> {/* end group for category1 */}
                         <Form.Group as={Col} controlId="category2">
                           <Form.Control as="select" value="Choose..." name="attribute2" size="5" value={state.attribute2} onChange={handleChange}>
                             <option></option>
-                            <option value="performanceId">performanceId</option>
-                            <option value="festivalId">festivalId</option>
-                            <option value="startTime">startTime</option>
-                            <option value="endTime">endTime</option>
-                            <option value="popularity">popularity</option>
-                            <option value="dataInserted">dataInserted</option>
+                            <option id="performanceIdTwo" value="performanceId">performanceId</option>
+                            <option id="festivalIdTwo" value="festivalId">festivalId</option>
+                            <option id="startTimeTwo" value="startTime">startTime</option>
+                            <option id="endTimeTwo" value="endTime">endTime</option>
+                            <option id = "popularityTwo" value="popularity">popularity</option>
+                            <option id = "Two" value="dataInserted">dataInserted</option>
                           </Form.Control>
                         </Form.Group> {/* end group for category2 */}
                       </Form.Row> {/*end row for categories*/}
